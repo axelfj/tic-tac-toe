@@ -1,12 +1,31 @@
-# ED---p2
-Proyecto 2, Estructuras de Datos
+<snippet>
+  <content><![CDATA[
+# ${1:Proyecto 2 - Estructuras de Datos}
 
-Integrantes: 
-Kevin Aguilar Castro
-Jimmy Cerda Ruiz
+Kevin Aguilar Castro - 2016152058
+Axel Fernandez Jimenez - 2016098894
+
+## Enunciado
 
 Primera parte: Gato
 Programe el juego del gato con el algoritmo de árboles Min Max de forma tal que una persona
 pueda jugar contra la máquina.
 El juego debe permitir elegir quién juega primero si la persona o la máquina y debe recibir el
 nombre de la persona que juega para desplegar al final quién ganó.
+
+## Instalación
+
+TODO
+
+## Creditos
+
+Kevin Aguilar C.
+Axel Fernandez J.
+
+## Licencia
+
+TODO
+
+]]></content>
+  <tabTrigger>readme</tabTrigger>
+</snippet>
