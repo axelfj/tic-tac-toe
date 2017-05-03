@@ -1,4 +1,4 @@
-## Proyecto 2 - Estructuras de Datos
+## Proyecto 2 - Estructuras de Datos - Gato
 
 Kevin Aguilar Castro - 2016152058
 
