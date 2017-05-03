@@ -6,8 +6,6 @@ Axel Fernandez Jimenez - 2016098894
 
 ## Enunciado
 
-Primera parte: Gato
-
 Programe el juego del gato con el algoritmo de árboles Min Max de forma tal que una persona
 pueda jugar contra la máquina.
 
