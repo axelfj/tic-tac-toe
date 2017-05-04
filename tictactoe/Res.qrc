@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="/logo">
+        <file>logo.png</file>
+        <file>ic_logo.png</file>
+        <file>ic_start.png</file>
+        <file>ic_robotPressed.png</file>
+        <file>ic_humanPressed.png</file>
+        <file>gato.png</file>
+        <file>ic_humanGame.png</file>
+        <file>ic_robotGame.png</file>
+        <file>gato_o.png</file>
+        <file>gato_x.png</file>
+        <file>ic_human.png</file>
+        <file>ic_robot.png</file>
+    </qresource>
+</RCC>
