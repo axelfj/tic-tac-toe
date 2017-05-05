@@ -677,7 +677,10 @@
      </size>
     </property>
     <property name="checkable">
-     <bool>false</bool>
+     <bool>true</bool>
+    </property>
+    <property name="checked">
+     <bool>true</bool>
     </property>
     <property name="default">
      <bool>true</bool>
@@ -707,6 +710,12 @@
       <height>100</height>
      </size>
     </property>
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="checked">
+     <bool>true</bool>
+    </property>
     <property name="default">
      <bool>true</bool>
     </property>
@@ -734,6 +743,12 @@
       <width>100</width>
       <height>100</height>
      </size>
+    </property>
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="checked">
+     <bool>true</bool>
     </property>
     <property name="default">
      <bool>true</bool>
@@ -763,6 +778,12 @@
       <height>100</height>
      </size>
     </property>
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="checked">
+     <bool>true</bool>
+    </property>
     <property name="default">
      <bool>true</bool>
     </property>
@@ -790,6 +811,12 @@
       <width>100</width>
       <height>100</height>
      </size>
+    </property>
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="checked">
+     <bool>true</bool>
     </property>
     <property name="default">
      <bool>true</bool>
@@ -819,6 +846,12 @@
       <height>100</height>
      </size>
     </property>
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="checked">
+     <bool>true</bool>
+    </property>
     <property name="default">
      <bool>true</bool>
     </property>
@@ -846,6 +879,12 @@
       <width>100</width>
       <height>100</height>
      </size>
+    </property>
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="checked">
+     <bool>true</bool>
     </property>
     <property name="default">
      <bool>true</bool>
@@ -875,6 +914,12 @@
       <height>100</height>
      </size>
     </property>
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="checked">
+     <bool>true</bool>
+    </property>
     <property name="default">
      <bool>true</bool>
     </property>
@@ -902,6 +947,12 @@
       <width>100</width>
       <height>100</height>
      </size>
+    </property>
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="checked">
+     <bool>true</bool>
     </property>
     <property name="default">
      <bool>true</bool>
@@ -933,7 +984,7 @@
      <x>0</x>
      <y>0</y>
      <width>1200</width>
-     <height>31</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

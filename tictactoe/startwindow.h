@@ -3,6 +3,7 @@
 #include <QLabel>
 #include <QMainWindow>
 #include <qlabel_event.h>
+#include <QPushButton>
 
 namespace Ui {
 class StartWindow;
@@ -22,6 +23,9 @@ public:
     void gameFi();
     void gameFo();
     void cambioTurno();
+    void colocarFicha(QPushButton m);
+    void hideUi();
+    bool valGane(int button, int turn);
 
 private slots:
     //void on_commandLinkButton_clicked();

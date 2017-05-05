@@ -188,6 +188,7 @@ public:
         m1->setStyleSheet(QStringLiteral("border: none;"));
         m1->setIconSize(QSize(100, 100));
         m1->setCheckable(true);
+        m1->setChecked(true);
         m1->setDefault(true);
         m1->setFlat(true);
         m2 = new QPushButton(centralwidget);
@@ -195,6 +196,8 @@ public:
         m2->setGeometry(QRect(520, 70, 160, 160));
         m2->setStyleSheet(QStringLiteral("border: none;"));
         m2->setIconSize(QSize(100, 100));
+        m2->setCheckable(true);
+        m2->setChecked(true);
         m2->setDefault(true);
         m2->setFlat(true);
         m3 = new QPushButton(centralwidget);
@@ -202,6 +205,8 @@ public:
         m3->setGeometry(QRect(710, 70, 160, 160));
         m3->setStyleSheet(QStringLiteral("border: none;"));
         m3->setIconSize(QSize(100, 100));
+        m3->setCheckable(true);
+        m3->setChecked(true);
         m3->setDefault(true);
         m3->setFlat(true);
         m5 = new QPushButton(centralwidget);
@@ -209,6 +214,8 @@ public:
         m5->setGeometry(QRect(520, 260, 160, 160));
         m5->setStyleSheet(QStringLiteral("border: none;"));
         m5->setIconSize(QSize(100, 100));
+        m5->setCheckable(true);
+        m5->setChecked(true);
         m5->setDefault(true);
         m5->setFlat(true);
         m6 = new QPushButton(centralwidget);
@@ -216,6 +223,8 @@ public:
         m6->setGeometry(QRect(710, 260, 160, 160));
         m6->setStyleSheet(QStringLiteral("border: none;"));
         m6->setIconSize(QSize(100, 100));
+        m6->setCheckable(true);
+        m6->setChecked(true);
         m6->setDefault(true);
         m6->setFlat(true);
         m4 = new QPushButton(centralwidget);
@@ -223,6 +232,8 @@ public:
         m4->setGeometry(QRect(330, 260, 160, 160));
         m4->setStyleSheet(QStringLiteral("border: none;"));
         m4->setIconSize(QSize(100, 100));
+        m4->setCheckable(true);
+        m4->setChecked(true);
         m4->setDefault(true);
         m4->setFlat(true);
         m7 = new QPushButton(centralwidget);
@@ -230,6 +241,8 @@ public:
         m7->setGeometry(QRect(330, 450, 160, 160));
         m7->setStyleSheet(QStringLiteral("border: none;"));
         m7->setIconSize(QSize(100, 100));
+        m7->setCheckable(true);
+        m7->setChecked(true);
         m7->setDefault(true);
         m7->setFlat(true);
         m9 = new QPushButton(centralwidget);
@@ -237,6 +250,8 @@ public:
         m9->setGeometry(QRect(710, 450, 160, 160));
         m9->setStyleSheet(QStringLiteral("border: none;"));
         m9->setIconSize(QSize(100, 100));
+        m9->setCheckable(true);
+        m9->setChecked(true);
         m9->setDefault(true);
         m9->setFlat(true);
         m8 = new QPushButton(centralwidget);
@@ -244,6 +259,8 @@ public:
         m8->setGeometry(QRect(520, 450, 160, 160));
         m8->setStyleSheet(QStringLiteral("border: none;"));
         m8->setIconSize(QSize(100, 100));
+        m8->setCheckable(true);
+        m8->setChecked(true);
         m8->setDefault(true);
         m8->setFlat(true);
         StartWindow->setCentralWidget(centralwidget);

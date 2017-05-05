@@ -245,14 +245,34 @@ void StartWindow::gameFi(){
     // ----------------------- Botones de Gato --------------------
 
     ui->m1->show();
+    ui->m1->click();
+
     ui->m2->show();
+    ui->m2->click();
+
     ui->m3->show();
+    ui->m3->click();
+
     ui->m4->show();
+    ui->m4->click();
+
     ui->m5->show();
+    ui->m5->click();
+
     ui->m6->show();
+    ui->m6->click();
+
     ui->m7->show();
+    ui->m7->click();
+
     ui->m8->show();
+    ui->m8->click();
+
     ui->m9->show();
+    ui->m9->click();
+
+    hideUi();
+
 }
 
 void StartWindow::gameFo(){}
@@ -353,10 +373,41 @@ void StartWindow::cambioTurno(){
     }
 }
 
+void StartWindow::colocarFicha(QPushButton m){
+
+
+//    if(turn % 2 != 0){
+//        QPixmap pixmap(":logo/gato_x.png");
+//        QIcon ButtonIcon(pixmap);
+//        ui->button->setIcon(pixmap);
+//    } else {
+//        QPixmap pixmap(":logo/gato_o.png");
+//        QIcon ButtonIcon(pixmap);
+//        ui->button->setIcon(pixmap);
+//    }
+
+}
+
+void StartWindow::hideUi()
+{
+
+ ui->logo->hide();
+ ui->select_title->hide();
+ ui->btn_selectHuman->hide();
+ ui->btn_selectRobot->hide();
+
+}
+
+bool StartWindow::valGane(int button, int turn)
+{
+
+}
+
 void StartWindow::on_m1_clicked()
 {
 
-    if(ui->m1->isVisible()){
+    if(ui->m1->isChecked()){
+
         if(turn % 2 != 0){
             QPixmap pixmap(":logo/gato_x.png");
             QIcon ButtonIcon(pixmap);
@@ -367,8 +418,214 @@ void StartWindow::on_m1_clicked()
             ui->m1->setIcon(pixmap);
         }
 
-        //ui->m1->setEnabled(false);
+
+        // ui->m1->setEnabled(false);
+        ui->m1->setChecked(false);
+        ui->m1->setCheckable(false);
         turn++;
         cambioTurno();
     }
+
+}
+
+void StartWindow::on_m2_clicked()
+{
+
+    if(ui->m2->isChecked()){
+
+        if(turn % 2 != 0){
+            QPixmap pixmap(":logo/gato_x.png");
+            QIcon ButtonIcon(pixmap);
+            ui->m2->setIcon(pixmap);
+        } else {
+            QPixmap pixmap(":logo/gato_o.png");
+            QIcon ButtonIcon(pixmap);
+            ui->m2->setIcon(pixmap);
+        }
+
+        // ui->m1->setEnabled(false);
+        ui->m2->setChecked(false);
+        ui->m2->setCheckable(false);
+        turn++;
+        cambioTurno();
+    }
+
+}
+
+void StartWindow::on_m3_clicked()
+{
+
+    if(ui->m3->isChecked()){
+
+        if(turn % 2 != 0){
+            QPixmap pixmap(":logo/gato_x.png");
+            QIcon ButtonIcon(pixmap);
+            ui->m3->setIcon(pixmap);
+        } else {
+            QPixmap pixmap(":logo/gato_o.png");
+            QIcon ButtonIcon(pixmap);
+            ui->m3->setIcon(pixmap);
+        }
+
+
+        // ui->m1->setEnabled(false);
+        ui->m3->setChecked(false);
+        ui->m3->setCheckable(false);
+        turn++;
+        cambioTurno();
+    }
+
+}
+
+void StartWindow::on_m4_clicked()
+{
+
+    if(ui->m4->isChecked()){
+
+        if(turn % 2 != 0){
+            QPixmap pixmap(":logo/gato_x.png");
+            QIcon ButtonIcon(pixmap);
+            ui->m4->setIcon(pixmap);
+        } else {
+            QPixmap pixmap(":logo/gato_o.png");
+            QIcon ButtonIcon(pixmap);
+            ui->m4->setIcon(pixmap);
+        }
+
+
+        // ui->m1->setEnabled(false);
+        ui->m4->setChecked(false);
+        ui->m4->setCheckable(false);
+        turn++;
+        cambioTurno();
+    }
+
+
+}
+
+void StartWindow::on_m5_clicked()
+{
+
+    if(ui->m5->isChecked()){
+
+        if(turn % 2 != 0){
+            QPixmap pixmap(":logo/gato_x.png");
+            QIcon ButtonIcon(pixmap);
+            ui->m5->setIcon(pixmap);
+        } else {
+            QPixmap pixmap(":logo/gato_o.png");
+            QIcon ButtonIcon(pixmap);
+            ui->m5->setIcon(pixmap);
+        }
+
+
+        // ui->m1->setEnabled(false);
+        ui->m5->setChecked(false);
+        ui->m5->setCheckable(false);
+        turn++;
+        cambioTurno();
+    }
+
+
+}
+
+void StartWindow::on_m6_clicked()
+{
+
+    if(ui->m6->isChecked()){
+
+        if(turn % 2 != 0){
+            QPixmap pixmap(":logo/gato_x.png");
+            QIcon ButtonIcon(pixmap);
+            ui->m6->setIcon(pixmap);
+        } else {
+            QPixmap pixmap(":logo/gato_o.png");
+            QIcon ButtonIcon(pixmap);
+            ui->m6->setIcon(pixmap);
+        }
+
+
+        // ui->m1->setEnabled(false);
+        ui->m6->setChecked(false);
+        ui->m6->setCheckable(false);
+        turn++;
+        cambioTurno();
+    }
+
+}
+
+void StartWindow::on_m7_clicked()
+{
+
+    if(ui->m7->isChecked()){
+
+        if(turn % 2 != 0){
+            QPixmap pixmap(":logo/gato_x.png");
+            QIcon ButtonIcon(pixmap);
+            ui->m7->setIcon(pixmap);
+        } else {
+            QPixmap pixmap(":logo/gato_o.png");
+            QIcon ButtonIcon(pixmap);
+            ui->m7->setIcon(pixmap);
+        }
+
+
+        // ui->m1->setEnabled(false);
+        ui->m7->setChecked(false);
+        ui->m7->setCheckable(false);
+        turn++;
+        cambioTurno();
+    }
+
+}
+
+void StartWindow::on_m8_clicked()
+{
+
+    if(ui->m8->isChecked()){
+
+        if(turn % 2 != 0){
+            QPixmap pixmap(":logo/gato_x.png");
+            QIcon ButtonIcon(pixmap);
+            ui->m8->setIcon(pixmap);
+        } else {
+            QPixmap pixmap(":logo/gato_o.png");
+            QIcon ButtonIcon(pixmap);
+            ui->m8->setIcon(pixmap);
+        }
+
+
+        // ui->m1->setEnabled(false);
+        ui->m8->setChecked(false);
+        ui->m8->setCheckable(false);
+        turn++;
+        cambioTurno();
+    }
+
+}
+
+void StartWindow::on_m9_clicked()
+{
+
+    if(ui->m9->isChecked()){
+
+        if(turn % 2 != 0){
+            QPixmap pixmap(":logo/gato_x.png");
+            QIcon ButtonIcon(pixmap);
+            ui->m9->setIcon(pixmap);
+        } else {
+            QPixmap pixmap(":logo/gato_o.png");
+            QIcon ButtonIcon(pixmap);
+            ui->m9->setIcon(pixmap);
+        }
+
+
+        // ui->m1->setEnabled(false);
+        ui->m9->setChecked(false);
+        ui->m9->setCheckable(false);
+        turn++;
+        cambioTurno();
+    }
+
+
 }
