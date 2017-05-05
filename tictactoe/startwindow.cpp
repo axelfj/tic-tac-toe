@@ -295,7 +295,7 @@ void StartWindow::cambioTurno(){
     if(player1 == 'r'){
 
         // Y es turno de robot
-        if(turno % 2 != 0){
+        if(turn % 2 != 0){
 
             // Robot es color azul
             QPixmap pixmap(":logo/ic_robotPressed.png");
@@ -325,7 +325,7 @@ void StartWindow::cambioTurno(){
     } else if(player1 == 'h'){
 
         // Y es turno del Jugador 1
-        if(turno % 2 != 0){
+        if(turn % 2 != 0){
 
             // El humano es azul
             QPixmap pixmap(":logo/ic_humanPressed.png");
@@ -351,14 +351,13 @@ void StartWindow::cambioTurno(){
             ui->scoreHuman->setIcon(pixmap2);
         }
     }
-
 }
 
 void StartWindow::on_m1_clicked()
 {
 
     if(ui->m1->isVisible()){
-        if(turno % 2 != 0){
+        if(turn % 2 != 0){
             QPixmap pixmap(":logo/gato_x.png");
             QIcon ButtonIcon(pixmap);
             ui->m1->setIcon(pixmap);
@@ -369,9 +368,7 @@ void StartWindow::on_m1_clicked()
         }
 
         //ui->m1->setEnabled(false);
-        turno++;
+        turn++;
         cambioTurno();
     }
 }
-
-

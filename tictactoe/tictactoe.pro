@@ -15,11 +15,13 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     startwindow.cpp \
-    qlabel_event.cpp
+    qlabel_event.cpp \
+    minmax.cpp
 
 HEADERS  += mainwindow.h \
     startwindow.h \
-    qlabel_event.h
+    qlabel_event.h \
+    minmax.h
 
 FORMS    += mainwindow.ui \
     startwindow.ui

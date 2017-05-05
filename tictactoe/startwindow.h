@@ -52,7 +52,7 @@ private:
     Ui::StartWindow *ui;
     bool mouseWasPressed = false;
     char player1;
-    int turno = 1;
+    int turn = 1;
 };
 
 #endif // STARTWINDOW_H
