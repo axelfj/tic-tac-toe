@@ -10,8 +10,17 @@
     <height>300</height>
    </rect>
   </property>
+  <property name="font">
+   <font>
+    <family>MS Serif</family>
+   </font>
+  </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Winner!</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="Res.qrc">
+    <normaloff>:/logo/ic_logo.png</normaloff>:/logo/ic_logo.png</iconset>
   </property>
   <widget class="QDialogButtonBox" name="buttonBox">
    <property name="geometry">
@@ -110,7 +119,9 @@
    </property>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="Res.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>buttonBox</sender>

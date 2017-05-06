@@ -604,16 +604,19 @@ void StartWindow::valGanep2(QPushButton *mButton)
 void StartWindow::on_m1_clicked()
 {
     if(ui->m1->isChecked()){
+
+        // Coloca la ficha indicada según el turno
         colocarFicha(ui->m1);
 
-        if(turn == 1){
-            valGanep1(ui->m1);
-        } else {
-            valGanep2(ui->m1);
-        }
+        // Revisa que no haya algún ganador
+        valGanep1(ui->m1);
+        valGanep2(ui->m1);
 
+        // Valida que no se pueda utilizar el campo nuevamente
         ui->m1->setChecked(false);
         ui->m1->setCheckable(false);
+
+        // Cambia de turno
         turn++;
         cambioTurno();
     }
@@ -623,11 +626,11 @@ void StartWindow::on_m2_clicked()
 {
     if(ui->m2->isChecked()){
         colocarFicha(ui->m2);
-        if(turn == 1){
-            valGanep1(ui->m2);
-        } else {
-            valGanep2(ui->m2);
-        }
+
+        // Revisa que no haya algún ganador
+        valGanep1(ui->m2);
+        valGanep2(ui->m2);
+
         ui->m2->setChecked(false);
         ui->m2->setCheckable(false);
         turn++;
@@ -639,11 +642,11 @@ void StartWindow::on_m3_clicked()
 {
     if(ui->m3->isChecked()){
         colocarFicha(ui->m3);
-        if(turn == 1){
-            valGanep1(ui->m3);
-        } else {
-            valGanep2(ui->m3);
-        }
+
+        // Revisa que no haya algún ganador
+        valGanep1(ui->m3);
+        valGanep2(ui->m3);
+
         ui->m3->setChecked(false);
         ui->m3->setCheckable(false);
         turn++;
@@ -655,11 +658,11 @@ void StartWindow::on_m4_clicked()
 {
     if(ui->m4->isChecked()){
         colocarFicha(ui->m4);
-        if(turn == 1){
-            valGanep1(ui->m4);
-        } else {
-            valGanep2(ui->m4);
-        }
+
+        // Revisa que no haya algún ganador
+        valGanep1(ui->m4);
+        valGanep2(ui->m4);
+
         ui->m4->setChecked(false);
         ui->m4->setCheckable(false);
         turn++;
@@ -671,11 +674,11 @@ void StartWindow::on_m5_clicked()
 {
     if(ui->m5->isChecked()){
         colocarFicha(ui->m5);
-        if(turn == 1){
-            valGanep1(ui->m5);
-        } else {
-            valGanep2(ui->m5);
-        }
+
+        // Revisa que no haya algún ganador
+        valGanep1(ui->m5);
+        valGanep2(ui->m5);
+
         ui->m5->setChecked(false);
         ui->m5->setCheckable(false);
         turn++;
@@ -687,11 +690,11 @@ void StartWindow::on_m6_clicked()
 {
     if(ui->m6->isChecked()){
         colocarFicha(ui->m6);
-        if(turn == 1){
-            valGanep1(ui->m6);
-        } else {
-            valGanep2(ui->m6);
-        }
+
+        // Revisa que no haya algún ganador
+        valGanep1(ui->m6);
+        valGanep2(ui->m6);
+
         ui->m6->setChecked(false);
         ui->m6->setCheckable(false);
         turn++;
@@ -703,11 +706,11 @@ void StartWindow::on_m7_clicked()
 {
     if(ui->m7->isChecked()){
         colocarFicha(ui->m7);
-        if(turn == 1){
-            valGanep1(ui->m7);
-        } else {
-            valGanep2(ui->m7);
-        }
+
+        // Revisa que no haya algún ganador
+        valGanep1(ui->m7);
+        valGanep2(ui->m7);
+
         ui->m7->setChecked(false);
         ui->m7->setCheckable(false);
         turn++;
@@ -719,11 +722,11 @@ void StartWindow::on_m8_clicked()
 {
     if(ui->m8->isChecked()){
         colocarFicha(ui->m8);
-        if(turn == 1){
-            valGanep1(ui->m8);
-        } else {
-            valGanep2(ui->m8);
-        }
+
+        // Revisa que no haya algún ganador
+        valGanep1(ui->m8);
+        valGanep2(ui->m8);
+
         ui->m8->setChecked(false);
         ui->m8->setCheckable(false);
         turn++;
@@ -735,11 +738,11 @@ void StartWindow::on_m9_clicked()
 {
     if(ui->m9->isChecked()){
         colocarFicha(ui->m9);
-        if(turn == 1){
-            valGanep1(ui->m9);
-        } else {
-            valGanep2(ui->m9);
-        }
+
+        // Revisa que no haya algún ganador
+        valGanep1(ui->m9);
+        valGanep2(ui->m9);
+
         ui->m9->setChecked(false);
         ui->m9->setCheckable(false);
         turn++;

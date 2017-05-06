@@ -32,6 +32,12 @@ public:
         if (WinnerDialogHuman->objectName().isEmpty())
             WinnerDialogHuman->setObjectName(QStringLiteral("WinnerDialogHuman"));
         WinnerDialogHuman->resize(400, 300);
+        QFont font;
+        font.setFamily(QStringLiteral("MS Serif"));
+        WinnerDialogHuman->setFont(font);
+        QIcon icon;
+        icon.addFile(QStringLiteral(":/logo/ic_logo.png"), QSize(), QIcon::Normal, QIcon::Off);
+        WinnerDialogHuman->setWindowIcon(icon);
         buttonBox = new QDialogButtonBox(WinnerDialogHuman);
         buttonBox->setObjectName(QStringLiteral("buttonBox"));
         buttonBox->setGeometry(QRect(30, 240, 341, 32));
@@ -57,12 +63,12 @@ public:
         brush1.setStyle(Qt::SolidPattern);
         palette.setBrush(QPalette::Disabled, QPalette::WindowText, brush1);
         label_2->setPalette(palette);
-        QFont font;
-        font.setFamily(QStringLiteral("Product Sans"));
-        font.setPointSize(12);
-        font.setBold(true);
-        font.setWeight(75);
-        label_2->setFont(font);
+        QFont font1;
+        font1.setFamily(QStringLiteral("Product Sans"));
+        font1.setPointSize(12);
+        font1.setBold(true);
+        font1.setWeight(75);
+        label_2->setFont(font1);
         label_2->setAlignment(Qt::AlignCenter);
 
         retranslateUi(WinnerDialogHuman);
@@ -74,7 +80,7 @@ public:
 
     void retranslateUi(QDialog *WinnerDialogHuman)
     {
-        WinnerDialogHuman->setWindowTitle(QApplication::translate("WinnerDialogHuman", "Dialog", 0));
+        WinnerDialogHuman->setWindowTitle(QApplication::translate("WinnerDialogHuman", "Winner!", 0));
         label->setText(QString());
         label_2->setText(QApplication::translate("WinnerDialogHuman", "The human wins!", 0));
     } // retranslateUi
