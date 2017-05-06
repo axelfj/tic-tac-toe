@@ -45,8 +45,6 @@ StartWindow::StartWindow(QWidget *parent) :
     ui->logo->setPixmap(logo.scaled(600,600,Qt::KeepAspectRatio));
 
     logoFadeIn();
-    //fadeOut();
-    // this->clear();
 
 }
 
@@ -748,4 +746,37 @@ void StartWindow::on_m9_clicked()
         turn++;
         cambioTurno();
     }
+}
+
+// -------------------------------- Interfaz Matriz --------------------------
+
+
+void StartWindow::fadeInButton(QPushButton *mButton)
+{
+
+    QGraphicsOpacityEffect *effect = new QGraphicsOpacityEffect(this);
+    mButton->setGraphicsEffect(effect);
+
+    QPropertyAnimation *animation = new QPropertyAnimation(effect,"opacity");
+    animation->setDuration(800);
+    animation->setStartValue(0);
+    animation->setEndValue(1);
+    animation->setEasingCurve(QEasingCurve::InBack);
+    animation->start(QPropertyAnimation::DeleteWhenStopped);
+
+}
+
+void StartWindow::fadeOutButton(QPushButton *mButton)
+{
+
+    QGraphicsOpacityEffect *effect = new QGraphicsOpacityEffect(this);
+    mButton->setGraphicsEffect(effect);
+
+    QPropertyAnimation *animation = new QPropertyAnimation(effect,"opacity");
+    animation->setDuration(800);
+    animation->setStartValue(1);
+    animation->setEndValue(0);
+    animation->setEasingCurve(QEasingCurve::InBack);
+    animation->start(QPropertyAnimation::DeleteWhenStopped);
+
 }

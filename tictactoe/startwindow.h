@@ -28,6 +28,10 @@ public:
     void valGanep1(QPushButton *mButton);
     void valGanep2(QPushButton *mButton);
 
+    // -- Interfaz Botónes --
+    void fadeInButton(QPushButton *mButton);
+    void fadeOutButton(QPushButton *mButton);
+
 private slots:
     //void on_commandLinkButton_clicked();
     void mousePressed();
