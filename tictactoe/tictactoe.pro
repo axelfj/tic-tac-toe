@@ -13,18 +13,23 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp \
     startwindow.cpp \
     qlabel_event.cpp \
-    minmax.cpp
+    minmax.cpp \
+    winnerdialog.cpp \
+    winnerdialoghuman.cpp
 
-HEADERS  += mainwindow.h \
+HEADERS  += \
     startwindow.h \
     qlabel_event.h \
-    minmax.h
+    minmax.h \
+    winnerdialog.h \
+    winnerdialoghuman.h
 
-FORMS    += mainwindow.ui \
-    startwindow.ui
+FORMS    += \
+    startwindow.ui \
+    winnerdialog.ui \
+    winnerdialoghuman.ui
 
 RESOURCES += \
     Res.qrc

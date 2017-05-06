@@ -23,9 +23,10 @@ public:
     void gameFi();
     void gameFo();
     void cambioTurno();
-    void colocarFicha(QPushButton m);
+    void colocarFicha(QPushButton *mButton);
     void hideUi();
-    bool valGane(int button, int turn);
+    void valGanep1(QPushButton *mButton);
+    void valGanep2(QPushButton *mButton);
 
 private slots:
     //void on_commandLinkButton_clicked();

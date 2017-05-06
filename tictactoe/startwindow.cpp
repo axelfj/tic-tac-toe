@@ -6,6 +6,10 @@
 #include <QEventLoop>
 #include <QTimer>
 #include <qlabel_event.h>
+#include <QPushButton>
+#include <winnerdialog.h>
+#include <winnerdialoghuman.h>
+#include <QString>
 
 StartWindow::StartWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -279,6 +283,7 @@ void StartWindow::gameFo(){}
 
 // --------------------------------------------- FINAL METODOS FADE IN Y FADE OUT ---------------------------------------------
 
+
 // Click en el icono del robot en seleccion p1, inicia el juego con bot como p1
 // @author kevttob
 // 04/05/17
@@ -373,19 +378,23 @@ void StartWindow::cambioTurno(){
     }
 }
 
-void StartWindow::colocarFicha(QPushButton m){
+void StartWindow::colocarFicha(QPushButton *mButton){
 
+    // Si el turno es de p1
+    if(turn % 2 != 0){
+        QPixmap pixmap(":logo/gato_x.png");
+        QIcon ButtonIcon(pixmap);
+        mButton->setIcon(pixmap);
+        mButton->setText("1");
 
-//    if(turn % 2 != 0){
-//        QPixmap pixmap(":logo/gato_x.png");
-//        QIcon ButtonIcon(pixmap);
-//        ui->button->setIcon(pixmap);
-//    } else {
-//        QPixmap pixmap(":logo/gato_o.png");
-//        QIcon ButtonIcon(pixmap);
-//        ui->button->setIcon(pixmap);
-//    }
+        // Si el turno es de p2
+    } else {
+        QPixmap pixmap(":logo/gato_o.png");
+        QIcon ButtonIcon(pixmap);
+        mButton->setIcon(pixmap);
+        mButton->setText("2");
 
+    }
 }
 
 void StartWindow::hideUi()
@@ -398,234 +407,342 @@ void StartWindow::hideUi()
 
 }
 
-bool StartWindow::valGane(int button, int turn)
-{
+// ----------------------------------------------------- Validaciones de gane -----------------------------------------------------
 
+void StartWindow::valGanep1(QPushButton *mButton)
+{
+    WinnerDialog *wDialog = new WinnerDialog();
+    wDialog->setModal(true);
+
+    // Se coloca pieza en m1
+    if(mButton == ui->m1 && ui->m1->text() == "1"){
+        if(ui->m5->text() == "1" && ui->m9->text() == "1"){
+            wDialog->show();
+        } else if(ui->m2->text() == "1" && ui->m3->text() == "1"){
+            wDialog->show();
+        } else if(ui->m4->text() == "1" && ui->m7->text() == "1"){
+            wDialog->show();
+        }
+
+        // Se coloca pieza en m2
+    } else if(mButton == ui->m2 && ui->m2->text() == "1"){
+        if(ui->m5->text() == "1" && ui->m8->text() == "1"){
+            wDialog->show();
+        }
+
+        // Se coloca pieza en m3
+    } else if(mButton == ui->m3 && ui->m3->text() == "1"){
+        if(ui->m6->text() == "1" && ui->m9->text() == "1"){
+            wDialog->show();
+        } else if(ui->m5->text() == "1" && ui->m7->text() == "1"){
+            wDialog->show();
+        }
+
+        // Se coloca pieza en m4
+    } else if(mButton == ui->m4 && ui->m4->text() == "1"){
+        if(ui->m1->text() == "1" && ui->m7->text() == "1"){
+            wDialog->show();
+        } else if(ui->m5->text() == "1" && ui->m6->text() == "1"){
+            wDialog->show();
+        }
+
+    // Se coloca pieza en m5
+    } else if(mButton == ui->m5 && ui->m5->text() == "1"){
+
+        //Diagonal iniciando en m1
+        if(ui->m1->text() == "1" && ui->m9->text() == "1"){
+            wDialog->show();
+
+            // Diagonal iniciando en m3
+        } else if(ui->m3->text() == "1" && ui->m7->text() == "1") {
+            wDialog->show();
+
+            // Linea vertical
+        } else if(ui->m2->text() == "1" && ui->m8->text() == "1"){
+            wDialog->show();
+
+            // Linea horizontal
+        } else if(ui->m4->text() == "1" && ui->m6->text() == "1"){
+            wDialog->show();
+        }
+
+    // Se coloca pieza en m6
+    } else if(mButton == ui->m6){
+        if(ui->m3->text() == "1" && ui->m9->text() == "1"){
+            wDialog->show();
+        } else if(ui->m4->text() == "1" && ui->m5->text() == "1"){
+            wDialog->show();
+        }
+
+    // Se coloca pieza en m7
+    } else if(mButton == ui->m7 && ui->m7->text() == "1"){
+        if(ui->m1->text() == "1" && ui->m4->text() == "1"){
+            wDialog->show();
+        } else if(ui->m3->text() == "1" && ui->m5->text() == "1"){
+            wDialog->show();
+        } else if(ui->m8->text() == "1" && ui->m9->text() == "1"){
+            wDialog->show();
+        }
+
+    // Se coloca pieza en m8
+    } else if(mButton == ui->m8 && ui->m8->text() == "1"){
+        if(ui->m2->text() == "1" && ui->m5->text() == "1"){
+            wDialog->show();
+        } else if(ui->m7->text() == "1" && ui->m9->text() == "1"){
+            wDialog->show();
+        }
+
+    // Se coloca pieza en m9
+    } else if(mButton == ui->m9 && ui->m9->text() == "1"){
+        if(ui->m1->text() == "1" && ui->m5->text() == "1"){
+            wDialog->show();
+        } else if(ui->m7->text() == "1" && ui->m8->text() == "1"){
+            wDialog->show();
+        } else if(ui->m3->text() == "1" && ui->m6->text() == "1"){
+            wDialog->show();
+        }
+    }
 }
+
+void StartWindow::valGanep2(QPushButton *mButton)
+{
+    WinnerDialogHuman *wDialogHuman = new WinnerDialogHuman();
+    wDialogHuman->setModal(true);
+
+      // Se coloca pieza en m1
+      if(mButton == ui->m1 && ui->m1->text() == "2"){
+          if(ui->m5->text() == "2" && ui->m9->text() == "2"){
+              wDialogHuman->show();
+          } else if(ui->m2->text() == "2" && ui->m3->text() == "2"){
+              wDialogHuman->show();
+          } else if(ui->m4->text() == "2" && ui->m7->text() == "2"){
+              wDialogHuman->show();
+          }
+
+          // Se coloca pieza en m2
+      } else if(mButton == ui->m2 && ui->m2->text() == "2"){
+          if(ui->m5->text() == "2" && ui->m8->text() == "2"){
+              wDialogHuman->show();
+          }
+
+          // Se coloca pieza en m3
+      } else if(mButton == ui->m3 && ui->m3->text() == "2"){
+          if(ui->m6->text() == "2" && ui->m9->text() == "2"){
+              wDialogHuman->show();
+          } else if(ui->m5->text() == "2" && ui->m7->text() == "2"){
+              wDialogHuman->show();
+          }
+
+          // Se coloca pieza en m4
+      } else if(mButton == ui->m4 && ui->m4->text() == "2"){
+          if(ui->m1->text() == "2" && ui->m7->text() == "2"){
+              wDialogHuman->show();
+          } else if(ui->m5->text() == "2" && ui->m6->text() == "2"){
+              wDialogHuman->show();
+          }
+
+      // Se coloca pieza en m5
+      } else if(mButton == ui->m5 && ui->m5->text() == "2"){
+
+          //Diagonal iniciando en m1
+          if(ui->m1->text() == "2" && ui->m9->text() == "2"){
+              wDialogHuman->show();
+
+              // Diagonal iniciando en m3
+          } else if(ui->m3->text() == "2" && ui->m7->text() == "2") {
+              wDialogHuman->show();
+
+              // Linea vertical
+          } else if(ui->m2->text() == "2" && ui->m8->text() == "2"){
+              wDialogHuman->show();
+
+              // Linea horizontal
+          } else if(ui->m4->text() == "2" && ui->m6->text() == "2"){
+              wDialogHuman->show();
+          }
+
+      // Se coloca pieza en m6
+      } else if(mButton == ui->m6){
+          if(ui->m3->text() == "2" && ui->m9->text() == "2"){
+              wDialogHuman->show();
+          } else if(ui->m4->text() == "2" && ui->m5->text() == "2"){
+              wDialogHuman->show();
+          }
+
+      // Se coloca pieza en m7
+      } else if(mButton == ui->m7 && ui->m7->text() == "2"){
+          if(ui->m1->text() == "2" && ui->m4->text() == "2"){
+              wDialogHuman->show();
+          } else if(ui->m3->text() == "2" && ui->m5->text() == "2"){
+              wDialogHuman->show();
+          } else if(ui->m8->text() == "2" && ui->m9->text() == "2"){
+              wDialogHuman->show();
+          }
+
+      // Se coloca pieza en m8
+      } else if(mButton == ui->m8 && ui->m8->text() == "2"){
+          if(ui->m2->text() == "2" && ui->m5->text() == "2"){
+              wDialogHuman->show();
+          } else if(ui->m7->text() == "2" && ui->m9->text() == "2"){
+              wDialogHuman->show();
+          }
+
+      // Se coloca pieza en m9
+      } else if(mButton == ui->m9 && ui->m9->text() == "2"){
+          if(ui->m1->text() == "2" && ui->m5->text() == "2"){
+              wDialogHuman->show();
+          } else if(ui->m7->text() == "2" && ui->m8->text() == "2"){
+              wDialogHuman->show();
+          } else if(ui->m3->text() == "2" && ui->m6->text() == "2"){
+              wDialogHuman->show();
+          }
+      }
+}
+
+// ----------------------------------------------------- Clicks en la matriz -----------------------------------------------------
 
 void StartWindow::on_m1_clicked()
 {
-
     if(ui->m1->isChecked()){
+        colocarFicha(ui->m1);
 
-        if(turn % 2 != 0){
-            QPixmap pixmap(":logo/gato_x.png");
-            QIcon ButtonIcon(pixmap);
-            ui->m1->setIcon(pixmap);
+        if(turn == 1){
+            valGanep1(ui->m1);
         } else {
-            QPixmap pixmap(":logo/gato_o.png");
-            QIcon ButtonIcon(pixmap);
-            ui->m1->setIcon(pixmap);
+            valGanep2(ui->m1);
         }
 
-
-        // ui->m1->setEnabled(false);
         ui->m1->setChecked(false);
         ui->m1->setCheckable(false);
         turn++;
         cambioTurno();
     }
-
 }
 
 void StartWindow::on_m2_clicked()
 {
-
     if(ui->m2->isChecked()){
-
-        if(turn % 2 != 0){
-            QPixmap pixmap(":logo/gato_x.png");
-            QIcon ButtonIcon(pixmap);
-            ui->m2->setIcon(pixmap);
+        colocarFicha(ui->m2);
+        if(turn == 1){
+            valGanep1(ui->m2);
         } else {
-            QPixmap pixmap(":logo/gato_o.png");
-            QIcon ButtonIcon(pixmap);
-            ui->m2->setIcon(pixmap);
+            valGanep2(ui->m2);
         }
-
-        // ui->m1->setEnabled(false);
         ui->m2->setChecked(false);
         ui->m2->setCheckable(false);
         turn++;
         cambioTurno();
     }
-
 }
 
 void StartWindow::on_m3_clicked()
 {
-
     if(ui->m3->isChecked()){
-
-        if(turn % 2 != 0){
-            QPixmap pixmap(":logo/gato_x.png");
-            QIcon ButtonIcon(pixmap);
-            ui->m3->setIcon(pixmap);
+        colocarFicha(ui->m3);
+        if(turn == 1){
+            valGanep1(ui->m3);
         } else {
-            QPixmap pixmap(":logo/gato_o.png");
-            QIcon ButtonIcon(pixmap);
-            ui->m3->setIcon(pixmap);
+            valGanep2(ui->m3);
         }
-
-
-        // ui->m1->setEnabled(false);
         ui->m3->setChecked(false);
         ui->m3->setCheckable(false);
         turn++;
         cambioTurno();
     }
-
 }
 
 void StartWindow::on_m4_clicked()
 {
-
     if(ui->m4->isChecked()){
-
-        if(turn % 2 != 0){
-            QPixmap pixmap(":logo/gato_x.png");
-            QIcon ButtonIcon(pixmap);
-            ui->m4->setIcon(pixmap);
+        colocarFicha(ui->m4);
+        if(turn == 1){
+            valGanep1(ui->m4);
         } else {
-            QPixmap pixmap(":logo/gato_o.png");
-            QIcon ButtonIcon(pixmap);
-            ui->m4->setIcon(pixmap);
+            valGanep2(ui->m4);
         }
-
-
-        // ui->m1->setEnabled(false);
         ui->m4->setChecked(false);
         ui->m4->setCheckable(false);
         turn++;
         cambioTurno();
     }
-
-
 }
 
 void StartWindow::on_m5_clicked()
 {
-
     if(ui->m5->isChecked()){
-
-        if(turn % 2 != 0){
-            QPixmap pixmap(":logo/gato_x.png");
-            QIcon ButtonIcon(pixmap);
-            ui->m5->setIcon(pixmap);
+        colocarFicha(ui->m5);
+        if(turn == 1){
+            valGanep1(ui->m5);
         } else {
-            QPixmap pixmap(":logo/gato_o.png");
-            QIcon ButtonIcon(pixmap);
-            ui->m5->setIcon(pixmap);
+            valGanep2(ui->m5);
         }
-
-
-        // ui->m1->setEnabled(false);
         ui->m5->setChecked(false);
         ui->m5->setCheckable(false);
         turn++;
         cambioTurno();
     }
-
-
 }
 
 void StartWindow::on_m6_clicked()
 {
-
     if(ui->m6->isChecked()){
-
-        if(turn % 2 != 0){
-            QPixmap pixmap(":logo/gato_x.png");
-            QIcon ButtonIcon(pixmap);
-            ui->m6->setIcon(pixmap);
+        colocarFicha(ui->m6);
+        if(turn == 1){
+            valGanep1(ui->m6);
         } else {
-            QPixmap pixmap(":logo/gato_o.png");
-            QIcon ButtonIcon(pixmap);
-            ui->m6->setIcon(pixmap);
+            valGanep2(ui->m6);
         }
-
-
-        // ui->m1->setEnabled(false);
         ui->m6->setChecked(false);
         ui->m6->setCheckable(false);
         turn++;
         cambioTurno();
     }
-
 }
 
 void StartWindow::on_m7_clicked()
 {
-
     if(ui->m7->isChecked()){
-
-        if(turn % 2 != 0){
-            QPixmap pixmap(":logo/gato_x.png");
-            QIcon ButtonIcon(pixmap);
-            ui->m7->setIcon(pixmap);
+        colocarFicha(ui->m7);
+        if(turn == 1){
+            valGanep1(ui->m7);
         } else {
-            QPixmap pixmap(":logo/gato_o.png");
-            QIcon ButtonIcon(pixmap);
-            ui->m7->setIcon(pixmap);
+            valGanep2(ui->m7);
         }
-
-
-        // ui->m1->setEnabled(false);
         ui->m7->setChecked(false);
         ui->m7->setCheckable(false);
         turn++;
         cambioTurno();
     }
-
 }
 
 void StartWindow::on_m8_clicked()
 {
-
     if(ui->m8->isChecked()){
-
-        if(turn % 2 != 0){
-            QPixmap pixmap(":logo/gato_x.png");
-            QIcon ButtonIcon(pixmap);
-            ui->m8->setIcon(pixmap);
+        colocarFicha(ui->m8);
+        if(turn == 1){
+            valGanep1(ui->m8);
         } else {
-            QPixmap pixmap(":logo/gato_o.png");
-            QIcon ButtonIcon(pixmap);
-            ui->m8->setIcon(pixmap);
+            valGanep2(ui->m8);
         }
-
-
-        // ui->m1->setEnabled(false);
         ui->m8->setChecked(false);
         ui->m8->setCheckable(false);
         turn++;
         cambioTurno();
     }
-
 }
 
 void StartWindow::on_m9_clicked()
 {
-
     if(ui->m9->isChecked()){
-
-        if(turn % 2 != 0){
-            QPixmap pixmap(":logo/gato_x.png");
-            QIcon ButtonIcon(pixmap);
-            ui->m9->setIcon(pixmap);
+        colocarFicha(ui->m9);
+        if(turn == 1){
+            valGanep1(ui->m9);
         } else {
-            QPixmap pixmap(":logo/gato_o.png");
-            QIcon ButtonIcon(pixmap);
-            ui->m9->setIcon(pixmap);
+            valGanep2(ui->m9);
         }
-
-
-        // ui->m1->setEnabled(false);
         ui->m9->setChecked(false);
         ui->m9->setCheckable(false);
         turn++;
         cambioTurno();
     }
-
-
 }
