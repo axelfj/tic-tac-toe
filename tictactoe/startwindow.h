@@ -27,6 +27,17 @@ public:
     void hideUi();
     void valGanep1(QPushButton *mButton);
     void valGanep2(QPushButton *mButton);
+    void valEmpate();
+
+    void setButtonsCheckeable();
+    void setButtonsChecked();
+    void changeButtonIcons();
+    void fadeInMatrix();
+    void fadeOutMatrix();
+    void resetGame();
+
+    void fakeClick();
+    void setTextNormal();
 
     // -- Interfaz Botónes --
     void fadeInButton(QPushButton *mButton);

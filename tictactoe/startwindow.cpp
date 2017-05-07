@@ -10,6 +10,8 @@
 #include <winnerdialog.h>
 #include <winnerdialoghuman.h>
 #include <QString>
+#include <tiedialog.h>
+#include <QIcon>
 
 StartWindow::StartWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -247,31 +249,23 @@ void StartWindow::gameFi(){
     // ----------------------- Botones de Gato --------------------
 
     ui->m1->show();
-    ui->m1->click();
 
     ui->m2->show();
-    ui->m2->click();
 
     ui->m3->show();
-    ui->m3->click();
 
     ui->m4->show();
-    ui->m4->click();
 
     ui->m5->show();
-    ui->m5->click();
 
     ui->m6->show();
-    ui->m6->click();
 
     ui->m7->show();
-    ui->m7->click();
 
     ui->m8->show();
-    ui->m8->click();
 
     ui->m9->show();
-    ui->m9->click();
+    fakeClick();
 
     hideUi();
 
@@ -415,7 +409,9 @@ void StartWindow::valGanep1(QPushButton *mButton)
     // Se coloca pieza en m1
     if(mButton == ui->m1 && ui->m1->text() == "1"){
         if(ui->m5->text() == "1" && ui->m9->text() == "1"){
+            ui->scoreRobot->setText("1");
             wDialog->show();
+            resetGame();
         } else if(ui->m2->text() == "1" && ui->m3->text() == "1"){
             wDialog->show();
         } else if(ui->m4->text() == "1" && ui->m7->text() == "1"){
@@ -597,6 +593,14 @@ void StartWindow::valGanep2(QPushButton *mButton)
       }
 }
 
+void StartWindow::valEmpate()
+{
+    TieDialog *tDialog = new TieDialog();
+    if(turn == 9){
+        tDialog->show();
+    }
+}
+
 // ----------------------------------------------------- Clicks en la matriz -----------------------------------------------------
 
 void StartWindow::on_m1_clicked()
@@ -609,7 +613,7 @@ void StartWindow::on_m1_clicked()
         // Revisa que no haya algún ganador
         valGanep1(ui->m1);
         valGanep2(ui->m1);
-
+        // valEmpate();
         // Valida que no se pueda utilizar el campo nuevamente
         ui->m1->setChecked(false);
         ui->m1->setCheckable(false);
@@ -748,7 +752,7 @@ void StartWindow::on_m9_clicked()
     }
 }
 
-// -------------------------------- Interfaz Matriz --------------------------
+// -------------------------------- Interfaz Matriz --------------------------------
 
 
 void StartWindow::fadeInButton(QPushButton *mButton)
@@ -758,7 +762,7 @@ void StartWindow::fadeInButton(QPushButton *mButton)
     mButton->setGraphicsEffect(effect);
 
     QPropertyAnimation *animation = new QPropertyAnimation(effect,"opacity");
-    animation->setDuration(800);
+    animation->setDuration(1200);
     animation->setStartValue(0);
     animation->setEndValue(1);
     animation->setEasingCurve(QEasingCurve::InBack);
@@ -773,10 +777,116 @@ void StartWindow::fadeOutButton(QPushButton *mButton)
     mButton->setGraphicsEffect(effect);
 
     QPropertyAnimation *animation = new QPropertyAnimation(effect,"opacity");
-    animation->setDuration(800);
+    animation->setDuration(1200);
     animation->setStartValue(1);
     animation->setEndValue(0);
     animation->setEasingCurve(QEasingCurve::InBack);
     animation->start(QPropertyAnimation::DeleteWhenStopped);
 
+}
+
+void StartWindow::setButtonsCheckeable()
+{
+    ui->m1->setCheckable(true);
+    ui->m2->setCheckable(true);
+    ui->m3->setCheckable(true);
+    ui->m4->setCheckable(true);
+    ui->m5->setCheckable(true);
+    ui->m6->setCheckable(true);
+    ui->m7->setCheckable(true);
+    ui->m8->setCheckable(true);
+    ui->m9->setCheckable(true);
+
+}
+
+void StartWindow::setButtonsChecked()
+{
+    ui->m1->setChecked(true);
+    ui->m2->setChecked(true);
+    ui->m3->setChecked(true);
+    ui->m4->setChecked(true);
+    ui->m5->setChecked(true);
+    ui->m6->setChecked(true);
+    ui->m7->setChecked(true);
+    ui->m8->setChecked(true);
+    ui->m9->setChecked(true);
+}
+
+void StartWindow::changeButtonIcons()
+{
+    ui->m1->setIcon(QIcon());
+    ui->m2->setIcon(QIcon());
+    ui->m3->setIcon(QIcon());
+    ui->m4->setIcon(QIcon());
+    ui->m5->setIcon(QIcon());
+    ui->m6->setIcon(QIcon());
+    ui->m7->setIcon(QIcon());
+    ui->m8->setIcon(QIcon());
+    ui->m9->setIcon(QIcon());
+
+}
+
+void StartWindow::fadeInMatrix()
+{
+    fadeInButton(ui->m1);
+    fadeInButton(ui->m2);
+    fadeInButton(ui->m3);
+    fadeInButton(ui->m4);
+    fadeInButton(ui->m5);
+    fadeInButton(ui->m6);
+    fadeInButton(ui->m7);
+    fadeInButton(ui->m8);
+    fadeInButton(ui->m9);
+}
+
+void StartWindow::fadeOutMatrix()
+{
+    fadeOutButton(ui->m1);
+    fadeOutButton(ui->m2);
+    fadeOutButton(ui->m3);
+    fadeOutButton(ui->m4);
+    fadeOutButton(ui->m5);
+    fadeOutButton(ui->m6);
+    fadeOutButton(ui->m7);
+    fadeOutButton(ui->m8);
+    fadeOutButton(ui->m9);
+
+}
+
+void StartWindow::fakeClick()
+{
+    ui->m1->click();
+    ui->m2->click();
+    ui->m3->click();
+    ui->m4->click();
+    ui->m5->click();
+    ui->m6->click();
+    ui->m7->click();
+    ui->m8->click();
+    ui->m9->click();
+}
+
+void StartWindow::setTextNormal()
+{
+    ui->m1->setText("");
+    ui->m2->setText("");
+    ui->m3->setText("");
+    ui->m4->setText("");
+    ui->m5->setText("");
+    ui->m6->setText("");
+    ui->m7->setText("");
+    ui->m8->setText("");
+    ui->m9->setText("");
+}
+
+void StartWindow::resetGame()
+{
+   fadeOutMatrix();
+   setButtonsCheckeable();
+   setButtonsChecked();
+   changeButtonIcons();
+   fakeClick();
+   setTextNormal();
+   turn++;
+   fadeInMatrix();
 }

@@ -5,9 +5,11 @@ INPUT(
 ./debug\minmax.o
 ./debug\winnerdialog.o
 ./debug\winnerdialoghuman.o
+./debug\tiedialog.o
 ./debug\qrc_Res.o
 ./debug\moc_startwindow.o
 ./debug\moc_qlabel_event.o
 ./debug\moc_winnerdialog.o
 ./debug\moc_winnerdialoghuman.o
+./debug\moc_tiedialog.o
 );
