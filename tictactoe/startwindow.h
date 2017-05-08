@@ -25,9 +25,9 @@ public:
     void cambioTurno();
     void colocarFicha(QPushButton *mButton);
     void hideUi();
-    void valGanep1(QPushButton *mButton);
-    void valGanep2(QPushButton *mButton);
-    void valEmpate();
+    bool valGanep1(QPushButton *mButton);
+    bool valGanep2(QPushButton *mButton);
+    void valEmpate(QPushButton *mButton);
 
     void setButtonsCheckeable();
     void setButtonsChecked();
@@ -42,6 +42,8 @@ public:
     // -- Interfaz Botónes --
     void fadeInButton(QPushButton *mButton);
     void fadeOutButton(QPushButton *mButton);
+
+    void testState(QPushButton *mButton);
 
 private slots:
     //void on_commandLinkButton_clicked();
@@ -73,6 +75,8 @@ private:
     bool mouseWasPressed = false;
     char player1;
     int turn = 1;
+    int scoreBot = 0;
+    int scoreHuman = 0;
 };
 
 #endif // STARTWINDOW_H
