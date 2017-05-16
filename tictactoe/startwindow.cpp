@@ -44,9 +44,9 @@ StartWindow::StartWindow(QWidget *parent) :
     ui->m8->hide();
     ui->m9->hide();
 
-    ui->name_title->hide();
-    ui->name_edit->hide();
-    ui->name_icon->hide();
+    // Genera la imagen del logo
+    QPixmap logo(":logo/logo.png");
+    ui->logo->setPixmap(logo.scaled(600,600,Qt::KeepAspectRatio));
 
     logoFadeIn();
 
@@ -62,11 +62,11 @@ StartWindow::~StartWindow()
 // 04/05/17
 void StartWindow::mousePressed(){
 
-//    if(!mouseWasPressed){
-//        logoFadeOut();
-//        selectPlayerFi();
-//        mouseWasPressed = true;
-//    }
+    if(!mouseWasPressed){
+        logoFadeOut();
+        selectPlayerFi();
+        mouseWasPressed = true;
+    }
 
 }
 
@@ -75,54 +75,34 @@ void StartWindow::mousePressed(){
 // 03/05/17
 void StartWindow::logoFadeIn(){
 
-    // Genera la imagen del logo
-    QPixmap logo(":logo/logo.png");
-    ui->logo->setPixmap(logo.scaled(600,600,Qt::KeepAspectRatio));
-
     QGraphicsOpacityEffect *effect = new QGraphicsOpacityEffect(this);
     ui->logo->setGraphicsEffect(effect);
 
     QPropertyAnimation *animation = new QPropertyAnimation(effect,"opacity");
-    animation->setDuration(1500);
+    animation->setDuration(1400);
     animation->setStartValue(0);
     animation->setEndValue(1);
     animation->setEasingCurve(QEasingCurve::InBack);
     animation->start(QPropertyAnimation::DeleteWhenStopped);
 
-
-    QGraphicsOpacityEffect *effect1 = new QGraphicsOpacityEffect(this);
-    ui->logo->setGraphicsEffect(effect1);
-
-    QPropertyAnimation *animation1 = new QPropertyAnimation(effect1,"opacity");
-    animation1->setDuration(2000);
-    animation1->setStartValue(1);
-    animation1->setEndValue(0);
-    animation1->setEasingCurve(QEasingCurve::InBack);
-    animation1->start(QPropertyAnimation::DeleteWhenStopped);
-
-    //ui->logo->lower();
-
-    nameEditShow();
 }
 
-// --------------------------------------------- SELECCIONAR NOMBRE DEL HUMANO ---------------------------------------------
+// Inicia el proceso de Fade Out del logo
+// @author kevttob
+// 04/05/17
+void StartWindow::logoFadeOut(){
 
-void StartWindow::nameEditShow()
-{
+    QGraphicsOpacityEffect *effect = new QGraphicsOpacityEffect(this);
+    ui->logo->setGraphicsEffect(effect);
 
-    ui->name_title->show();
-    ui->name_edit->show();
-    ui->name_icon->show();
+    QPropertyAnimation *animation = new QPropertyAnimation(effect,"opacity");
+    animation->setDuration(1000);
+    animation->setStartValue(1);
+    animation->setEndValue(0);
+    animation->setEasingCurve(QEasingCurve::InBack);
+    animation->start(QPropertyAnimation::DeleteWhenStopped);
 
-    labelFadeIn(ui->name_title);
-    lineFadeIn(ui->name_edit);
-    fadeInButton(ui->name_icon);
-
-    while(ui->name_edit->text() == ""){
-        ui->name_icon->setEnabled(false);
-    }
-
-    ui->name_icon->setEnabled(true);
+    ui->logo->lower();
 
 }
 
@@ -156,6 +136,7 @@ void StartWindow::selectPlayerFi(){
     animation1->setEndValue(1);
     animation1->setEasingCurve(QEasingCurve::InBack);
     animation1->start(QPropertyAnimation::DeleteWhenStopped);
+
 
     // Fade In Humano
     ui->btn_selectHuman->show();
@@ -838,6 +819,42 @@ void StartWindow::on_m9_clicked()
 
 // -------------------------- RESET INTERFAZ MATRIZ --------------------------
 
+// Produce un efecto fade In en el botón que recibe como parametro
+// @author kevttob
+// 06/05/17
+void StartWindow::fadeInButton(QPushButton *mButton)
+{
+
+    QGraphicsOpacityEffect *effect = new QGraphicsOpacityEffect(this);
+    mButton->setGraphicsEffect(effect);
+
+    QPropertyAnimation *animation = new QPropertyAnimation(effect,"opacity");
+    animation->setDuration(1200);
+    animation->setStartValue(0);
+    animation->setEndValue(1);
+    animation->setEasingCurve(QEasingCurve::InBack);
+    animation->start(QPropertyAnimation::DeleteWhenStopped);
+
+}
+
+// Produce un efecto fade out en el botón que recibe como parametro
+// @author kevttob
+// 06/05/17
+void StartWindow::fadeOutButton(QPushButton *mButton)
+{
+
+    QGraphicsOpacityEffect *effect = new QGraphicsOpacityEffect(this);
+    mButton->setGraphicsEffect(effect);
+
+    QPropertyAnimation *animation = new QPropertyAnimation(effect,"opacity");
+    animation->setDuration(1800);
+    animation->setStartValue(1);
+    animation->setEndValue(0);
+    animation->setEasingCurve(QEasingCurve::InBack);
+    animation->start(QPropertyAnimation::DeleteWhenStopped);
+
+}
+
 // Hace checkables en todos los espacios de la matriz
 // @author kevttob
 // 06/05/17
@@ -974,107 +991,3 @@ void StartWindow::resetGame()
 
 void StartWindow::testState(QPushButton *mButton)
 {}
-
-// --------------------------------------------- METODOS FADE IN Y OUT PARA QWIDGETS ---------------------------------------------
-
-// --------------------------------------------- LABELS
-
-// Produce un efecto fade In en el label que recibe como parametro
-// @author kevttob
-// 15/05/17
-void StartWindow::labelFadeIn(QLabel *mLabel)
-{
-
-    QGraphicsOpacityEffect *effect = new QGraphicsOpacityEffect(this);
-    mLabel->setGraphicsEffect(effect);
-
-    QPropertyAnimation *animation = new QPropertyAnimation(effect,"opacity");
-    animation->setDuration(1200);
-    animation->setStartValue(0);
-    animation->setEndValue(1);
-    animation->setEasingCurve(QEasingCurve::InBack);
-    animation->start(QPropertyAnimation::DeleteWhenStopped);
-
-}
-
-// Produce un efecto fade Out en el label que recibe como parametro
-// @author kevttob
-// 15/05/17
-void StartWindow::labelFadeOut(QLabel *mLabel)
-{
-
-    QGraphicsOpacityEffect *effect = new QGraphicsOpacityEffect(this);
-    mLabel->setGraphicsEffect(effect);
-
-    QPropertyAnimation *animation = new QPropertyAnimation(effect,"opacity");
-    animation->setDuration(1800);
-    animation->setStartValue(1);
-    animation->setEndValue(0);
-    animation->setEasingCurve(QEasingCurve::InBack);
-    animation->start(QPropertyAnimation::DeleteWhenStopped);
-
-}
-
-void StartWindow::lineFadeIn(QLineEdit *mLineEdit)
-{
-    QGraphicsOpacityEffect *effect = new QGraphicsOpacityEffect(this);
-    mLineEdit->setGraphicsEffect(effect);
-
-    QPropertyAnimation *animation = new QPropertyAnimation(effect,"opacity");
-    animation->setDuration(1200);
-    animation->setStartValue(0);
-    animation->setEndValue(1);
-    animation->setEasingCurve(QEasingCurve::InBack);
-    animation->start(QPropertyAnimation::DeleteWhenStopped);
-}
-
-void StartWindow::lineFadeOut(QLineEdit *mLineEdit)
-{
-    QGraphicsOpacityEffect *effect = new QGraphicsOpacityEffect(this);
-    mLineEdit->setGraphicsEffect(effect);
-
-    QPropertyAnimation *animation = new QPropertyAnimation(effect,"opacity");
-    animation->setDuration(1800);
-    animation->setStartValue(1);
-    animation->setEndValue(0);
-    animation->setEasingCurve(QEasingCurve::InBack);
-    animation->start(QPropertyAnimation::DeleteWhenStopped);
-}
-
-// --------------------------------------------- BUTTONS
-
-// Produce un efecto fade In en el botón que recibe como parametro
-// @author kevttob
-// 06/05/17
-void StartWindow::fadeInButton(QPushButton *mButton)
-{
-
-    QGraphicsOpacityEffect *effect = new QGraphicsOpacityEffect(this);
-    mButton->setGraphicsEffect(effect);
-
-    QPropertyAnimation *animation = new QPropertyAnimation(effect,"opacity");
-    animation->setDuration(1200);
-    animation->setStartValue(0);
-    animation->setEndValue(1);
-    animation->setEasingCurve(QEasingCurve::InBack);
-    animation->start(QPropertyAnimation::DeleteWhenStopped);
-
-}
-
-// Produce un efecto fade out en el botón que recibe como parametro
-// @author kevttob
-// 06/05/17
-void StartWindow::fadeOutButton(QPushButton *mButton)
-{
-
-    QGraphicsOpacityEffect *effect = new QGraphicsOpacityEffect(this);
-    mButton->setGraphicsEffect(effect);
-
-    QPropertyAnimation *animation = new QPropertyAnimation(effect,"opacity");
-    animation->setDuration(1800);
-    animation->setStartValue(1);
-    animation->setEndValue(0);
-    animation->setEasingCurve(QEasingCurve::InBack);
-    animation->start(QPropertyAnimation::DeleteWhenStopped);
-
-}

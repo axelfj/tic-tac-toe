@@ -16,7 +16,6 @@
 #include <QtWidgets/QCommandLinkButton>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
-#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
@@ -46,9 +45,6 @@ public:
     QPushButton *m9;
     QPushButton *m8;
     QPushButton *m1;
-    QLabel *name_title;
-    QLineEdit *name_edit;
-    QPushButton *name_icon;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -157,7 +153,7 @@ public:
         gato->setAlignment(Qt::AlignCenter);
         scoreRobot = new QCommandLinkButton(centralwidget);
         scoreRobot->setObjectName(QStringLiteral("scoreRobot"));
-        scoreRobot->setGeometry(QRect(40, 560, 90, 90));
+        scoreRobot->setGeometry(QRect(40, 560, 172, 90));
         scoreRobot->setMinimumSize(QSize(0, 90));
         QPalette palette3;
         QBrush brush3(QColor(66, 66, 66, 255));
@@ -175,7 +171,7 @@ public:
         scoreRobot->setIconSize(QSize(80, 80));
         scoreHuman = new QCommandLinkButton(centralwidget);
         scoreHuman->setObjectName(QStringLiteral("scoreHuman"));
-        scoreHuman->setGeometry(QRect(1060, 550, 90, 90));
+        scoreHuman->setGeometry(QRect(980, 550, 172, 90));
         scoreHuman->setMinimumSize(QSize(0, 90));
         QPalette palette4;
         palette4.setBrush(QPalette::Active, QPalette::WindowText, brush3);
@@ -194,7 +190,7 @@ public:
         palette5.setBrush(QPalette::Inactive, QPalette::ButtonText, brush2);
         palette5.setBrush(QPalette::Disabled, QPalette::ButtonText, brush1);
         m2->setPalette(palette5);
-        m2->setStyleSheet(QStringLiteral("border: none;"));
+        m2->setStyleSheet(QStringLiteral(""));
         m2->setIconSize(QSize(100, 100));
         m2->setCheckable(true);
         m2->setChecked(true);
@@ -306,68 +302,14 @@ public:
         palette13.setBrush(QPalette::Inactive, QPalette::ButtonText, brush2);
         palette13.setBrush(QPalette::Disabled, QPalette::ButtonText, brush1);
         m1->setPalette(palette13);
-        m1->setStyleSheet(QStringLiteral("border: none;"));
+        m1->setStyleSheet(QStringLiteral(""));
         m1->setIconSize(QSize(100, 100));
         m1->setCheckable(true);
         m1->setChecked(true);
         m1->setDefault(true);
         m1->setFlat(true);
-        name_title = new QLabel(centralwidget);
-        name_title->setObjectName(QStringLiteral("name_title"));
-        name_title->setEnabled(true);
-        name_title->setGeometry(QRect(375, 230, 431, 51));
-        QPalette palette14;
-        palette14.setBrush(QPalette::Active, QPalette::WindowText, brush);
-        palette14.setBrush(QPalette::Inactive, QPalette::WindowText, brush);
-        palette14.setBrush(QPalette::Disabled, QPalette::WindowText, brush1);
-        name_title->setPalette(palette14);
-        name_title->setFont(font);
-        name_title->setFrameShape(QFrame::NoFrame);
-        name_title->setAlignment(Qt::AlignCenter);
-        name_edit = new QLineEdit(centralwidget);
-        name_edit->setObjectName(QStringLiteral("name_edit"));
-        name_edit->setGeometry(QRect(460, 320, 261, 51));
-        QPalette palette15;
-        QBrush brush4(QColor(33, 33, 33, 255));
-        brush4.setStyle(Qt::SolidPattern);
-        palette15.setBrush(QPalette::Active, QPalette::Text, brush4);
-        palette15.setBrush(QPalette::Inactive, QPalette::Text, brush4);
-        palette15.setBrush(QPalette::Disabled, QPalette::Text, brush1);
-        name_edit->setPalette(palette15);
-        name_edit->setFont(font);
-        name_edit->setMaxLength(20);
-        name_edit->setFrame(false);
-        name_edit->setAlignment(Qt::AlignCenter);
-        name_icon = new QPushButton(centralwidget);
-        name_icon->setObjectName(QStringLiteral("name_icon"));
-        name_icon->setEnabled(false);
-        name_icon->setGeometry(QRect(530, 380, 120, 90));
-        QPalette palette16;
-        palette16.setBrush(QPalette::Active, QPalette::WindowText, brush2);
-        palette16.setBrush(QPalette::Active, QPalette::Button, brush2);
-        palette16.setBrush(QPalette::Active, QPalette::Text, brush2);
-        palette16.setBrush(QPalette::Active, QPalette::ButtonText, brush2);
-        palette16.setBrush(QPalette::Active, QPalette::ToolTipText, brush2);
-        palette16.setBrush(QPalette::Inactive, QPalette::WindowText, brush2);
-        palette16.setBrush(QPalette::Inactive, QPalette::Button, brush2);
-        palette16.setBrush(QPalette::Inactive, QPalette::Text, brush2);
-        palette16.setBrush(QPalette::Inactive, QPalette::ButtonText, brush2);
-        palette16.setBrush(QPalette::Inactive, QPalette::ToolTipText, brush2);
-        palette16.setBrush(QPalette::Disabled, QPalette::WindowText, brush1);
-        palette16.setBrush(QPalette::Disabled, QPalette::Button, brush2);
-        palette16.setBrush(QPalette::Disabled, QPalette::Text, brush1);
-        palette16.setBrush(QPalette::Disabled, QPalette::ButtonText, brush1);
-        palette16.setBrush(QPalette::Disabled, QPalette::ToolTipText, brush2);
-        name_icon->setPalette(palette16);
-        name_icon->setStyleSheet(QStringLiteral("border: none;"));
-        QIcon icon3;
-        icon3.addFile(QStringLiteral(":/logo/ic_start_pressed.png"), QSize(), QIcon::Normal, QIcon::Off);
-        name_icon->setIcon(icon3);
-        name_icon->setIconSize(QSize(80, 80));
-        name_icon->setAutoDefault(true);
-        name_icon->setDefault(true);
-        name_icon->setFlat(true);
         StartWindow->setCentralWidget(centralwidget);
+        logo->raise();
         gato->raise();
         m6->raise();
         m4->raise();
@@ -383,10 +325,6 @@ public:
         scoreHuman->raise();
         select_title->raise();
         m1->raise();
-        name_title->raise();
-        name_edit->raise();
-        name_icon->raise();
-        logo->raise();
         menubar = new QMenuBar(StartWindow);
         menubar->setObjectName(QStringLiteral("menubar"));
         menubar->setGeometry(QRect(0, 0, 1200, 21));
@@ -420,9 +358,6 @@ public:
         m9->setText(QString());
         m8->setText(QString());
         m1->setText(QString());
-        name_title->setText(QApplication::translate("StartWindow", "Name your Player!", 0));
-        name_edit->setPlaceholderText(QApplication::translate("StartWindow", "Dennis Aguilar", 0));
-        name_icon->setText(QString());
     } // retranslateUi
 
 };
