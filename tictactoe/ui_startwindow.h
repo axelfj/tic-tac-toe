@@ -13,7 +13,6 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
-#include <QtWidgets/QCommandLinkButton>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
@@ -34,8 +33,8 @@ public:
     QPushButton *btn_selectRobot;
     QPushButton *btn_selectHuman;
     qLabel_Event *gato;
-    QCommandLinkButton *scoreRobot;
-    QCommandLinkButton *scoreHuman;
+    QPushButton *scoreRobot;
+    QPushButton *scoreHuman;
     QPushButton *m2;
     QPushButton *m3;
     QPushButton *m5;
@@ -151,9 +150,9 @@ public:
         gato->setMouseTracking(true);
         gato->setFrameShape(QFrame::NoFrame);
         gato->setAlignment(Qt::AlignCenter);
-        scoreRobot = new QCommandLinkButton(centralwidget);
+        scoreRobot = new QPushButton(centralwidget);
         scoreRobot->setObjectName(QStringLiteral("scoreRobot"));
-        scoreRobot->setGeometry(QRect(40, 560, 172, 90));
+        scoreRobot->setGeometry(QRect(40, 560, 120, 90));
         scoreRobot->setMinimumSize(QSize(0, 90));
         QPalette palette3;
         QBrush brush3(QColor(66, 66, 66, 255));
@@ -169,9 +168,9 @@ public:
         scoreRobot->setStyleSheet(QStringLiteral("border: none;"));
         scoreRobot->setIcon(icon1);
         scoreRobot->setIconSize(QSize(80, 80));
-        scoreHuman = new QCommandLinkButton(centralwidget);
+        scoreHuman = new QPushButton(centralwidget);
         scoreHuman->setObjectName(QStringLiteral("scoreHuman"));
-        scoreHuman->setGeometry(QRect(980, 550, 172, 90));
+        scoreHuman->setGeometry(QRect(1040, 560, 120, 90));
         scoreHuman->setMinimumSize(QSize(0, 90));
         QPalette palette4;
         palette4.setBrush(QPalette::Active, QPalette::WindowText, brush3);
@@ -309,7 +308,6 @@ public:
         m1->setDefault(true);
         m1->setFlat(true);
         StartWindow->setCentralWidget(centralwidget);
-        logo->raise();
         gato->raise();
         m6->raise();
         m4->raise();
@@ -325,6 +323,7 @@ public:
         scoreHuman->raise();
         select_title->raise();
         m1->raise();
+        logo->raise();
         menubar = new QMenuBar(StartWindow);
         menubar->setObjectName(QStringLiteral("menubar"));
         menubar->setGeometry(QRect(0, 0, 1200, 21));
@@ -347,8 +346,8 @@ public:
         btn_selectRobot->setText(QString());
         btn_selectHuman->setText(QString());
         gato->setText(QString());
-        scoreRobot->setText(QApplication::translate("StartWindow", "    0", 0));
-        scoreHuman->setText(QApplication::translate("StartWindow", "    0", 0));
+        scoreRobot->setText(QString());
+        scoreHuman->setText(QString());
         m2->setText(QString());
         m3->setText(QString());
         m5->setText(QString());

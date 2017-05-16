@@ -505,12 +505,12 @@
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QCommandLinkButton" name="scoreRobot">
+   <widget class="QPushButton" name="scoreRobot">
     <property name="geometry">
      <rect>
       <x>40</x>
       <y>560</y>
-      <width>172</width>
+      <width>120</width>
       <height>90</height>
      </rect>
     </property>
@@ -567,7 +567,7 @@
      <string notr="true">border: none;</string>
     </property>
     <property name="text">
-     <string>    0</string>
+     <string>    </string>
     </property>
     <property name="icon">
      <iconset resource="Res.qrc">
@@ -580,12 +580,12 @@
      </size>
     </property>
    </widget>
-   <widget class="QCommandLinkButton" name="scoreHuman">
+   <widget class="QPushButton" name="scoreHuman">
     <property name="geometry">
      <rect>
-      <x>980</x>
-      <y>550</y>
-      <width>172</width>
+      <x>1040</x>
+      <y>560</y>
+      <width>120</width>
       <height>90</height>
      </rect>
     </property>
@@ -642,7 +642,7 @@
      <string notr="true">border: none;</string>
     </property>
     <property name="text">
-     <string>    0</string>
+     <string>    </string>
     </property>
     <property name="icon">
      <iconset resource="Res.qrc">
@@ -1294,7 +1294,6 @@
      <bool>true</bool>
     </property>
    </widget>
-   <zorder>logo</zorder>
    <zorder>gato</zorder>
    <zorder>m6</zorder>
    <zorder>m4</zorder>
@@ -1310,6 +1309,7 @@
    <zorder>scoreHuman</zorder>
    <zorder>select_title</zorder>
    <zorder>m1</zorder>
+   <zorder>logo</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <qlabel_event.h>
 #include <QPushButton>
+#include <QLineEdit>
 
 namespace Ui {
 class StartWindow;
@@ -16,8 +17,7 @@ class StartWindow : public QMainWindow
 public:
     explicit StartWindow(QWidget *parent = 0);
     ~StartWindow();
-    void logoFadeIn();
-    void logoFadeOut();
+    void logoShow();
     void selectPlayerFi();
     void selectPlayerFo();
     void gameFi();
@@ -39,11 +39,23 @@ public:
     void fakeClick();
     void setTextNormal();
 
-    // -- Interfaz Botónes --
-    void fadeInButton(QPushButton *mButton);
-    void fadeOutButton(QPushButton *mButton);
-
     void testState(QPushButton *mButton);
+
+    // -- Fade In/Out QWidgets --
+
+    void labelFadeIn(QLabel *mLabel);
+    void labelFadeOut(QLabel *mLabel);
+
+    void lineEditFadeIn(QLineEdit *mLine);
+    void lineEditFadeOut(QLineEdit *mLine);
+
+    void buttonFadeIn(QPushButton *mButton);
+    void buttonFadeOut(QPushButton *mButton);
+
+    void hideAll();
+    void hideMatrix();
+    void showMatrix();
+
 
 private slots:
     //void on_commandLinkButton_clicked();

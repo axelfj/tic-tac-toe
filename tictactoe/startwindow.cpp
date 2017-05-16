@@ -12,6 +12,7 @@
 #include <QString>
 #include <tiedialog.h>
 #include <QIcon>
+#include <QThread>
 
 // --------------------------------------------- VENTANA DE INICIO ---------------------------------------------
 
@@ -27,28 +28,15 @@ StartWindow::StartWindow(QWidget *parent) :
     this->setStyleSheet("background-color: white");
     this->setWindowState(Qt::WindowMaximized);
 
-    ui->select_title->hide();
-    ui->btn_selectRobot->hide();
-    ui->btn_selectHuman->hide();
-    ui->gato->hide();
-    ui->scoreHuman->hide();
-    ui->scoreRobot->hide();
-
-    ui->m1->hide();
-    ui->m2->hide();
-    ui->m3->hide();
-    ui->m4->hide();
-    ui->m5->hide();
-    ui->m6->hide();
-    ui->m7->hide();
-    ui->m8->hide();
-    ui->m9->hide();
+    // Oculta todos los elementos de la interfaz
+    hideAll();
 
     // Genera la imagen del logo
     QPixmap logo(":logo/logo.png");
     ui->logo->setPixmap(logo.scaled(600,600,Qt::KeepAspectRatio));
 
-    logoFadeIn();
+    // Inicia el programa mostrando el logo
+    logoShow();
 
 }
 
@@ -62,49 +50,24 @@ StartWindow::~StartWindow()
 // 04/05/17
 void StartWindow::mousePressed(){
 
-    if(!mouseWasPressed){
-        logoFadeOut();
-        selectPlayerFi();
-        mouseWasPressed = true;
-    }
-
 }
 
-// logoFadeIn genera una animación para el logo en la pantalla de inicio
+// logoShow genera una animación para el logo en la pantalla de inicio
 // @author kevttob
 // 03/05/17
-void StartWindow::logoFadeIn(){
+void StartWindow::logoShow(){
 
-    QGraphicsOpacityEffect *effect = new QGraphicsOpacityEffect(this);
-    ui->logo->setGraphicsEffect(effect);
+    ui->logo->show();
 
-    QPropertyAnimation *animation = new QPropertyAnimation(effect,"opacity");
-    animation->setDuration(1400);
-    animation->setStartValue(0);
-    animation->setEndValue(1);
-    animation->setEasingCurve(QEasingCurve::InBack);
-    animation->start(QPropertyAnimation::DeleteWhenStopped);
-
-}
-
-// Inicia el proceso de Fade Out del logo
-// @author kevttob
-// 04/05/17
-void StartWindow::logoFadeOut(){
-
-    QGraphicsOpacityEffect *effect = new QGraphicsOpacityEffect(this);
-    ui->logo->setGraphicsEffect(effect);
-
-    QPropertyAnimation *animation = new QPropertyAnimation(effect,"opacity");
-    animation->setDuration(1000);
-    animation->setStartValue(1);
-    animation->setEndValue(0);
-    animation->setEasingCurve(QEasingCurve::InBack);
-    animation->start(QPropertyAnimation::DeleteWhenStopped);
-
+    labelFadeIn(ui->logo);
+    labelFadeOut(ui->logo);
     ui->logo->lower();
 
 }
+
+// --------------------------------------------- SELECCIONAR NOMBRE JUGADOR ---------------------------------------------
+
+// TODO
 
 // --------------------------------------------- SELECCIONAR PRIMER JUGADOR ---------------------------------------------
 
@@ -115,40 +78,16 @@ void StartWindow::selectPlayerFi(){
 
     // Fade in titulo
     ui->select_title->show();
-    QGraphicsOpacityEffect *effect0 = new QGraphicsOpacityEffect(this);
-    ui->select_title->setGraphicsEffect(effect0);
-
-    QPropertyAnimation *animation0 = new QPropertyAnimation(effect0,"opacity");
-    animation0->setDuration(1400);
-    animation0->setStartValue(0);
-    animation0->setEndValue(1);
-    animation0->setEasingCurve(QEasingCurve::InBack);
-    animation0->start(QPropertyAnimation::DeleteWhenStopped);
+    labelFadeIn(ui->select_title);
 
     // Fade in Robot
     ui->btn_selectRobot->show();
-    QGraphicsOpacityEffect *effect1 = new QGraphicsOpacityEffect(this);
-    ui->btn_selectRobot->setGraphicsEffect(effect1);
-
-    QPropertyAnimation *animation1 = new QPropertyAnimation(effect1,"opacity");
-    animation1->setDuration(1400);
-    animation1->setStartValue(0);
-    animation1->setEndValue(1);
-    animation1->setEasingCurve(QEasingCurve::InBack);
-    animation1->start(QPropertyAnimation::DeleteWhenStopped);
-
+    buttonFadeIn(ui->btn_selectRobot);
 
     // Fade In Humano
     ui->btn_selectHuman->show();
-    QGraphicsOpacityEffect *effect2 = new QGraphicsOpacityEffect(this);
-    ui->btn_selectHuman->setGraphicsEffect(effect2);
+    buttonFadeIn(ui->btn_selectHuman);
 
-    QPropertyAnimation *animation2 = new QPropertyAnimation(effect2,"opacity");
-    animation2->setDuration(1400);
-    animation2->setStartValue(0);
-    animation2->setEndValue(1);
-    animation2->setEasingCurve(QEasingCurve::InBack);
-    animation2->start(QPropertyAnimation::DeleteWhenStopped);
 }
 
 // Genera una animacion de salida para todos los elementos que componen la pantalla de seleccion de jugador
@@ -157,45 +96,20 @@ void StartWindow::selectPlayerFi(){
 void StartWindow::selectPlayerFo(){
 
     // Fade out titulo
-    QGraphicsOpacityEffect *effect0 = new QGraphicsOpacityEffect(this);
-    ui->select_title->setGraphicsEffect(effect0);
-
-    QPropertyAnimation *animation0 = new QPropertyAnimation(effect0,"opacity");
-    animation0->setDuration(300);
-    animation0->setStartValue(1);
-    animation0->setEndValue(0);
-    animation0->setEasingCurve(QEasingCurve::InBack);
-    animation0->start(QPropertyAnimation::DeleteWhenStopped);
-
+    labelFadeOut(ui->select_title);
     //ui->select_title->hide();
 
     // Fade out Robot
-    QGraphicsOpacityEffect *effect1 = new QGraphicsOpacityEffect(this);
-    ui->btn_selectRobot->setGraphicsEffect(effect1);
-
-    QPropertyAnimation *animation1 = new QPropertyAnimation(effect1,"opacity");
-    animation1->setDuration(300);
-    animation1->setStartValue(1);
-    animation1->setEndValue(0);
-    animation1->setEasingCurve(QEasingCurve::InBack);
-    animation1->start(QPropertyAnimation::DeleteWhenStopped);
-
+    buttonFadeOut(ui->btn_selectRobot);
    // ui->btn_selectRobot->hide();
 
     // Fade out Humano
-    QGraphicsOpacityEffect *effect2 = new QGraphicsOpacityEffect(this);
-    ui->btn_selectHuman->setGraphicsEffect(effect2);
-
-    QPropertyAnimation *animation2 = new QPropertyAnimation(effect2,"opacity");
-    animation2->setDuration(300);
-    animation2->setStartValue(1);
-    animation2->setEndValue(0);
-    animation2->setEasingCurve(QEasingCurve::InBack);
-    animation2->start(QPropertyAnimation::DeleteWhenStopped);
-
+    buttonFadeOut(ui->btn_selectHuman);
     //ui->btn_selectHuman->hide();
 
 }
+
+// -------------------------------------------------------- JUEGO --------------------------------------------------------
 
 // Genera una animacion de todos los elementos que componen la pantalla del gato
 // @author kevttob
@@ -211,42 +125,18 @@ void StartWindow::gameFi(){
     QPixmap gato(":logo/gato.png");
     ui->gato->setPixmap(gato.scaled(600,600,Qt::KeepAspectRatio));
 
-    QGraphicsOpacityEffect *effect_gato = new QGraphicsOpacityEffect(this);
-    ui->gato->setGraphicsEffect(effect_gato);
-
-    QPropertyAnimation *animation_gato = new QPropertyAnimation(effect_gato,"opacity");
-    animation_gato->setDuration(1400);
-    animation_gato->setStartValue(0);
-    animation_gato->setEndValue(1);
-    animation_gato->setEasingCurve(QEasingCurve::InBack);
-    animation_gato->start(QPropertyAnimation::DeleteWhenStopped);
+    labelFadeIn(ui->gato);
 
     // Escoge el color de la ficha de p1
     cambioTurno();
 
     // Score Robot
     ui->scoreRobot->show();
-    QGraphicsOpacityEffect *effect_scRobot = new QGraphicsOpacityEffect(this);
-    ui->scoreRobot->setGraphicsEffect(effect_scRobot);
-
-    QPropertyAnimation *animation_scRobot = new QPropertyAnimation(effect_scRobot,"opacity");
-    animation_scRobot->setDuration(1400);
-    animation_scRobot->setStartValue(0);
-    animation_scRobot->setEndValue(1);
-    animation_scRobot->setEasingCurve(QEasingCurve::InBack);
-    animation_scRobot->start(QPropertyAnimation::DeleteWhenStopped);
+    buttonFadeIn(ui->scoreRobot);
 
     // Score Human
     ui->scoreHuman->show();
-    QGraphicsOpacityEffect *effect_scHuman = new QGraphicsOpacityEffect(this);
-    ui->scoreHuman->setGraphicsEffect(effect_scHuman);
-
-    QPropertyAnimation *animation_scHuman = new QPropertyAnimation(effect_scHuman,"opacity");
-    animation_scHuman->setDuration(1400);
-    animation_scHuman->setStartValue(0);
-    animation_scHuman->setEndValue(1);
-    animation_scHuman->setEasingCurve(QEasingCurve::InBack);
-    animation_scHuman->start(QPropertyAnimation::DeleteWhenStopped);
+    buttonFadeIn(ui->scoreHuman);
 
     // ----------------------- Botones de Gato --------------------
 
@@ -259,6 +149,9 @@ void StartWindow::gameFi(){
     ui->m7->show();
     ui->m8->show();
     ui->m9->show();
+
+    // Los botones requieren 2 clicks para funcionar, se hace un fake click para
+    // que funcionen al primer toque
     fakeClick();
 
     hideUi();
@@ -623,8 +516,7 @@ void StartWindow::valEmpate(QPushButton *mButton)
     }
 }
 
-// -------------------------- EVENTOS EN MATRIZ --------------------------
-
+// --------------------------------------------- EVENTOS EN MATRIZ ---------------------------------------------
 
 // Evento de click o touch en el espacio 1 en la matriz.
 // Coloca la ficha, valida si hay gane, cambia el turno y valida que el espacio no se pueda sobreescribir
@@ -822,7 +714,7 @@ void StartWindow::on_m9_clicked()
 // Produce un efecto fade In en el botón que recibe como parametro
 // @author kevttob
 // 06/05/17
-void StartWindow::fadeInButton(QPushButton *mButton)
+void StartWindow::buttonFadeIn(QPushButton *mButton)
 {
 
     QGraphicsOpacityEffect *effect = new QGraphicsOpacityEffect(this);
@@ -840,7 +732,7 @@ void StartWindow::fadeInButton(QPushButton *mButton)
 // Produce un efecto fade out en el botón que recibe como parametro
 // @author kevttob
 // 06/05/17
-void StartWindow::fadeOutButton(QPushButton *mButton)
+void StartWindow::buttonFadeOut(QPushButton *mButton)
 {
 
     QGraphicsOpacityEffect *effect = new QGraphicsOpacityEffect(this);
@@ -910,15 +802,15 @@ void StartWindow::changeButtonIcons()
 // 06/05/17
 void StartWindow::fadeInMatrix()
 {
-    fadeInButton(ui->m1);
-    fadeInButton(ui->m2);
-    fadeInButton(ui->m3);
-    fadeInButton(ui->m4);
-    fadeInButton(ui->m5);
-    fadeInButton(ui->m6);
-    fadeInButton(ui->m7);
-    fadeInButton(ui->m8);
-    fadeInButton(ui->m9);
+    buttonFadeIn(ui->m1);
+    buttonFadeIn(ui->m2);
+    buttonFadeIn(ui->m3);
+    buttonFadeIn(ui->m4);
+    buttonFadeIn(ui->m5);
+    buttonFadeIn(ui->m6);
+    buttonFadeIn(ui->m7);
+    buttonFadeIn(ui->m8);
+    buttonFadeIn(ui->m9);
 }
 
 // Produce un efecto fade out en todos los espacios de la matriz
@@ -926,15 +818,15 @@ void StartWindow::fadeInMatrix()
 // 06/05/17
 void StartWindow::fadeOutMatrix()
 {
-    fadeOutButton(ui->m1);
-    fadeOutButton(ui->m2);
-    fadeOutButton(ui->m3);
-    fadeOutButton(ui->m4);
-    fadeOutButton(ui->m5);
-    fadeOutButton(ui->m6);
-    fadeOutButton(ui->m7);
-    fadeOutButton(ui->m8);
-    fadeOutButton(ui->m9);
+    buttonFadeOut(ui->m1);
+    buttonFadeOut(ui->m2);
+    buttonFadeOut(ui->m3);
+    buttonFadeOut(ui->m4);
+    buttonFadeOut(ui->m5);
+    buttonFadeOut(ui->m6);
+    buttonFadeOut(ui->m7);
+    buttonFadeOut(ui->m8);
+    buttonFadeOut(ui->m9);
 
 }
 
@@ -991,3 +883,102 @@ void StartWindow::resetGame()
 
 void StartWindow::testState(QPushButton *mButton)
 {}
+
+
+// Crea el efecto Fade In en un QLabel
+// @author kevttob
+// 15/05/17
+void StartWindow::labelFadeIn(QLabel *mLabel)
+{
+
+    QGraphicsOpacityEffect *effect = new QGraphicsOpacityEffect(this);
+    mLabel->setGraphicsEffect(effect);
+
+    QPropertyAnimation *animation = new QPropertyAnimation(effect,"opacity");
+    animation->setDuration(1500);
+    animation->setStartValue(0);
+    animation->setEndValue(1);
+    animation->setEasingCurve(QEasingCurve::InBack);
+    animation->start(QPropertyAnimation::DeleteWhenStopped);
+
+}
+
+// Crea el efecto Fade Out en un QLabel
+// @author kevttob
+// 15/05/17
+void StartWindow::labelFadeOut(QLabel *mLabel)
+{
+
+    QGraphicsOpacityEffect *effect = new QGraphicsOpacityEffect(this);
+    mLabel->setGraphicsEffect(effect);
+
+    QPropertyAnimation *animation = new QPropertyAnimation(effect,"opacity");
+
+    if(mLabel == ui->logo){
+        animation->setDuration(2500);
+    }
+    animation->setDuration(1500);
+    animation->setStartValue(1);
+    animation->setEndValue(0);
+    animation->setEasingCurve(QEasingCurve::InBack);
+    animation->start(QPropertyAnimation::DeleteWhenStopped);
+}
+
+// Oculta todos los elementos de la interfaz
+// @author kevttob
+// 15/05/17
+void StartWindow::hideAll()
+{
+
+    // Splash
+    ui->logo->hide();
+
+    // Name your Player
+
+    // Select first Player
+
+    ui->select_title->hide();
+    ui->btn_selectRobot->hide();
+    ui->btn_selectHuman->hide();
+
+    // Game
+    ui->gato->hide();
+    ui->scoreHuman->hide();
+    ui->scoreRobot->hide();
+    hideMatrix();
+
+    // Winner
+
+}
+
+// Oculta los botones de la matriz de gato
+// @author kevttob
+// 15/05/17
+void StartWindow::hideMatrix()
+{
+    ui->m1->hide();
+    ui->m2->hide();
+    ui->m3->hide();
+    ui->m4->hide();
+    ui->m5->hide();
+    ui->m6->hide();
+    ui->m7->hide();
+    ui->m8->hide();
+    ui->m9->hide();
+}
+
+// Muestra los botones de la matriz de gato
+// @author kevttob
+// 15/05/17
+void StartWindow::showMatrix()
+{
+    ui->m1->show();
+    ui->m2->show();
+    ui->m3->show();
+    ui->m4->show();
+    ui->m5->show();
+    ui->m6->show();
+    ui->m7->show();
+    ui->m8->show();
+    ui->m9->show();
+}
