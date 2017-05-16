@@ -12,5 +12,8 @@
         <file>gato_x.png</file>
         <file>ic_human.png</file>
         <file>ic_robot.png</file>
+        <file>ic_start_pressed.png</file>
+        <file>winner_robot.png</file>
+        <file>winner_human.png</file>
     </qresource>
 </RCC>

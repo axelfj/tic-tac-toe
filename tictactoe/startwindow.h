@@ -17,11 +17,21 @@ class StartWindow : public QMainWindow
 public:
     explicit StartWindow(QWidget *parent = 0);
     ~StartWindow();
+
+    // -- Show/Hide Activities --
     void logoShow();
-    void selectPlayerFi();
-    void selectPlayerFo();
-    void gameFi();
-    void gameFo();
+
+    void nameSelectShow();
+    void nameSelectHide();
+
+    void selectPlayerShow();
+    void selectPlayerHide();
+
+    void gameShow();
+
+    void winnerShow();
+    void setWinner(QString w);
+
     void cambioTurno();
     void colocarFicha(QPushButton *mButton);
     void hideUi();
@@ -41,6 +51,8 @@ public:
 
     void testState(QPushButton *mButton);
 
+
+
     // -- Fade In/Out QWidgets --
 
     void labelFadeIn(QLabel *mLabel);
@@ -55,6 +67,8 @@ public:
     void hideAll();
     void hideMatrix();
     void showMatrix();
+
+
 
 
 private slots:
@@ -82,13 +96,16 @@ private slots:
 
     void on_m9_clicked();
 
+    void on_name_btn_clicked();
+
 private:
     Ui::StartWindow *ui;
     bool mouseWasPressed = false;
-    char player1;
+    QString player1;
     int turn = 1;
     int scoreBot = 0;
     int scoreHuman = 0;
+    QString playerName;
 };
 
 #endif // STARTWINDOW_H

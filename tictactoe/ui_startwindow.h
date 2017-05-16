@@ -15,6 +15,7 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
@@ -44,6 +45,12 @@ public:
     QPushButton *m9;
     QPushButton *m8;
     QPushButton *m1;
+    QLabel *name_title;
+    QLineEdit *name_edit;
+    QPushButton *name_btn;
+    QLabel *winner_title;
+    QPushButton *winner_icon;
+    QLabel *winner_bg;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -107,7 +114,8 @@ public:
         palette1.setBrush(QPalette::Disabled, QPalette::ButtonText, brush1);
         palette1.setBrush(QPalette::Disabled, QPalette::ToolTipText, brush2);
         btn_selectRobot->setPalette(palette1);
-        btn_selectRobot->setStyleSheet(QStringLiteral("border: none;"));
+        btn_selectRobot->setStyleSheet(QLatin1String("border: none;\n"
+"background-color: none;"));
         QIcon icon1;
         icon1.addFile(QStringLiteral(":/logo/ic_robot.png"), QSize(), QIcon::Normal, QIcon::Off);
         btn_selectRobot->setIcon(icon1);
@@ -135,7 +143,8 @@ public:
         palette2.setBrush(QPalette::Disabled, QPalette::ButtonText, brush1);
         palette2.setBrush(QPalette::Disabled, QPalette::ToolTipText, brush2);
         btn_selectHuman->setPalette(palette2);
-        btn_selectHuman->setStyleSheet(QStringLiteral("border: none;"));
+        btn_selectHuman->setStyleSheet(QLatin1String("border: none;\n"
+"background-color: none;"));
         QIcon icon2;
         icon2.addFile(QStringLiteral(":/logo/ic_human.png"), QSize(), QIcon::Normal, QIcon::Off);
         btn_selectHuman->setIcon(icon2);
@@ -189,7 +198,7 @@ public:
         palette5.setBrush(QPalette::Inactive, QPalette::ButtonText, brush2);
         palette5.setBrush(QPalette::Disabled, QPalette::ButtonText, brush1);
         m2->setPalette(palette5);
-        m2->setStyleSheet(QStringLiteral(""));
+        m2->setStyleSheet(QStringLiteral("border: none;"));
         m2->setIconSize(QSize(100, 100));
         m2->setCheckable(true);
         m2->setChecked(true);
@@ -301,12 +310,65 @@ public:
         palette13.setBrush(QPalette::Inactive, QPalette::ButtonText, brush2);
         palette13.setBrush(QPalette::Disabled, QPalette::ButtonText, brush1);
         m1->setPalette(palette13);
-        m1->setStyleSheet(QStringLiteral(""));
+        m1->setStyleSheet(QStringLiteral("border: none;"));
         m1->setIconSize(QSize(100, 100));
         m1->setCheckable(true);
         m1->setChecked(true);
         m1->setDefault(true);
         m1->setFlat(true);
+        name_title = new QLabel(centralwidget);
+        name_title->setObjectName(QStringLiteral("name_title"));
+        name_title->setEnabled(true);
+        name_title->setGeometry(QRect(375, 230, 431, 51));
+        QPalette palette14;
+        palette14.setBrush(QPalette::Active, QPalette::WindowText, brush);
+        palette14.setBrush(QPalette::Inactive, QPalette::WindowText, brush);
+        palette14.setBrush(QPalette::Disabled, QPalette::WindowText, brush1);
+        name_title->setPalette(palette14);
+        name_title->setFont(font);
+        name_title->setStyleSheet(QStringLiteral("background-color: none;"));
+        name_title->setFrameShape(QFrame::NoFrame);
+        name_title->setAlignment(Qt::AlignCenter);
+        name_edit = new QLineEdit(centralwidget);
+        name_edit->setObjectName(QStringLiteral("name_edit"));
+        name_edit->setGeometry(QRect(475, 300, 240, 41));
+        QFont font2;
+        font2.setFamily(QStringLiteral("Product Sans"));
+        font2.setPointSize(14);
+        name_edit->setFont(font2);
+        name_edit->setCursor(QCursor(Qt::IBeamCursor));
+        name_edit->setStyleSheet(QLatin1String("border-color: rgb(0, 176, 255);\n"
+""));
+        name_edit->setMaxLength(20);
+        name_edit->setAlignment(Qt::AlignCenter);
+        name_edit->setReadOnly(false);
+        name_btn = new QPushButton(centralwidget);
+        name_btn->setObjectName(QStringLiteral("name_btn"));
+        name_btn->setEnabled(true);
+        name_btn->setGeometry(QRect(560, 380, 80, 80));
+        name_btn->setStyleSheet(QLatin1String("border: none;\n"
+"background-color: none;"));
+        QIcon icon3;
+        icon3.addFile(QStringLiteral(":/logo/ic_start_pressed.png"), QSize(), QIcon::Normal, QIcon::Off);
+        name_btn->setIcon(icon3);
+        name_btn->setIconSize(QSize(80, 80));
+        winner_title = new QLabel(centralwidget);
+        winner_title->setObjectName(QStringLiteral("winner_title"));
+        winner_title->setGeometry(QRect(400, 200, 400, 51));
+        QFont font3;
+        font3.setFamily(QStringLiteral("Product Sans"));
+        font3.setPointSize(24);
+        winner_title->setFont(font3);
+        winner_title->setStyleSheet(QStringLiteral("background-color: none;"));
+        winner_title->setAlignment(Qt::AlignCenter);
+        winner_icon = new QPushButton(centralwidget);
+        winner_icon->setObjectName(QStringLiteral("winner_icon"));
+        winner_icon->setGeometry(QRect(480, 290, 240, 240));
+        winner_icon->setStyleSheet(QStringLiteral("border: none;"));
+        winner_icon->setIconSize(QSize(220, 220));
+        winner_bg = new QLabel(centralwidget);
+        winner_bg->setObjectName(QStringLiteral("winner_bg"));
+        winner_bg->setGeometry(QRect(5, 2, 1191, 651));
         StartWindow->setCentralWidget(centralwidget);
         gato->raise();
         m6->raise();
@@ -323,7 +385,13 @@ public:
         scoreHuman->raise();
         select_title->raise();
         m1->raise();
+        name_title->raise();
+        name_edit->raise();
+        name_btn->raise();
         logo->raise();
+        winner_bg->raise();
+        winner_title->raise();
+        winner_icon->raise();
         menubar = new QMenuBar(StartWindow);
         menubar->setObjectName(QStringLiteral("menubar"));
         menubar->setGeometry(QRect(0, 0, 1200, 21));
@@ -357,6 +425,12 @@ public:
         m9->setText(QString());
         m8->setText(QString());
         m1->setText(QString());
+        name_title->setText(QApplication::translate("StartWindow", "What's your name?", 0));
+        name_edit->setPlaceholderText(QString());
+        name_btn->setText(QString());
+        winner_title->setText(QApplication::translate("StartWindow", "This is the winner!", 0));
+        winner_icon->setText(QString());
+        winner_bg->setText(QString());
     } // retranslateUi
 
 };
