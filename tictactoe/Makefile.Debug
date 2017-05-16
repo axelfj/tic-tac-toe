@@ -124,18 +124,19 @@ compiler_rcc_make_all: debug/qrc_Res.cpp
 compiler_rcc_clean:
 	-$(DEL_FILE) debug\qrc_Res.cpp
 debug/qrc_Res.cpp: Res.qrc \
-		ic_start.png \
-		ic_human.png \
-		ic_logo.png \
 		gato_x.png \
-		ic_robotGame.png \
 		gato_o.png \
-		ic_humanPressed.png \
+		ic_robot.png \
+		ic_robotPressed.png \
 		logo.png \
 		gato.png \
+		ic_robotGame.png \
+		ic_start.png \
+		ic_human.png \
+		ic_start_pressed.png \
+		ic_logo.png \
 		ic_humanGame.png \
-		ic_robot.png \
-		ic_robotPressed.png
+		ic_humanPressed.png
 	C:\Qt\Qt5.2.0\5.2.0\mingw48_32\bin\rcc.exe -name Res Res.qrc -o debug\qrc_Res.cpp
 
 compiler_moc_header_make_all: debug/moc_startwindow.cpp debug/moc_qlabel_event.cpp debug/moc_winnerdialog.cpp debug/moc_winnerdialoghuman.cpp debug/moc_tiedialog.cpp
@@ -261,6 +262,12 @@ debug/moc_startwindow.cpp: ../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include
 		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtWidgets/QPushButton \
 		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtWidgets/qpushbutton.h \
 		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtWidgets/qabstractbutton.h \
+		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtWidgets/QLineEdit \
+		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtWidgets/qlineedit.h \
+		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtGui/qtextcursor.h \
+		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtGui/qtextformat.h \
+		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtGui/qpen.h \
+		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtGui/qtextoption.h \
 		startwindow.h
 	C:\Qt\Qt5.2.0\5.2.0\mingw48_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 $(INCPATH) startwindow.h -o debug\moc_startwindow.cpp
 
@@ -978,6 +985,12 @@ debug/main.o: main.cpp startwindow.h \
 		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtWidgets/QPushButton \
 		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtWidgets/qpushbutton.h \
 		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtWidgets/qabstractbutton.h \
+		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtWidgets/QLineEdit \
+		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtWidgets/qlineedit.h \
+		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtGui/qtextcursor.h \
+		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtGui/qtextformat.h \
+		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtGui/qpen.h \
+		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtGui/qtextoption.h \
 		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtWidgets/QDesktopWidget \
 		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtWidgets/qdesktopwidget.h \
 		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtWidgets/QApplication \
@@ -1109,6 +1122,12 @@ debug/startwindow.o: startwindow.cpp startwindow.h \
 		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtWidgets/QPushButton \
 		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtWidgets/qpushbutton.h \
 		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtWidgets/qabstractbutton.h \
+		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtWidgets/QLineEdit \
+		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtWidgets/qlineedit.h \
+		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtGui/qtextcursor.h \
+		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtGui/qtextformat.h \
+		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtGui/qpen.h \
+		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtGui/qtextoption.h \
 		ui_startwindow.h \
 		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtCore/QVariant \
 		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtWidgets/QAction \
@@ -1164,7 +1183,8 @@ debug/startwindow.o: startwindow.cpp startwindow.h \
 		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtWidgets/qdialog.h \
 		winnerdialoghuman.h \
 		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtCore/QString \
-		tiedialog.h
+		tiedialog.h \
+		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtGui/QIcon
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\startwindow.o startwindow.cpp
 
 debug/qlabel_event.o: qlabel_event.cpp qlabel_event.h \
@@ -1440,7 +1460,13 @@ debug/winnerdialog.o: winnerdialog.cpp winnerdialog.h \
 		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtCore/QEvent \
 		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtWidgets/QPushButton \
 		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtWidgets/qpushbutton.h \
-		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtWidgets/qabstractbutton.h
+		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtWidgets/qabstractbutton.h \
+		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtWidgets/QLineEdit \
+		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtWidgets/qlineedit.h \
+		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtGui/qtextcursor.h \
+		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtGui/qtextformat.h \
+		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtGui/qpen.h \
+		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtGui/qtextoption.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\winnerdialog.o winnerdialog.cpp
 
 debug/winnerdialoghuman.o: winnerdialoghuman.cpp winnerdialoghuman.h \
@@ -1702,7 +1728,41 @@ debug/tiedialog.o: tiedialog.cpp tiedialog.h \
 		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtCore/qfiledevice.h \
 		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtGui/qvector2d.h \
 		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtGui/qtouchdevice.h \
-		ui_tiedialog.h
+		ui_tiedialog.h \
+		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtCore/QVariant \
+		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtWidgets/QAction \
+		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtWidgets/qaction.h \
+		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtGui/qicon.h \
+		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtWidgets/qactiongroup.h \
+		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtWidgets/QApplication \
+		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtWidgets/qapplication.h \
+		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtCore/qcoreapplication.h \
+		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtCore/qeventloop.h \
+		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtWidgets/qdesktopwidget.h \
+		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtGui/qguiapplication.h \
+		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtGui/qinputmethod.h \
+		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtWidgets/QButtonGroup \
+		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtWidgets/qbuttongroup.h \
+		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtWidgets/QDialogButtonBox \
+		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtWidgets/qdialogbuttonbox.h \
+		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtWidgets/QHeaderView \
+		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtWidgets/qheaderview.h \
+		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtWidgets/qabstractitemview.h \
+		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtWidgets/qabstractscrollarea.h \
+		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtWidgets/qframe.h \
+		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtCore/qabstractitemmodel.h \
+		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtCore/qitemselectionmodel.h \
+		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtWidgets/qabstractitemdelegate.h \
+		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtWidgets/qstyleoption.h \
+		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtWidgets/qabstractspinbox.h \
+		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtGui/qvalidator.h \
+		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtCore/qregularexpression.h \
+		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtWidgets/qslider.h \
+		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtWidgets/qabstractslider.h \
+		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtWidgets/qstyle.h \
+		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtWidgets/qtabbar.h \
+		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtWidgets/qtabwidget.h \
+		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/include/QtWidgets/qrubberband.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\tiedialog.o tiedialog.cpp
 
 debug/qrc_Res.o: debug/qrc_Res.cpp 

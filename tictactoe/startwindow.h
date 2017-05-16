@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <qlabel_event.h>
 #include <QPushButton>
+#include <QLineEdit>
 
 namespace Ui {
 class StartWindow;
@@ -39,11 +40,21 @@ public:
     void fakeClick();
     void setTextNormal();
 
-    // -- Interfaz Botónes --
+
+
+    void testState(QPushButton *mButton);
+    void nameEditShow();
+
+    // -- FADE IN/OUT WIDGETS --
     void fadeInButton(QPushButton *mButton);
     void fadeOutButton(QPushButton *mButton);
 
-    void testState(QPushButton *mButton);
+    void labelFadeIn(QLabel *mLabel);
+    void labelFadeOut(QLabel *mLabel);
+
+    void lineFadeIn(QLineEdit *mLineEdit);
+    void lineFadeOut(QLineEdit *mLineEdit);
+
 
 private slots:
     //void on_commandLinkButton_clicked();
