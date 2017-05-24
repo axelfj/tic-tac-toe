@@ -35,22 +35,17 @@ public:
     void cambioTurno();
     void colocarFicha(QPushButton *mButton);
     void hideUi();
-    bool valGanep1(QPushButton *mButton);
-    bool valGanep2(QPushButton *mButton);
-    void valEmpate(QPushButton *mButton);
 
-    void setButtonsCheckeable();
-    void setButtonsChecked();
-    void changeButtonIcons();
-    void fadeInMatrix();
-    void fadeOutMatrix();
-    void resetGame();
+    // -- Validaciones de Gane --
+
+    void checkWinner(QPushButton *mButton);
+    bool checkHor(QPushButton *mButton);
+    bool checkVert(QPushButton *mButton);
+    bool checkDiag(QPushButton *mButton);
 
     void fakeClick();
-    void setTextNormal();
 
-    void testState(QPushButton *mButton);
-
+    void makeAction(QPushButton *mButton);
 
 
     // -- Fade In/Out QWidgets --
@@ -69,42 +64,42 @@ public:
     void showMatrix();
 
 
-
-
 private slots:
-    //void on_commandLinkButton_clicked();
+
     void mousePressed();
+
+    // Name Select
+    void on_name_btn_clicked();
+
+    // Player 1 select
 
     void on_btn_selectRobot_clicked();
     void on_btn_selectHuman_clicked();
 
+    void on_btn_selectHuman_pressed();
+    void on_btn_selectRobot_pressed();
+
+    // Matrix slots
+
     void on_m1_clicked();
-
     void on_m2_clicked();
-
     void on_m3_clicked();
-
     void on_m4_clicked();
-
     void on_m5_clicked();
-
     void on_m6_clicked();
-
     void on_m7_clicked();
-
     void on_m8_clicked();
-
     void on_m9_clicked();
 
-    void on_name_btn_clicked();
+    // Close button
+
+    void on_winner_btn_clicked();
+    void on_winner_btn_pressed();
 
 private:
     Ui::StartWindow *ui;
-    bool mouseWasPressed = false;
     QString player1;
     int turn = 1;
-    int scoreBot = 0;
-    int scoreHuman = 0;
     QString playerName;
 };
 

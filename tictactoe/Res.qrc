@@ -15,5 +15,7 @@
         <file>ic_start_pressed.png</file>
         <file>winner_robot.png</file>
         <file>winner_human.png</file>
+        <file>ic_close.png</file>
+        <file>ic_close_pressed.png</file>
     </qresource>
 </RCC>

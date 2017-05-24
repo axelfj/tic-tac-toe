@@ -3,9 +3,6 @@ INPUT(
 ./debug\startwindow.o
 ./debug\qlabel_event.o
 ./debug\minmax.o
-./debug\winnerdialog.o
-./debug\winnerdialoghuman.o
-./debug\tiedialog.o
 ./debug\qrc_Res.o
 ./debug\moc_startwindow.o
 ./debug\moc_qlabel_event.o

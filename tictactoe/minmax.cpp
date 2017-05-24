@@ -65,6 +65,7 @@ bool minMax::checkDraw(char matrix[])
     }
     else{return true;}
 }
+
 int minMax::algorithmMinMax(int player, char matrix[], int depth)
 {
     max = 1;
@@ -94,7 +95,7 @@ int minMax::algorithmMinMax(int player, char matrix[], int depth)
         }
         if (player == 2)
         {
-            matrix[i] = 'o'; // it fills the space with the o option and go to the best option recursively
+            matrix[i] = 'o'; // it fills the space with the o option and goes to the best option recursively
             int bestChoice = algorithmMinMax(1,matrix,depth+1);
 
             matrix[i] = '-';
@@ -121,7 +122,7 @@ void minMax::Game()
 {
     int i,j, place, winCondition;
 
-    char* matrix = new char[9]; // create the matrix and fill the spaces
+    char* matrix = new char[9]; // creates the matrix and fills the spaces
     for(j = 0; j < 9; j++)
     {
         matrix[j] = '-';
@@ -131,7 +132,7 @@ void minMax::Game()
     {
         if (i % 2 == 0)
         {
-            cout << "Player 1: Please give your place.\n"; // place in the matrix between 0 and 8 //
+            cout << "Player 1: Please give your place.\n"; // places in the matrix between 0 and 8 //
             cin >> place;
         }
         else

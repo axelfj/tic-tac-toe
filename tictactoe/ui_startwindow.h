@@ -51,6 +51,7 @@ public:
     QLabel *winner_title;
     QPushButton *winner_icon;
     QLabel *winner_bg;
+    QPushButton *winner_btn;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -76,7 +77,7 @@ public:
         select_title = new QLabel(centralwidget);
         select_title->setObjectName(QStringLiteral("select_title"));
         select_title->setEnabled(true);
-        select_title->setGeometry(QRect(375, 230, 431, 51));
+        select_title->setGeometry(QRect(300, 230, 600, 51));
         QPalette palette;
         QBrush brush(QColor(0, 176, 255, 255));
         brush.setStyle(Qt::SolidPattern);
@@ -319,7 +320,7 @@ public:
         name_title = new QLabel(centralwidget);
         name_title->setObjectName(QStringLiteral("name_title"));
         name_title->setEnabled(true);
-        name_title->setGeometry(QRect(375, 230, 431, 51));
+        name_title->setGeometry(QRect(300, 230, 600, 51));
         QPalette palette14;
         palette14.setBrush(QPalette::Active, QPalette::WindowText, brush);
         palette14.setBrush(QPalette::Inactive, QPalette::WindowText, brush);
@@ -331,7 +332,7 @@ public:
         name_title->setAlignment(Qt::AlignCenter);
         name_edit = new QLineEdit(centralwidget);
         name_edit->setObjectName(QStringLiteral("name_edit"));
-        name_edit->setGeometry(QRect(475, 300, 240, 41));
+        name_edit->setGeometry(QRect(475, 300, 240, 60));
         QFont font2;
         font2.setFamily(QStringLiteral("Product Sans"));
         font2.setPointSize(14);
@@ -354,7 +355,7 @@ public:
         name_btn->setIconSize(QSize(80, 80));
         winner_title = new QLabel(centralwidget);
         winner_title->setObjectName(QStringLiteral("winner_title"));
-        winner_title->setGeometry(QRect(400, 200, 400, 51));
+        winner_title->setGeometry(QRect(300, 120, 600, 51));
         QFont font3;
         font3.setFamily(QStringLiteral("Product Sans"));
         font3.setPointSize(24);
@@ -363,12 +364,26 @@ public:
         winner_title->setAlignment(Qt::AlignCenter);
         winner_icon = new QPushButton(centralwidget);
         winner_icon->setObjectName(QStringLiteral("winner_icon"));
-        winner_icon->setGeometry(QRect(480, 290, 240, 240));
+        winner_icon->setGeometry(QRect(480, 210, 240, 240));
         winner_icon->setStyleSheet(QStringLiteral("border: none;"));
         winner_icon->setIconSize(QSize(220, 220));
         winner_bg = new QLabel(centralwidget);
         winner_bg->setObjectName(QStringLiteral("winner_bg"));
         winner_bg->setGeometry(QRect(5, 2, 1191, 651));
+        winner_btn = new QPushButton(centralwidget);
+        winner_btn->setObjectName(QStringLiteral("winner_btn"));
+        winner_btn->setEnabled(true);
+        winner_btn->setGeometry(QRect(500, 490, 201, 80));
+        QFont font4;
+        font4.setFamily(QStringLiteral("Product Sans"));
+        font4.setPointSize(10);
+        winner_btn->setFont(font4);
+        winner_btn->setStyleSheet(QLatin1String("border: none;\n"
+"background-color: none;"));
+        QIcon icon4;
+        icon4.addFile(QStringLiteral(":/logo/ic_close.png"), QSize(), QIcon::Normal, QIcon::Off);
+        winner_btn->setIcon(icon4);
+        winner_btn->setIconSize(QSize(80, 80));
         StartWindow->setCentralWidget(centralwidget);
         gato->raise();
         m6->raise();
@@ -392,9 +407,10 @@ public:
         winner_bg->raise();
         winner_title->raise();
         winner_icon->raise();
+        winner_btn->raise();
         menubar = new QMenuBar(StartWindow);
         menubar->setObjectName(QStringLiteral("menubar"));
-        menubar->setGeometry(QRect(0, 0, 1200, 21));
+        menubar->setGeometry(QRect(0, 0, 1200, 38));
         StartWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(StartWindow);
         statusbar->setObjectName(QStringLiteral("statusbar"));
@@ -402,6 +418,8 @@ public:
 
         retranslateUi(StartWindow);
         QObject::connect(logo, SIGNAL(linkActivated(QString)), StartWindow, SLOT(hide()));
+        QObject::connect(winner_btn, SIGNAL(clicked()), winner_bg, SLOT(close()));
+        QObject::connect(winner_btn, SIGNAL(clicked()), winner_bg, SLOT(close()));
 
         QMetaObject::connectSlotsByName(StartWindow);
     } // setupUi
@@ -431,6 +449,7 @@ public:
         winner_title->setText(QApplication::translate("StartWindow", "This is the winner!", 0));
         winner_icon->setText(QString());
         winner_bg->setText(QString());
+        winner_btn->setText(QApplication::translate("StartWindow", "CLOSE", 0));
     } // retranslateUi
 
 };

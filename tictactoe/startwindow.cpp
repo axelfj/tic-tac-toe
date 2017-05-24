@@ -38,7 +38,6 @@ StartWindow::StartWindow(QWidget *parent) :
 
     // Inicia el programa mostrando el logo
     logoShow();
-
 }
 
 StartWindow::~StartWindow()
@@ -184,22 +183,14 @@ void StartWindow::gameShow(){
     ui->scoreHuman->show();
     buttonFadeIn(ui->scoreHuman);
 
-    // ----------------------- Botones de Gato --------------------
 
-    ui->m1->show();
-    ui->m2->show();
-    ui->m3->show();
-    ui->m4->show();
-    ui->m5->show();
-    ui->m6->show();
-    ui->m7->show();
-    ui->m8->show();
-    ui->m9->show();
+    showMatrix();
 
     // Los botones requieren 2 clicks para funcionar, se hace un fake click para
     // que funcionen al primer toque
     fakeClick();
 
+    // Esconder el resto de UI porque se pueden accionar widgets en el fonto
     hideUi();
 
 }
@@ -214,7 +205,7 @@ void StartWindow::on_btn_selectRobot_clicked()
     QIcon ButtonIcon(pixmap);
     ui->btn_selectRobot->setIcon(pixmap);
     selectPlayerHide();
-    player1 = 'r';
+    player1 = "r";
     gameShow();
 }
 
@@ -227,7 +218,7 @@ void StartWindow::on_btn_selectHuman_clicked()
     QIcon ButtonIcon(pixmap);
     ui->btn_selectHuman->setIcon(pixmap);
     selectPlayerHide();
-    player1 = 'h';
+    player1 = "h";
     gameShow();
 }
 
@@ -347,225 +338,142 @@ void StartWindow::colocarFicha(QPushButton *mButton){
 }
 
 
-// -------------------------- VALIDACIONES DE GANE & EMPATE --------------------------
+// -------------------------- VALIDACIONES DE GANE --------------------------
 
 // Valida si el jugador 1 ganó con el movimiento que se acaba de realizar
 // @author kevttob
-// 05/05/17
-bool StartWindow::valGanep1(QPushButton *mButton)
+// 05/05/17 - M: 23/05/17
+void StartWindow::checkWinner(QPushButton *mButton)
 {
-    WinnerDialog *wDialog = new WinnerDialog();
-    wDialog->setModal(true);
 
-    // Se coloca pieza en m1
-    if(mButton == ui->m1 && ui->m1->text() == "1"){
-        if(ui->m5->text() == "1" && ui->m9->text() == "1"){
-
-            setWinner(player1);
-
-
-        } else if(ui->m2->text() == "1" && ui->m3->text() == "1"){
-            wDialog->show();
-        } else if(ui->m4->text() == "1" && ui->m7->text() == "1"){
-            wDialog->show();
+    if(mButton == ui->m1){
+        if(checkHor(ui->m1) || checkVert(ui->m1) || checkDiag(ui->m1)){
+            setWinner(ui->m1->text());
+        } else if(turn == 9){
+            setWinner("t");
         }
 
-        // Se coloca pieza en m2
-    } else if(mButton == ui->m2 && ui->m2->text() == "1"){
-        if(ui->m5->text() == "1" && ui->m8->text() == "1"){
-            wDialog->show();
-        } else if(ui->m1->text() == "1" && ui->m3->text() == "1"){
-            wDialog->show();
+    } else if(mButton == ui->m2){
+        if(checkHor(ui->m2) || checkVert(ui->m2)){
+            setWinner(ui->m2->text());
+        } else if(turn == 9){
+            setWinner("t");
         }
 
-        // Se coloca pieza en m3
-    } else if(mButton == ui->m3 && ui->m3->text() == "1"){
-        if(ui->m6->text() == "1" && ui->m9->text() == "1"){
-            wDialog->show();
-        } else if(ui->m5->text() == "1" && ui->m7->text() == "1"){
-            wDialog->show();
+    } else if(mButton == ui->m3){
+        if(checkHor(ui->m3) || checkVert(ui->m3) || checkDiag(ui->m3)){
+            setWinner(ui->m3->text());
+        } else if(turn == 9){
+            setWinner("t");
         }
 
-        // Se coloca pieza en m4
-    } else if(mButton == ui->m4 && ui->m4->text() == "1"){
-        if(ui->m1->text() == "1" && ui->m7->text() == "1"){
-            wDialog->show();
-        } else if(ui->m5->text() == "1" && ui->m6->text() == "1"){
-            wDialog->show();
+    } else if(mButton == ui->m4){
+        if(checkHor(ui->m4) || checkVert(ui->m4)){
+            setWinner(ui->m4->text());
+        } else if(turn == 9){
+            setWinner("t");
         }
 
-    // Se coloca pieza en m5
-    } else if(mButton == ui->m5 && ui->m5->text() == "1"){
-
-        //Diagonal iniciando en m1
-        if(ui->m1->text() == "1" && ui->m9->text() == "1"){
-            wDialog->show();
-
-            // Diagonal iniciando en m3
-        } else if(ui->m3->text() == "1" && ui->m7->text() == "1") {
-            wDialog->show();
-
-            // Linea vertical
-        } else if(ui->m2->text() == "1" && ui->m8->text() == "1"){
-            wDialog->show();
-
-            // Linea horizontal
-        } else if(ui->m4->text() == "1" && ui->m6->text() == "1"){
-            wDialog->show();
+    } else if(mButton == ui->m5){
+        if(checkHor(ui->m5) || checkVert(ui->m5) || checkDiag(ui->m5)){
+            setWinner(ui->m5->text());
+        } else if(turn == 9){
+            setWinner("t");
         }
 
-    // Se coloca pieza en m6
     } else if(mButton == ui->m6){
-        if(ui->m3->text() == "1" && ui->m9->text() == "1"){
-            wDialog->show();
-        } else if(ui->m4->text() == "1" && ui->m5->text() == "1"){
-            wDialog->show();
+        if(checkHor(ui->m6) || checkVert(ui->m6)){
+            setWinner(ui->m6->text());
+        } else if(turn == 9){
+            setWinner("t");
         }
 
-    // Se coloca pieza en m7
-    } else if(mButton == ui->m7 && ui->m7->text() == "1"){
-        if(ui->m1->text() == "1" && ui->m4->text() == "1"){
-            wDialog->show();
-        } else if(ui->m3->text() == "1" && ui->m5->text() == "1"){
-            wDialog->show();
-        } else if(ui->m8->text() == "1" && ui->m9->text() == "1"){
-            wDialog->show();
+    } else if(mButton == ui->m7){
+        if(checkHor(ui->m7) || checkVert(ui->m7) || checkDiag(ui->m7)){
+            setWinner(ui->m7->text());
+        } else if(turn == 9){
+            setWinner("t");
         }
 
-    // Se coloca pieza en m8
-    } else if(mButton == ui->m8 && ui->m8->text() == "1"){
-        if(ui->m2->text() == "1" && ui->m5->text() == "1"){
-            wDialog->show();
-        } else if(ui->m7->text() == "1" && ui->m9->text() == "1"){
-            wDialog->show();
+    } else if(mButton == ui->m8){
+        if(checkHor(ui->m8) || checkVert(ui->m8)){
+            setWinner(ui->m8->text());
+        } else if(turn == 9){
+            setWinner("t");
         }
 
-    // Se coloca pieza en m9
-    } else if(mButton == ui->m9 && ui->m9->text() == "1"){
-        if(ui->m1->text() == "1" && ui->m5->text() == "1"){
-            wDialog->show();
-        } else if(ui->m7->text() == "1" && ui->m8->text() == "1"){
-            wDialog->show();
-        } else if(ui->m3->text() == "1" && ui->m6->text() == "1"){
-            wDialog->show();
+    } else if(mButton == ui->m9){
+        if(checkHor(ui->m9) || checkVert(ui->m9) || checkDiag(ui->m9)){
+            setWinner(ui->m9->text());
+        } else if(turn == 9){
+            setWinner("t");
         }
-
-    } else {
-        return false;
     }
 }
 
-// Valida si el jugador 2 ganó con el movimiento que se acaba de realizar
+// retorna true si hay un gane en horizontal
 // @author kevttob
-// 05/05/17
-
-bool StartWindow::valGanep2(QPushButton *mButton)
+// 23/05/17
+bool StartWindow::checkHor(QPushButton *mButton)
 {
-    WinnerDialogHuman *wDialogHuman = new WinnerDialogHuman();
-    wDialogHuman->setModal(true);
+    // Primera fila
+    if(mButton == ui->m1 || mButton == ui->m2 || mButton == ui->m3){
 
-      // Se coloca pieza en m1
-      if(mButton == ui->m1 && ui->m1->text() == "2"){
-          if(ui->m5->text() == "2" && ui->m9->text() == "2"){
-              setWinner(player1);
-          } else if(ui->m2->text() == "2" && ui->m3->text() == "2"){
-              wDialogHuman->show();
-          } else if(ui->m4->text() == "2" && ui->m7->text() == "2"){
-              wDialogHuman->show();
-          }
+        return ui->m1->text() == ui->m2->text() && ui->m1->text() == ui->m3->text();
 
-          // Se coloca pieza en m2
-      } else if(mButton == ui->m2 && ui->m2->text() == "2"){
-          if(ui->m5->text() == "2" && ui->m8->text() == "2"){
-              wDialogHuman->show();
-          }
+        // Segunda fila
+    } else if(mButton == ui->m4 || mButton == ui->m5 || mButton == ui->m6){
 
-          // Se coloca pieza en m3
-      } else if(mButton == ui->m3 && ui->m3->text() == "2"){
-          if(ui->m6->text() == "2" && ui->m9->text() == "2"){
-              wDialogHuman->show();
-          } else if(ui->m5->text() == "2" && ui->m7->text() == "2"){
-              wDialogHuman->show();
-          }
+        return ui->m4->text() == ui->m5->text() && ui->m4->text() == ui->m6->text();
 
-          // Se coloca pieza en m4
-      } else if(mButton == ui->m4 && ui->m4->text() == "2"){
-          if(ui->m1->text() == "2" && ui->m7->text() == "2"){
-              wDialogHuman->show();
-          } else if(ui->m5->text() == "2" && ui->m6->text() == "2"){
-              wDialogHuman->show();
-          }
+        // Tercera fila
+    } else if(mButton == ui->m7 || mButton == ui->m8 || mButton == ui->m9){
 
-      // Se coloca pieza en m5
-      } else if(mButton == ui->m5 && ui->m5->text() == "2"){
+        return ui->m7->text() == ui->m8->text() && ui->m7->text() == ui->m9->text();
 
-          //Diagonal iniciando en m1
-          if(ui->m1->text() == "2" && ui->m9->text() == "2"){
-              wDialogHuman->show();
+    }
 
-              // Diagonal iniciando en m3
-          } else if(ui->m3->text() == "2" && ui->m7->text() == "2") {
-              wDialogHuman->show();
-
-              // Linea vertical
-          } else if(ui->m2->text() == "2" && ui->m8->text() == "2"){
-              wDialogHuman->show();
-
-              // Linea horizontal
-          } else if(ui->m4->text() == "2" && ui->m6->text() == "2"){
-              wDialogHuman->show();
-          }
-
-      // Se coloca pieza en m6
-      } else if(mButton == ui->m6){
-          if(ui->m3->text() == "2" && ui->m9->text() == "2"){
-              wDialogHuman->show();
-          } else if(ui->m4->text() == "2" && ui->m5->text() == "2"){
-              wDialogHuman->show();
-          }
-
-      // Se coloca pieza en m7
-      } else if(mButton == ui->m7 && ui->m7->text() == "2"){
-          if(ui->m1->text() == "2" && ui->m4->text() == "2"){
-              wDialogHuman->show();
-          } else if(ui->m3->text() == "2" && ui->m5->text() == "2"){
-              wDialogHuman->show();
-          } else if(ui->m8->text() == "2" && ui->m9->text() == "2"){
-              wDialogHuman->show();
-          }
-
-      // Se coloca pieza en m8
-      } else if(mButton == ui->m8 && ui->m8->text() == "2"){
-          if(ui->m2->text() == "2" && ui->m5->text() == "2"){
-              wDialogHuman->show();
-          } else if(ui->m7->text() == "2" && ui->m9->text() == "2"){
-              wDialogHuman->show();
-          }
-
-      // Se coloca pieza en m9
-      } else if(mButton == ui->m9 && ui->m9->text() == "2"){
-          if(ui->m1->text() == "2" && ui->m5->text() == "2"){
-              wDialogHuman->show();
-          } else if(ui->m7->text() == "2" && ui->m8->text() == "2"){
-              wDialogHuman->show();
-          } else if(ui->m3->text() == "2" && ui->m6->text() == "2"){
-              wDialogHuman->show();
-          }
-      } else {
-          return false;
-      }
 }
 
-// Valida si el movimiento más reciente produce un empate
+// retorna true si hay un gane en vertical
 // @author kevttob
-// 06/05/17
-
-void StartWindow::valEmpate(QPushButton *mButton)
+// 23/05/17
+bool StartWindow::checkVert(QPushButton *mButton)
 {
-    TieDialog *tDialog = new TieDialog();
 
-    if(turn % 9 == 0 && !valGanep1(mButton) && !valGanep2(mButton)){
-        tDialog->show();
+    // Primera columna
+    if(mButton == ui->m1 || mButton == ui->m4 || mButton == ui->m7){
+
+        return ui->m1->text() == ui->m4->text() && ui->m1->text() == ui->m7->text();
+
+        // Segunda columna
+    } else if(mButton == ui->m2 || mButton == ui->m5 || mButton == ui->m8){
+
+        return ui->m2->text() == ui->m5->text() && ui->m2->text() == ui->m8->text();
+
+        // Tercera columna
+    } else if(mButton == ui->m3 || mButton == ui->m6 || mButton == ui->m9){
+
+        return ui->m3->text() == ui->m6->text() && ui->m3->text() == ui->m9->text();
+    }
+
+}
+
+// retorna true si hay un gane en diagonal
+// @author kevttob
+// 23/05/17
+bool StartWindow::checkDiag(QPushButton *mButton)
+{
+    // Diagonal 1 - 5 - 9
+    if(mButton == ui->m1 || mButton == ui->m5 || mButton == ui->m9){
+
+        return ui->m1->text() == ui->m5->text() && ui->m1->text() == ui->m9->text();
+
+        // Diagonal 3 - 5 - 7
+    } else if(mButton == ui->m3 || mButton == ui->m5 || mButton == ui->m7){
+
+        return ui->m3->text() == ui->m5->text() && ui->m3->text() == ui->m7->text();
+
     }
 }
 
@@ -574,276 +482,92 @@ void StartWindow::valEmpate(QPushButton *mButton)
 // Evento de click o touch en el espacio 1 en la matriz.
 // Coloca la ficha, valida si hay gane, cambia el turno y valida que el espacio no se pueda sobreescribir
 // @author kevttob
-// 05/05/17
-
+// 05/05/17 - M: 23/05/17
 void StartWindow::on_m1_clicked()
 {    
-    if(ui->m1->isChecked()){
-        colocarFicha(ui->m1);
 
-        // Revisa que no haya algún ganador
-        valGanep1(ui->m1);
-        valGanep2(ui->m1);
-        valEmpate(ui->m1);
+    makeAction(ui->m1);
 
-        ui->m1->setChecked(false);
-        ui->m1->setCheckable(false);
-        turn++;
-        cambioTurno();
-    }
 }
 
 // Evento de click o touch en el espacio 2 en la matriz.
 // Coloca la ficha, valida si hay gane, cambia el turno y valida que el espacio no se pueda sobreescribir
 // @author kevttob
-// 05/05/17
+// 05/05/17 - M: 23/05/17
 void StartWindow::on_m2_clicked()
 {
-    if(ui->m2->isChecked()){
-        colocarFicha(ui->m2);
 
-        // Revisa que no haya algún ganador
-        valGanep1(ui->m2);
-        valGanep2(ui->m2);
-        valEmpate(ui->m2);
+    makeAction(ui->m2);
 
-        ui->m2->setChecked(false);
-        ui->m2->setCheckable(false);
-        turn++;
-        cambioTurno();
-
-    }
 }
 
 // Evento de click o touch en el espacio 3 en la matriz.
 // Coloca la ficha, valida si hay gane, cambia el turno y valida que el espacio no se pueda sobreescribir
 // @author kevttob
-// 05/05/17
+// 05/05/17 - M: 23/05/17
 void StartWindow::on_m3_clicked()
 {
-    if(ui->m3->isChecked()){
-        colocarFicha(ui->m3);
+    makeAction(ui->m3);
 
-        // Revisa que no haya algún ganador
-        valGanep1(ui->m3);
-        valGanep2(ui->m3);
-        valEmpate(ui->m3);
-
-        ui->m3->setChecked(false);
-        ui->m3->setCheckable(false);
-        turn++;
-        cambioTurno();
-    }
 }
 
 // Evento de click o touch en el espacio 4 en la matriz.
 // Coloca la ficha, valida si hay gane, cambia el turno y valida que el espacio no se pueda sobreescribir
 // @author kevttob
-// 05/05/17
+// 05/05/17 - M: 23/05/17
 void StartWindow::on_m4_clicked()
 {
-    if(ui->m4->isChecked()){
-        colocarFicha(ui->m4);
+    makeAction(ui->m4);
 
-        // Revisa que no haya algún ganador
-        valGanep1(ui->m4);
-        valGanep2(ui->m4);
-        valEmpate(ui->m4);
-
-        ui->m4->setChecked(false);
-        ui->m4->setCheckable(false);
-        turn++;
-        cambioTurno();
-    }
 }
 
 // Evento de click o touch en el espacio 5 en la matriz.
 // Coloca la ficha, valida si hay gane, cambia el turno y valida que el espacio no se pueda sobreescribir
 // @author kevttob
-// 05/05/17
+// 05/05/17 - M: 23/05/17
 void StartWindow::on_m5_clicked()
 {
-    if(ui->m5->isChecked()){
-        colocarFicha(ui->m5);
+    makeAction(ui->m5);
 
-        // Revisa que no haya algún ganador
-        valGanep1(ui->m5);
-        valGanep2(ui->m5);
-        valEmpate(ui->m5);
-
-        ui->m5->setChecked(false);
-        ui->m5->setCheckable(false);
-        turn++;
-        cambioTurno();
-    }
 }
 
 // Evento de click o touch en el espacio 6 en la matriz.
 // Coloca la ficha, valida si hay gane, cambia el turno y valida que el espacio no se pueda sobreescribir
 // @author kevttob
-// 05/05/17
+// 05/05/17 - M: 23/05/17
 void StartWindow::on_m6_clicked()
 {
-    if(ui->m6->isChecked()){
-        colocarFicha(ui->m6);
+    makeAction(ui->m6);
 
-        // Revisa que no haya algún ganador
-        valGanep1(ui->m6);
-        valGanep2(ui->m6);
-        valEmpate(ui->m6);
-
-        ui->m6->setChecked(false);
-        ui->m6->setCheckable(false);
-        turn++;
-        cambioTurno();
-    }
 }
 
 // Evento de click o touch en el espacio 7 en la matriz.
 // Coloca la ficha, valida si hay gane, cambia el turno y valida que el espacio no se pueda sobreescribir
 // @author kevttob
-// 05/05/17
+// 05/05/17 - M: 23/05/17
 void StartWindow::on_m7_clicked()
 {
-    if(ui->m7->isChecked()){
-        colocarFicha(ui->m7);
+    makeAction(ui->m7);
 
-        // Revisa que no haya algún ganador
-        valGanep1(ui->m7);
-        valGanep2(ui->m7);
-        valEmpate(ui->m7);
-
-        ui->m7->setChecked(false);
-        ui->m7->setCheckable(false);
-        turn++;
-        cambioTurno();
-    }
 }
 
 // Evento de click o touch en el espacio 8 en la matriz.
 // Coloca la ficha, valida si hay gane, cambia el turno y valida que el espacio no se pueda sobreescribir
 // @author kevttob
-// 05/05/17
+// 05/05/17 - M: 23/05/17
 void StartWindow::on_m8_clicked()
 {
-    if(ui->m8->isChecked()){
-        colocarFicha(ui->m8);
+    makeAction(ui->m8);
 
-        // Revisa que no haya algún ganador
-        valGanep1(ui->m8);
-        valGanep2(ui->m8);
-        valEmpate(ui->m8);
-
-        ui->m8->setChecked(false);
-        ui->m8->setCheckable(false);
-        turn++;
-        cambioTurno();
-    }
 }
 
 // Evento de click o touch en el espacio 9 en la matriz.
 // Coloca la ficha, valida si hay gane, cambia el turno y valida que el espacio no se pueda sobreescribir
 // @author kevttob
-// 05/05/17
+// 05/05/17 - M: 23/05/17
 void StartWindow::on_m9_clicked()
 {
-    if(ui->m9->isChecked()){
-        colocarFicha(ui->m9);
-
-        // Revisa que no haya algún ganador
-        valGanep1(ui->m9);
-        valGanep2(ui->m9);
-        valEmpate(ui->m9);
-
-        ui->m9->setChecked(false);
-        ui->m9->setCheckable(false);
-        turn++;
-        cambioTurno();
-    }
-}
-
-// -------------------------- RESET INTERFAZ MATRIZ --------------------------
-
-// Hace checkables en todos los espacios de la matriz
-// @author kevttob
-// 06/05/17
-void StartWindow::setButtonsCheckeable()
-{
-    ui->m1->setCheckable(true);
-    ui->m2->setCheckable(true);
-    ui->m3->setCheckable(true);
-    ui->m4->setCheckable(true);
-    ui->m5->setCheckable(true);
-    ui->m6->setCheckable(true);
-    ui->m7->setCheckable(true);
-    ui->m8->setCheckable(true);
-    ui->m9->setCheckable(true);
-
-}
-
-// Coloca en check todos los espacios de la matriz
-// @author kevttob
-// 06/05/17
-void StartWindow::setButtonsChecked()
-{
-    ui->m1->setChecked(true);
-    ui->m2->setChecked(true);
-    ui->m3->setChecked(true);
-    ui->m4->setChecked(true);
-    ui->m5->setChecked(true);
-    ui->m6->setChecked(true);
-    ui->m7->setChecked(true);
-    ui->m8->setChecked(true);
-    ui->m9->setChecked(true);
-}
-
-// Elimina los iconos en los espacios de la matriz
-// @author kevttob
-// 06/05/17
-void StartWindow::changeButtonIcons()
-{
-    ui->m1->setIcon(QIcon());
-    ui->m2->setIcon(QIcon());
-    ui->m3->setIcon(QIcon());
-    ui->m4->setIcon(QIcon());
-    ui->m5->setIcon(QIcon());
-    ui->m6->setIcon(QIcon());
-    ui->m7->setIcon(QIcon());
-    ui->m8->setIcon(QIcon());
-    ui->m9->setIcon(QIcon());
-
-}
-
-// Produce un efecto fade In en todos los espacios de la matriz
-// @author kevttob
-// 06/05/17
-void StartWindow::fadeInMatrix()
-{
-    buttonFadeIn(ui->m1);
-    buttonFadeIn(ui->m2);
-    buttonFadeIn(ui->m3);
-    buttonFadeIn(ui->m4);
-    buttonFadeIn(ui->m5);
-    buttonFadeIn(ui->m6);
-    buttonFadeIn(ui->m7);
-    buttonFadeIn(ui->m8);
-    buttonFadeIn(ui->m9);
-}
-
-// Produce un efecto fade out en todos los espacios de la matriz
-// @author kevttob
-// 06/05/17
-void StartWindow::fadeOutMatrix()
-{
-    buttonFadeOut(ui->m1);
-    buttonFadeOut(ui->m2);
-    buttonFadeOut(ui->m3);
-    buttonFadeOut(ui->m4);
-    buttonFadeOut(ui->m5);
-    buttonFadeOut(ui->m6);
-    buttonFadeOut(ui->m7);
-    buttonFadeOut(ui->m8);
-    buttonFadeOut(ui->m9);
+    makeAction(ui->m9);
 
 }
 
@@ -863,86 +587,76 @@ void StartWindow::fakeClick()
     ui->m9->click();
 }
 
-// Coloca el texto de los espacios en la matriz en vacío
-// @author kevttob
-// 06/05/17
-void StartWindow::setTextNormal()
-{
-    ui->m1->setText("");
-    ui->m2->setText("");
-    ui->m3->setText("");
-    ui->m4->setText("");
-    ui->m5->setText("");
-    ui->m6->setText("");
-    ui->m7->setText("");
-    ui->m8->setText("");
-    ui->m9->setText("");
-}
-
-// Resetea la pantalla del gato a su estado inicial
-// Oculta los espacios de la matriz, reinicia esos espacios, les cambia los iconos, el texto y cambia el turno
-// @author kevttob
-// 06/05/17
-void StartWindow::resetGame()
-{
-   fadeOutMatrix();
-   setButtonsCheckeable();
-   setButtonsChecked();
-   changeButtonIcons();
-   fakeClick();
-   //ui->m1->setChecked(true);
-
-   setTextNormal();
-   turn++;
-   fadeInMatrix();
-
-}
-
-void StartWindow::testState(QPushButton *mButton)
-{}
-
 // -------------------------------------------------------- WINNER --------------------------------------------------------
 
 void StartWindow::winnerShow()
 {
+    // Se debe mantener, se pueden accionar clicks en fondo
+    hideAll();
+
     ui->winner_icon->show();
     ui->winner_title->show();
     ui->winner_bg->show();
+    ui->winner_btn->show();
 
     labelFadeIn(ui->winner_title);
     labelFadeIn(ui->winner_bg);
     buttonFadeIn(ui->winner_icon);
+    buttonFadeIn(ui->winner_btn);
 }
 
 void StartWindow::setWinner(QString w)
 {
-    fadeOutMatrix();
 
-    if(w == "r"){
-        QPixmap pixmap(":logo/winner_robot.png");
-        QIcon ButtonIcon(pixmap);
-        ui->winner_icon->setIcon(pixmap);
+    if(player1 == "r"){
 
-        ui->winner_title->setText("The bot wins!");
+        if(w == "1"){
+            QPixmap pixmap(":logo/winner_robot.png");
+            QIcon ButtonIcon(pixmap);
+            ui->winner_icon->setIcon(pixmap);
 
-    } else if(w == "h"){
+            ui->winner_title->setText("The bot wins!");
 
-        QPixmap pixmap(":logo/winner_human.png");
-        QIcon ButtonIcon(pixmap);
-        ui->winner_icon->setIcon(pixmap);
+        } else if(w == "2"){
 
-        ui->winner_title->setText(playerName + " wins the game!");
+            QPixmap pixmap(":logo/winner_human.png");
+            QIcon ButtonIcon(pixmap);
+            ui->winner_icon->setIcon(pixmap);
+
+            ui->winner_title->setText(playerName + " wins the game!");
+
+    } else if(player1 == "h"){
+
+        if(w == "1"){
+
+            QPixmap pixmap(":logo/winner_human.png");
+            QIcon ButtonIcon(pixmap);
+            ui->winner_icon->setIcon(pixmap);
+
+            ui->winner_title->setText(playerName + " wins the game!");
+
+        } else if(w == "2"){
+
+            QPixmap pixmap(":logo/winner_robot.png");
+            QIcon ButtonIcon(pixmap);
+            ui->winner_icon->setIcon(pixmap);
+
+            ui->winner_title->setText("The bot wins!");
+
+        }
 
     } else if(w == "t"){
         QPixmap pixmap(":logo/winner_human.png");
         QIcon ButtonIcon(pixmap);
         ui->winner_icon->setIcon(pixmap);
 
-        ui->winner_title->setText(playerName + "It's a tie, well played!");
+        ui->winner_title->setText("It's a tie, well played " + playerName + "!");
     }
 
 
     winnerShow();
+
+    }
 }
 
 // Crea el efecto Fade In en un QLabel
@@ -975,7 +689,7 @@ void StartWindow::labelFadeOut(QLabel *mLabel)
     QPropertyAnimation *animation = new QPropertyAnimation(effect,"opacity");
 
     if(mLabel == ui->logo){
-        animation->setDuration(3000);
+        animation->setDuration(10000);
     }
     animation->setDuration(1000);
     animation->setStartValue(1);
@@ -1062,7 +776,6 @@ void StartWindow::hideAll()
     ui->name_btn->hide();
 
     // Select first Player
-
     ui->select_title->hide();
     ui->btn_selectRobot->hide();
     ui->btn_selectHuman->hide();
@@ -1077,6 +790,7 @@ void StartWindow::hideAll()
     ui->winner_icon->hide();
     ui->winner_title->hide();
     ui->winner_bg->hide();
+    ui->winner_btn->hide();
 }
 
 // Oculta los botones de la matriz de gato
@@ -1109,4 +823,59 @@ void StartWindow::showMatrix()
     ui->m7->show();
     ui->m8->show();
     ui->m9->show();
+}
+
+// Cierra el programa al tocar el boton
+// @author kevttob
+// 18/05/17
+void StartWindow::on_winner_btn_clicked()
+{
+    this->close();
+}
+
+// Genera una accion en click dentro de la matriz recibiendo el boton que se ha accionado
+// @author kevttob
+// 23/05/17
+void StartWindow::makeAction(QPushButton *mButton)
+{
+    if(mButton->isChecked()){
+
+        colocarFicha(mButton);
+        checkWinner(mButton);
+        mButton->setChecked(false);
+        mButton->setCheckable(false);
+        turn++;
+        cambioTurno();
+
+    }
+}
+
+// Cambia la imagen del boton de close al presionarlo
+// @author kevttob
+// 23/05/17
+void StartWindow::on_winner_btn_pressed()
+{
+    QPixmap pixmap(":logo/ic_close_pressed.png");
+    QIcon ButtonIcon(pixmap);
+    ui->winner_btn->setIcon(pixmap);
+}
+
+// Cambia la imagen del boton de robot al presionarlo
+// @author kevttob
+// 23/05/17
+void StartWindow::on_btn_selectRobot_pressed()
+{
+    QPixmap pixmap(":logo/ic_robotPressed.png");
+    QIcon ButtonIcon(pixmap);
+    ui->btn_selectRobot->setIcon(pixmap);
+}
+
+// Cambia la imagen del boton de humano al presionarlo
+// @author kevttob
+// 23/05/17
+void StartWindow::on_btn_selectHuman_pressed()
+{
+    QPixmap pixmap(":logo/ic_humanPressed.png");
+    QIcon ButtonIcon(pixmap);
+    ui->btn_selectHuman->setIcon(pixmap);
 }

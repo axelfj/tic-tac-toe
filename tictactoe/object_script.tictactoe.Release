@@ -3,9 +3,6 @@ INPUT(
 ./release\startwindow.o
 ./release\qlabel_event.o
 ./release\minmax.o
-./release\winnerdialog.o
-./release\winnerdialoghuman.o
-./release\tiedialog.o
 ./release\qrc_Res.o
 ./release\moc_startwindow.o
 ./release\moc_qlabel_event.o
