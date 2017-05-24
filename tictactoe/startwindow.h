@@ -18,6 +18,11 @@ public:
     explicit StartWindow(QWidget *parent = 0);
     ~StartWindow();
 
+    // -- Arrangements --
+    char* uiToMatrix();
+    void bestPosition();
+    int minMax(int turn, char* matrix, int depth);
+
     // -- Show/Hide Activities --
     void logoShow();
 
@@ -101,6 +106,9 @@ private:
     QString player1;
     int turn = 1;
     QString playerName;
+    char* matrix;
+    int depth, max, min, posMin, posMax;
+
 };
 
 #endif // STARTWINDOW_H

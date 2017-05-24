@@ -1,6 +1,10 @@
 #include "minmax.h"
 #include <iostream>
 using namespace std;
+
+// ctor minMax
+// @author deezfj
+// 17/05/17
 minMax::minMax()
 {
     char* matrix = new char[9];
@@ -9,40 +13,39 @@ minMax::minMax()
     depth = 0;
 }
 
-minMax::~minMax()
-{
+minMax::~minMax(){}
 
-}
-
-// methods //
+// checkWin, verifica si algún jugador gano la partida de gato
+// @author deezfj
+// 17/05/17
 int minMax::checkWin(char matrix[]) // return +1 if max wins
 {
     if (    // horizontal //
-            (matrix[0] == 'x' && matrix[1] == 'x' && matrix[2] == 'x')
-            || (matrix[3] == 'x' && matrix[4] == 'x' && matrix[5] == 'x)')
-            || (matrix[6] == 'x' && matrix[7] == 'x' && matrix[8] == 'x')
+            (matrix[1] == 'x' && matrix[2] == 'x' && matrix[3] == 'x')
+            || (matrix[4] == 'x' && matrix[5] == 'x' && matrix[6] == 'x)')
+            || (matrix[7] == 'x' && matrix[8] == 'x' && matrix[9] == 'x')
             //vertical//
-            || (matrix[0] == 'x' && matrix[3] == 'x' && matrix[6] == 'x')
             || (matrix[1] == 'x' && matrix[4] == 'x' && matrix[7] == 'x')
             || (matrix[2] == 'x' && matrix[5] == 'x' && matrix[8] == 'x')
+            || (matrix[3] == 'x' && matrix[6] == 'x' && matrix[9] == 'x')
             // diagonal //
-            || (matrix[0] == 'x' && matrix[4] == 'x' && matrix[8] == 'x')
-            || (matrix[2] == 'x' && matrix[4] == 'x' && matrix[6] == 'x')
+            || (matrix[1] == 'x' && matrix[5] == 'x' && matrix[9] == 'x')
+            || (matrix[3] == 'x' && matrix[5] == 'x' && matrix[7] == 'x')
             )
             {
                 return 1; // max wins
             }
     else if(    // horizontal //
-               (matrix[0] == 'o' && matrix[1] == 'o' && matrix[2] == 'o')
-                || (matrix[3] == 'o' && matrix[4] == 'o' && matrix[5] == 'o')
-                || (matrix[6] == 'o' && matrix[7] == 'o' && matrix[8] == 'o')
+               (matrix[1] == 'o' && matrix[2] == 'o' && matrix[3] == 'o')
+                || (matrix[4] == 'o' && matrix[5] == 'o' && matrix[6] == 'o')
+                || (matrix[7] == 'o' && matrix[8] == 'o' && matrix[9] == 'o')
                 //vertical//
-                || (matrix[0] == 'o' && matrix[3] == 'o' && matrix[6] == 'o')
                 || (matrix[1] == 'o' && matrix[4] == 'o' && matrix[7] == 'o')
                 || (matrix[2] == 'o' && matrix[5] == 'o' && matrix[8] == 'o')
+                || (matrix[3] == 'o' && matrix[6] == 'o' && matrix[9] == 'o')
                 // diagonal //
-                || (matrix[0] == 'o' && matrix[4] == 'o' && matrix[8] == 'o')
-                || (matrix[2] == 'o' && matrix[4] == 'o' && matrix[6] == 'o')
+                || (matrix[1] == 'o' && matrix[5] == 'o' && matrix[9] == 'o')
+                || (matrix[3] == 'o' && matrix[5] == 'o' && matrix[7] == 'o')
                 )
                 {
                     return -1; // max losses
@@ -53,11 +56,14 @@ int minMax::checkWin(char matrix[]) // return +1 if max wins
     }
 }
 
+// checkDraw, verifica que los jugadores empataron, si quedan espacios en la matriz el juego sigue
+// @author deezfj
+// 17/05/17
 bool minMax::checkDraw(char matrix[])
 {
     if (checkWin(matrix) == 0)
     {
-        for (int i = 0; i < 9; i++)
+        for (int i = 1; i <= 9; i++)
         {
            // char toCompare = '-';//
             if (matrix[i] == '-'){return false;}
@@ -66,6 +72,9 @@ bool minMax::checkDraw(char matrix[])
     else{return true;}
 }
 
+// algorithMinMax, crea el árbol necesario para el juego de tic tac toe.
+// @author deezfj
+// 17/05/17
 int minMax::algorithmMinMax(int player, char matrix[], int depth)
 {
     max = 1;
@@ -76,7 +85,7 @@ int minMax::algorithmMinMax(int player, char matrix[], int depth)
     else if (checkIt == -1){return -1;}
     else if(checkDraw(matrix) == true){return 0;}
 
-    for(int i = 0; i < 9; i++)
+    for(int i = 1; i <= 9; i++)
     {
         if (player == 1)
         {
@@ -118,17 +127,18 @@ int minMax::algorithmMinMax(int player, char matrix[], int depth)
     }
 }
 
+// Game, se creo para un testeo del algoritmo
+// @author deezfj
+// 17/05/17
 void minMax::Game()
 {
-    int i,j, place, winCondition;
-
+    int i, place, winCondition;
     char* matrix = new char[9]; // creates the matrix and fills the spaces
-    for(j = 0; j < 9; j++)
-    {
-        matrix[j] = '-';
-    }
 
-    for (i = 0; i < 9; i++)
+    for(i = 1; i <= 9; i++)
+        matrix[i] = '-';
+
+    for (i = 1; i <= 9; i++)
     {
         if (i % 2 == 0)
         {
