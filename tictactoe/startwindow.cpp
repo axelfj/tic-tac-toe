@@ -14,7 +14,7 @@
 #include <QIcon>
 #include <QThread>
 #include <QDebug>
-using namespace std;
+
 // --------------------------------------------- VENTANA DE INICIO ---------------------------------------------
 
 StartWindow::StartWindow(QWidget *parent) :
@@ -107,7 +107,7 @@ void StartWindow::on_name_btn_clicked()
     if(ui->name_edit->text() != ""){
         playerName = ui->name_edit->text();
     } else {
-        playerName = "User";
+        playerName = "Holancio McNombre";
     }
 
     nameSelectHide();
@@ -132,7 +132,6 @@ void StartWindow::selectPlayerShow(){
     // Fade In Humano
     ui->btn_selectHuman->show();
     buttonFadeIn(ui->btn_selectHuman);
-
 
 }
 
@@ -229,7 +228,9 @@ void StartWindow::on_btn_selectHuman_clicked()
 void StartWindow::hideUi()
 {
 
-    for(int i = 0; i < 500; i++)
+    for(int i = 0; i < 500; i++){
+
+    }
 
     // Logo
     ui->logo->hide();
@@ -326,9 +327,8 @@ void StartWindow::colocarFicha(QPushButton *mButton){
         mButton->setIcon(pixmap);
         mButton->setText("1");
 
-    }
-    // Si el turno es de p2
-    else {
+        // Si el turno es de p2
+    } else {
         QPixmap pixmap(":logo/gato_o.png");
         QIcon ButtonIcon(pixmap);
         mButton->setIcon(pixmap);
@@ -839,12 +839,14 @@ void StartWindow::on_winner_btn_clicked()
 void StartWindow::makeAction(QPushButton *mButton)
 {
     if(mButton->isChecked()){
+
         colocarFicha(mButton);
         checkWinner(mButton);
         mButton->setChecked(false);
         mButton->setCheckable(false);
         turn++;
         cambioTurno();
+
     }
 }
 
@@ -876,119 +878,4 @@ void StartWindow::on_btn_selectHuman_pressed()
     QPixmap pixmap(":logo/ic_humanPressed.png");
     QIcon ButtonIcon(pixmap);
     ui->btn_selectHuman->setIcon(pixmap);
-}
-
-char* StartWindow::uiToMatrix()
-{
-    // m1 to matrix
-    if (ui->m1->isChecked() == true && ui->m1->text() == ""){matrix[1] = '-';} // add to the matrix '-' if m1 is empty
-    if (ui->m1->isChecked() == true && ui->m1->text() == 1){matrix[1] = 'x';} // add to the matrix 'x' if m1 is X
-    if (ui->m1->isChecked() == true && ui->m1->text() == 2){matrix[1] = 'o';} // add to the matrix 'o' if m1 is O
-
-    // m2 to matrix
-    if (ui->m2->isChecked() == true && ui->m2->text() == ""){matrix[2] = '-';} // add to the matrix '-' if m2 is empty
-    if (ui->m2->isChecked() == true && ui->m2->text() == 1){matrix[2] = 'x';} // add to the matrix 'x' if m2 is X
-    if (ui->m2->isChecked() == true && ui->m2->text() == 2){matrix[2] = 'o';} // add to the matrix 'o' if m2 is O
-
-    // m3 to matrix
-    if (ui->m3->isChecked() == true && ui->m3->text() == ""){matrix[3] = '-';} // add to the matrix '-' if m3 is empty
-    if (ui->m3->isChecked() == true && ui->m3->text() == 1){matrix[3] = 'x';} // add to the matrix 'x' if m3 is X
-    if (ui->m3->isChecked() == true && ui->m3->text() == 2){matrix[3] = 'o';} // add to the matrix 'o' if m3 is O
-
-    // m4 to matrix
-    if (ui->m4->isChecked() == true && ui->m4->text() == ""){matrix[4] = '-';} // add to the matrix '-' if m4 is empty
-    if (ui->m4->isChecked() == true && ui->m4->text() == 1){matrix[4] = 'x';} // add to the matrix 'x' if m4 is X
-    if (ui->m4->isChecked() == true && ui->m4->text() == 2){matrix[4] = 'o';} // add to the matrix 'o' if m4 is O
-
-    // m5 to matrix
-    if (ui->m5->isChecked() == true && ui->m5->text() == ""){matrix[5] = '-';} // add to the matrix '-' if m5 is empty
-    if (ui->m5->isChecked() == true && ui->m5->text() == 1){matrix[5] = 'x';} // add to the matrix 'x' if m5 is X
-    if (ui->m5->isChecked() == true && ui->m5->text() == 2){matrix[5] = 'o';} // add to the matrix 'o' if m5 is O
-
-    // m6 to matrix
-    if (ui->m6->isChecked() == true && ui->m6->text() == ""){matrix[6] = '-';} // add to the matrix '-' if m6 is empty
-    if (ui->m6->isChecked() == true && ui->m6->text() == 1){matrix[6] = 'x';} // add to the matrix 'x' if m6 is X
-    if (ui->m6->isChecked() == true && ui->m6->text() == 2){matrix[6] = 'o';} // add to the matrix 'o' if m6 is O
-
-    // m7 to matrix
-    if (ui->m7->isChecked() == true && ui->m7->text() == ""){matrix[7] = '-';} // add to the matrix '-' if m7 is empty
-    if (ui->m7->isChecked() == true && ui->m7->text() == 1){matrix[7] = 'x';} // add to the matrix 'x' if m7 is X
-    if (ui->m7->isChecked() == true && ui->m7->text() == 2){matrix[7] = 'o';} // add to the matrix 'o' if m7 is O
-
-    // m8 to matrix
-    if (ui->m8->isChecked() == true && ui->m8->text() == ""){matrix[8] = '-';} // add to the matrix '-' if m8 is empty
-    if (ui->m8->isChecked() == true && ui->m8->text() == 1){matrix[8] = 'x';} // add to the matrix 'x' if m8 is X
-    if (ui->m8->isChecked() == true && ui->m8->text() == 2){matrix[8] = 'o';} // add to the matrix 'o' if m8 is O
-
-    // m9 to matrix
-    if (ui->m9->isChecked() == true && ui->m9->text() == ""){matrix[9] = '-';} // add to the matrix '-' if m8 is empty
-    if (ui->m9->isChecked() == true && ui->m9->text() == 1){matrix[9] = 'x';} // add to the matrix 'x' if m8 is X
-    if (ui->m9->isChecked() == true && ui->m9->text() == 2){matrix[9] = 'o';} // add to the matrix 'o' if m8 is O
-
-    return matrix;
-}
-
-void StartWindow::bestPosition()
-{
-    char* theMatrix = uiToMatrix();
-    int thePosition = 1;
-
-    thePosition = minMax(turn,theMatrix,0);
-    if (thePosition == 1){colocarFicha(ui->m1);}
-    if (thePosition == 2){colocarFicha(ui->m2);}
-    if (thePosition == 3){colocarFicha(ui->m3);}
-    if (thePosition == 4){colocarFicha(ui->m4);}
-    if (thePosition == 5){colocarFicha(ui->m5);}
-    if (thePosition == 6){colocarFicha(ui->m6);}
-    if (thePosition == 7){colocarFicha(ui->m7);}
-    if (thePosition == 8){colocarFicha(ui->m8);}
-    if (thePosition == 9){colocarFicha(ui->m9);}
-}
-
-int StartWindow::minMax(int turn, char* matrix, int depth)
-{
-    max = 1;
-    min = -1;
-    char* theMatrix = matrix;
-
-    for(int i = 1; i <= 9; i++)
-    {
-        if (turn == 1)
-        {
-            matrix[i] = 'x'; // it fills the space with the x option and go to the best option recursively
-            int bestChoice = minMax(2,theMatrix,depth+1);
-
-            matrix[i] = '-';
-            if(bestChoice>max)
-            {
-                max = bestChoice;
-                if (depth == 0)
-                {
-                    posMax = i;
-                }
-            }
-        }
-        if (turn == 2)
-        {
-            matrix[i] = 'o'; // it fills the space with the o option and goes to the best option recursively
-            int bestChoice = minMax(1,theMatrix,depth+1);
-
-            matrix[i] = '-';
-            if(bestChoice<min)
-            {
-                min = bestChoice;
-                if (depth == 0)
-                {
-                    posMin = i;
-                }
-            }
-        }
-    }
-    if (turn == 1)
-    {
-        return max;
-    }
-    else{
-        return min;
-    }
 }
