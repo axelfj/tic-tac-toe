@@ -48,15 +48,13 @@ StartWindow::~StartWindow()
 // Evento mousePressed, detecta si el mouse fue presionado
 // @author kevttob
 // 04/05/17
-void StartWindow::mousePressed(){
-
-}
+void StartWindow::mousePressed(){}
 
 // logoShow genera una animación para el logo en la pantalla de inicio
 // @author kevttob
 // 03/05/17
-void StartWindow::logoShow(){
-
+void StartWindow::logoShow()
+{
     ui->logo->show();
 
     labelFadeIn(ui->logo);
@@ -72,7 +70,6 @@ void StartWindow::logoShow(){
 // 15/05/17
 void StartWindow::nameSelectShow()
 {
-
     // Muestra las piezas que componen la interfaz
     ui->name_title->show();
     ui->name_edit->show();
@@ -85,8 +82,6 @@ void StartWindow::nameSelectShow()
     buttonFadeIn(ui->name_btn);
 
     ui->logo->lower();
-
-
 }
 
 // nameSelectHide oculta la actividad para seleccionar el nombre del jugador
@@ -879,3 +874,4 @@ void StartWindow::on_btn_selectHuman_pressed()
     QIcon ButtonIcon(pixmap);
     ui->btn_selectHuman->setIcon(pixmap);
 }
+

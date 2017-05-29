@@ -5,7 +5,7 @@
 #include <qlabel_event.h>
 #include <QPushButton>
 #include <QLineEdit>
-
+#include "minmax.h"
 namespace Ui {
 class StartWindow;
 }
@@ -17,6 +17,10 @@ class StartWindow : public QMainWindow
 public:
     explicit StartWindow(QWidget *parent = 0);
     ~StartWindow();
+
+    // -- deezfj functions --
+    char buttonToChar(QPushButton* mbutton);
+    int uiToMatrix();
 
     // -- Show/Hide Activities --
     void logoShow();

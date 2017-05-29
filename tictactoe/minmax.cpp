@@ -1,182 +1,148 @@
-#include "minmax.h"
-#include <iostream>
-using namespace std;
-minMax::minMax()
-{
-    char* matrix = new char[9];
-    max = 1; // # player
-    min = 2;
-    depth = 0;
-}
+#include "minMax.h"
+#include <stdio.h>
 
-minMax::~minMax()
-{
+// Needed to make a object out of it.
+// @author deezfj
+// 27/05/17
+minMax::minMax(){}
 
-}
+// empty dtor
+// @author deezfj
+// 27/05/17
+minMax::~minMax(){}
 
-// methods //
-int minMax::checkWin(char matrix[]) // return +1 if max wins
+// Retorna cada posibilidad en la matriz con un char (esencial para el print)
+// @author deezfj
+// 27/05/17
+char minMax::matrixPlays(int place)
 {
-    if (    // horizontal //
-            (matrix[0] == 'x' && matrix[1] == 'x' && matrix[2] == 'x')
-            || (matrix[3] == 'x' && matrix[4] == 'x' && matrix[5] == 'x)')
-            || (matrix[6] == 'x' && matrix[7] == 'x' && matrix[8] == 'x')
-            //vertical//
-            || (matrix[0] == 'x' && matrix[3] == 'x' && matrix[6] == 'x')
-            || (matrix[1] == 'x' && matrix[4] == 'x' && matrix[7] == 'x')
-            || (matrix[2] == 'x' && matrix[5] == 'x' && matrix[8] == 'x')
-            // diagonal //
-            || (matrix[0] == 'x' && matrix[4] == 'x' && matrix[8] == 'x')
-            || (matrix[2] == 'x' && matrix[4] == 'x' && matrix[6] == 'x')
-            )
-            {
-                return 1; // max wins
-            }
-    else if(    // horizontal //
-               (matrix[0] == 'o' && matrix[1] == 'o' && matrix[2] == 'o')
-                || (matrix[3] == 'o' && matrix[4] == 'o' && matrix[5] == 'o')
-                || (matrix[6] == 'o' && matrix[7] == 'o' && matrix[8] == 'o')
-                //vertical//
-                || (matrix[0] == 'o' && matrix[3] == 'o' && matrix[6] == 'o')
-                || (matrix[1] == 'o' && matrix[4] == 'o' && matrix[7] == 'o')
-                || (matrix[2] == 'o' && matrix[5] == 'o' && matrix[8] == 'o')
-                // diagonal //
-                || (matrix[0] == 'o' && matrix[4] == 'o' && matrix[8] == 'o')
-                || (matrix[2] == 'o' && matrix[4] == 'o' && matrix[6] == 'o')
-                )
-                {
-                    return -1; // max losses
-                }
-    else
+    switch(place)
     {
-        return 0;  // draw
+        case -1:
+            return 'x';
+        case 0:
+            return ' ';
+        case 1:
+            return 'o';
     }
 }
 
-bool minMax::checkDraw(char matrix[])
+// Hace un print de la matriz a la consola.
+// @author deezfj
+// 27/05/17
+void minMax::toString(int matrix[9])
 {
-    if (checkWin(matrix) == 0)
-    {
-        for (int i = 0; i < 9; i++)
-        {
-           // char toCompare = '-';//
-            if (matrix[i] == '-'){return false;}
-        }
-    }
-    else{return true;}
+    printf(" %c | %c | %c\n",matrixPlays(matrix[0]),matrixPlays(matrix[1]),matrixPlays(matrix[2]));
+    printf("---+---+---\n");
+    printf(" %c | %c | %c\n",matrixPlays(matrix[3]),matrixPlays(matrix[4]),matrixPlays(matrix[5]));
+    printf("---+---+---\n");
+    printf(" %c | %c | %c\n",matrixPlays(matrix[6]),matrixPlays(matrix[7]),matrixPlays(matrix[8]));
 }
 
-int minMax::algorithmMinMax(int player, char matrix[], int depth)
-{
-    max = 1;
-    min = -1;
-
-    int checkIt = checkWin(matrix); // check the matrix
-    if (checkIt == 1){return 1;}
-    else if (checkIt == -1){return -1;}
-    else if(checkDraw(matrix) == true){return 0;}
-
-    for(int i = 0; i < 9; i++)
+// Chequea la matriz para retornar si algún jugador ya gano la partida.
+// @author deezfj
+// 27/05/17
+int minMax::checkWin(const int matrix[9]) {
+    unsigned waysToWin[8][3] = {{0,1,2},{3,4,5},{6,7,8},{0,3,6},{1,4,7},{2,5,8},{0,4,8},{2,4,6}};
+    for(int i = 0; i < 8; i++)
     {
-        if (player == 1)
-        {
-            matrix[i] = 'x'; // it fills the space with the x option and go to the best option recursively
-            int bestChoice = algorithmMinMax(2,matrix,depth+1);
+        if(     matrix[waysToWin[i][0]] != 0 &&
+                matrix[waysToWin[i][0]] == matrix[waysToWin[i][1]] &&
+                matrix[waysToWin[i][0]] == matrix[waysToWin[i][2]])
+                return matrix[waysToWin[i][2]];
+    }
+    return 0;
+}
 
-            matrix[i] = '-';
-            if(bestChoice>max)
-            {
-                max = bestChoice;
-                if (depth == 0)
-                {
-                    posMax = i;
-                }
+// Algoritmo minimax, es un árbol que se expande a todas las posibles jugadas del oponente.
+// @author deezfj
+// 27/05/17
+int minMax::miniMax(int matrix[9], int player) {
+    int winner = checkWin(matrix);
+    if(winner != 0)
+        return winner*player;
+    move = -1;
+    score = -2;
+    int i;
+    for(i = 0; i < 9; ++i) {
+        if(matrix[i] == 0) {
+            matrix[i] = player;
+            int thisScore = -miniMax(matrix, player*-1);
+            if(thisScore > score) {
+                score = thisScore;
+                move = i;
             }
+            matrix[i] = 0;
         }
-        if (player == 2)
-        {
-            matrix[i] = 'o'; // it fills the space with the o option and goes to the best option recursively
-            int bestChoice = algorithmMinMax(1,matrix,depth+1);
+    }
+    if(move == -1) return 0;
+    return score;
+}
 
-            matrix[i] = '-';
-            if(bestChoice<min)
-            {
-                min = bestChoice;
-                if (depth == 0)
-                {
-                    posMin = i;
-                }
+// Es la jugada de la inteligencia artificial.
+// @author deezfj
+// 27/05/17
+void minMax::IAplay(int matrix[9]) {
+    move = -1;
+    score = -2;
+    for(int i = 1; i <= 9; i++) {
+        if(matrix[i] == 0) {
+            matrix[i] = 1;
+            int tempScore = -miniMax(matrix, -1);
+            matrix[i] = 0;
+            if(tempScore > score) {
+                score = tempScore;
+                move = i;
             }
         }
     }
-    if (player == 1)
-    {
-        return max;
-    }
-    else{
-        return min;
-    }
+    matrix[move] = 1;
 }
 
-void minMax::Game()
+// Jugada del jugador.
+// @author deezfj
+// 27/05/17
+void minMax::playerPlay(int matrix[9])
 {
-    int i,j, place, winCondition;
+    move = 0;
+    do {
+        printf("\nInput move ([0..8]): ");
+        scanf("%d", &move);
+        printf("\n");
+    } while (move >= 9 || move < 0 && matrix[move] == 0);
+    matrix[move] = -1;
+}
 
-    char* matrix = new char[9]; // creates the matrix and fills the spaces
-    for(j = 0; j < 9; j++)
+// Control del juego, lleva la lógica de turnos y aplica minmax a la IA.
+// @author deezfj
+// 27/05/17
+int minMax::control()
+{
+    int matrix[9] = {0,0,0,0,0,0,0,0,0};
+    printf("IA: O, You: X\nPlay (1)st or (2)nd? ");
+    int player=0;
+    scanf("%d",&player);
+    printf("\n");
+    unsigned turn;
+    for(turn = 0; turn < 9 && checkWin(matrix) == 0; ++turn)
     {
-        matrix[j] = '-';
+        if((turn+player) % 2 == 0)
+            IAplay(matrix);
+        else {
+            toString(matrix);
+            playerPlay(matrix);
+        }
     }
-
-    for (i = 0; i < 9; i++)
-    {
-        if (i % 2 == 0)
-        {
-            cout << "Player 1: Please give your place.\n"; // places in the matrix between 0 and 8 //
-            cin >> place;
-        }
-        else
-        {
-            cout << "Player 2: Please give your place.\n";
-            cin >> place;
-        }
-        if (i%2 == 0)
-        {
-            matrix[place] = 'x';
-        }
-        if(i%2 != 0)
-        {
-            matrix[place] = 'o';
-        }
-
-        int checkIt = checkWin(matrix);
-        if (checkIt == 1)
-        {
-            cout << "Player 1 wins\n;";
+    switch(checkWin(matrix)) {
+        case 0:
+            printf("A draw. How droll.\n");
             break;
-        }
-        if (checkIt == -1)
-        {
-            cout << "Player 2 wins\n";
+        case 1:
+            toString(matrix);
+            printf("You lose.\n");
             break;
-        }
-        if ((checkIt == 0) && (i != 9))
-        {
-            posMax = -1;
-            posMin = -1;
-            if (i%2 == 0)
-            {
-                winCondition = algorithmMinMax(1,matrix,0);
-                cout << "Best play for X is:" << posMax << endl;
-            }
-            else
-            {
-                winCondition = algorithmMinMax(2,matrix,0);
-                cout << "Best play for O is:"<< posMin << endl;
-            }
-        }
-        else{
-            cout << "Draw.\n";
-        }
+        case -1:
+            printf("You win. Inconceivable!\n");
+            break;
     }
 }
