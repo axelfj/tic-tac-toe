@@ -82,7 +82,7 @@ int minMax::miniMax(int matrix[9], int player) {
 // Es la jugada de la inteligencia artificial.
 // @author deezfj
 // 27/05/17
-void minMax::IAplay(int matrix[9]) {
+int minMax::IAplay(int matrix[9]) {
     move = -1;
     score = -2;
     for(int i = 1; i <= 9; i++) {
@@ -97,6 +97,7 @@ void minMax::IAplay(int matrix[9]) {
         }
     }
     matrix[move] = 1;
+    return move;
 }
 
 // Jugada del jugador.

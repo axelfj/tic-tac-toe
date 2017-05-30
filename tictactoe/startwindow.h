@@ -5,7 +5,7 @@
 #include <qlabel_event.h>
 #include <QPushButton>
 #include <QLineEdit>
-#include "minmax.h"
+
 namespace Ui {
 class StartWindow;
 }
@@ -19,8 +19,12 @@ public:
     ~StartWindow();
 
     // -- deezfj functions --
-    char buttonToChar(QPushButton* mbutton);
-    int uiToMatrix();
+    int *uiToMatrix();
+    void computerMove();
+    int miniMax(int matrix[9], int player);
+    int checkWin(const int matrix[9]);
+    int IAplay(int matrix[9]);
+    int toMatrix(QString play1, int turn);
 
     // -- Show/Hide Activities --
     void logoShow();
@@ -67,7 +71,6 @@ public:
     void hideMatrix();
     void showMatrix();
 
-
 private slots:
 
     void mousePressed();
@@ -105,6 +108,7 @@ private:
     QString player1;
     int turn = 1;
     QString playerName;
+
 };
 
 #endif // STARTWINDOW_H
