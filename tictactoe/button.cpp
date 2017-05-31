@@ -19,3 +19,15 @@ void Button::hoverEnterEvent(QGraphicsSceneHoverEvent *event){
 void Button::hoverLeaveEvent(QGraphicsSceneHoverEvent *event){
     setPixmap(UrlOff);
 }
+
+void Button::setText(QString text){
+    setText(text);
+}
+
+void Button::setIcon(QPixmap pixmap){
+    setIcon(pixmap);
+}
+
+QString Button::getText(){
+    return text;
+}
