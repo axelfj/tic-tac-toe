@@ -15,11 +15,11 @@ class minMax
         void toString(int matrix[9]);
         int checkWin(const int matrix[9]);
         int miniMax(int matrix[9], int player);
-        int IAplay(int matrix[9]);
+        void IAplay(int matrix[9]);
         void playerPlay(int matrix[9]);
         int control();
 
-    protected:
+    private:
         int matrix[], turn, move, score, player;
 };
 

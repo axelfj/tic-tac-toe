@@ -914,7 +914,7 @@ debug/qlabel_event.o: ../tictactoe/qlabel_event.cpp ../tictactoe/qlabel_event.h 
 		C:/Qt/5.8/mingw53_32/include/QtCore/QEvent
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\qlabel_event.o ..\tictactoe\qlabel_event.cpp
 
-debug/minmax.o: ../tictactoe/minmax.cpp ../tictactoe/minMax.h
+debug/minmax.o: ../tictactoe/minmax.cpp ../tictactoe/minmax.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\minmax.o ..\tictactoe\minmax.cpp
 
 debug/qrc_Res.o: debug/qrc_Res.cpp 
