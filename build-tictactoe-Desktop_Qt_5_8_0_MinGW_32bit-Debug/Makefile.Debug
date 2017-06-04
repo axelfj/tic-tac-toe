@@ -465,6 +465,7 @@ debug/moc_button.cpp: C:/Qt/5.8/mingw53_32/include/QtWidgets/QGraphicsRectItem \
 		C:/Qt/5.8/mingw53_32/include/QtWidgets/qgraphicssceneevent.h \
 		C:/Qt/5.8/mingw53_32/include/QtGui/QBrush \
 		C:/Qt/5.8/mingw53_32/include/QtGui/qbrush.h \
+		C:/Qt/5.8/mingw53_32/include/QtGui/QPixmap \
 		C:/Qt/5.8/mingw53_32/include/QtWidgets/QGraphicsTextItem \
 		C:/Qt/5.8/mingw53_32/include/QtWidgets/QGraphicsPixmapItem \
 		../tictactoe/button.h \
@@ -1111,6 +1112,7 @@ debug/button.o: ../tictactoe/button.cpp ../tictactoe/button.h \
 		C:/Qt/5.8/mingw53_32/include/QtWidgets/qgraphicssceneevent.h \
 		C:/Qt/5.8/mingw53_32/include/QtGui/QBrush \
 		C:/Qt/5.8/mingw53_32/include/QtGui/qbrush.h \
+		C:/Qt/5.8/mingw53_32/include/QtGui/QPixmap \
 		C:/Qt/5.8/mingw53_32/include/QtWidgets/QGraphicsTextItem \
 		C:/Qt/5.8/mingw53_32/include/QtWidgets/QGraphicsPixmapItem
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\button.o ..\tictactoe\button.cpp
