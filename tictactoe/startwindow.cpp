@@ -244,7 +244,7 @@ void StartWindow::hideUi()
 
 /// Maneja el cambio de color en los iconos que señalan el turno actual
 /// @author kevttob
-/// @author deezfj
+/// @author azzefj
 /// 04/05/17
 void StartWindow::cambioTurno()
 {
@@ -258,7 +258,6 @@ void StartWindow::cambioTurno()
             QPixmap pixmap(":logo/ic_robotPressed.png");
             QIcon ButtonIcon(pixmap);
             ui->scoreRobot->setIcon(pixmap);
-            computerMove();
 
             // Humano es de color gris
             QPixmap pixmap2(":logo/ic_human.png");
@@ -280,7 +279,6 @@ void StartWindow::cambioTurno()
             ui->scoreRobot->setIcon(pixmap2);
 
         }
-
         // Si el Jugador 1 es el humano
     }
     else if(player1 == "h"){
@@ -302,12 +300,10 @@ void StartWindow::cambioTurno()
         // Si es turno del robot
         else
         {
-
             // El robot es color negro
             QPixmap pixmap(":logo/ic_robotGame.png");
             QIcon ButtonIcon(pixmap);
             ui->scoreRobot->setIcon(pixmap);
-            computerMove();
 
             // Y el humano color gris
             QPixmap pixmap2(":logo/ic_human.png");
@@ -315,11 +311,17 @@ void StartWindow::cambioTurno()
             ui->scoreHuman->setIcon(pixmap2);
         }
     }
+    if ((player1 == "r" && turn%2 !=0) || (player1 == "h" && turn%2 == 0))
+    {
+        int thePos = IAplay(uiToMatrix());
+        thePos++;
+        qDebug() << "The best position for the pc is: " << thePos;
+        computerMove();
+    }
 }
 
 /// Coloca una ficha según el turno
 /// @author kevttob
-/// @author deezfj
 /// 05/05/2017
 void StartWindow::colocarFicha(QPushButton *mButton)
 {
@@ -417,7 +419,6 @@ bool StartWindow::checkHor(QPushButton *mButton)
     // Tercera fila
     else if(mButton == ui->m7 || mButton == ui->m8 || mButton == ui->m9)
         return ui->m7->text() == ui->m8->text() && ui->m7->text() == ui->m9->text();
-
 }
 
 /// retorna true si hay un gane en vertical
@@ -809,7 +810,6 @@ void StartWindow::makeAction(QPushButton *mButton)
 {
     if(mButton->isChecked())
     {
-
         colocarFicha(mButton);
         checkWinner(mButton);
         mButton->setChecked(false);
@@ -850,13 +850,14 @@ void StartWindow::on_btn_selectHuman_pressed()
 }
 
 // Se encarga de escribir la interfaz en una matriz legible para minimax.
-// @author deezfj
+// @author azzefj
 // 29/05/17
 int* StartWindow::uiToMatrix()
 {
     int* matrix = new int[9];
     for (int i = 0; i < 9; i++)
         matrix[i] = 0;
+
     if (player1 == "r")
     {
         if (ui->m1->text() == "1")matrix[0] = 1;
@@ -919,64 +920,70 @@ int* StartWindow::uiToMatrix()
 }
 
 /// Aplica la acción en el movimiento para la IA
-/// @author deezfj
+/// @author azzefj
 /// 29/05/17
 void StartWindow::computerMove()
 {
     int bestPosition = IAplay(uiToMatrix());
-    if (bestPosition == 0) on_m1_clicked();
-    if (bestPosition == 1) on_m2_clicked();
-    if (bestPosition == 2) on_m3_clicked();
-    if (bestPosition == 3) on_m4_clicked();
-    if (bestPosition == 4) on_m5_clicked();
-    if (bestPosition == 5) on_m6_clicked();
-    if (bestPosition == 6) on_m7_clicked();
-    if (bestPosition == 7) on_m8_clicked();
-    if (bestPosition == 8) on_m9_clicked();
+    bestPosition += 1;
+
+    if (bestPosition == 1)
+        on_m1_clicked();
+    if (bestPosition == 2)
+        on_m2_clicked();
+    if (bestPosition == 3)
+        on_m3_clicked();
+    if (bestPosition == 4)
+        on_m4_clicked();
+    if (bestPosition == 5)
+        on_m5_clicked();
+    if (bestPosition == 6)
+        on_m6_clicked();
+    if (bestPosition == 7)
+        on_m7_clicked();
+    if (bestPosition == 8)
+        on_m8_clicked();
+    if (bestPosition == 9)
+        on_m9_clicked();
 }
 
 /// Algoritmo minimax, es un árbol que se expande a todas las posibles jugadas del oponente.
-/// @author deezfj
+/// @author azzefj
 /// 27/05/17
 int StartWindow::miniMax(int matrix[9], int player) {
     int winner = checkWin(matrix);
-    if(winner != 0)
-        return winner*player;
+    if(winner != 0) return winner*player;
+
     int move = -1;
     int score = -2;
-    for(int i = 0; i < 9; ++i) {
-        if(matrix[i] == 0)
-        {
+    int i;
+    for(i = 0; i < 9; ++i) {
+        if(matrix[i] == 0) {
             matrix[i] = player;
             int thisScore = -miniMax(matrix, player*-1);
-            matrix[i] = 0;
-            if(thisScore > score)
-            {
+            if(thisScore > score) {
                 score = thisScore;
                 move = i;
             }
+            matrix[i] = 0;
         }
     }
-    if(move == -1)
-        return 0;
+    if(move == -1) return 0;
     return score;
 }
 
 /// Es la jugada de la inteligencia artificial.
-/// @author deezfj
+/// @author azzefj
 /// 27/05/17
 int StartWindow::IAplay(int matrix[9]) {
     int move = -1;
     int score = -2;
-    for(int i = 1; i <= 9; i++)
-    {
-        if(matrix[i] == 0)
-        {
+    for(int i = 1; i <= 9; i++) {
+        if(matrix[i] == 0) {
             matrix[i] = 1;
             int tempScore = -miniMax(matrix, -1);
             matrix[i] = 0;
-            if(tempScore > score)
-            {
+            if(tempScore > score) {
                 score = tempScore;
                 move = i;
             }
@@ -987,15 +994,15 @@ int StartWindow::IAplay(int matrix[9]) {
 }
 
 /// Chequea la matriz para retornar si algún jugador ya gano la partida.
-/// @author deezfj
+/// @author azzefj
 /// 27/05/17
 int StartWindow::checkWin(const int matrix[9]) {
+    //determines if a player has won, returns 0 otherwise.
     unsigned waysToWin[8][3] = {{0,1,2},{3,4,5},{6,7,8},{0,3,6},{1,4,7},{2,5,8},{0,4,8},{2,4,6}};
-    for(int i = 0; i < 8; i++)
-    {
-        if(     matrix[waysToWin[i][0]] != 0 &&
-                matrix[waysToWin[i][0]] == matrix[waysToWin[i][1]] &&
-                matrix[waysToWin[i][0]] == matrix[waysToWin[i][2]])
+    for(int i = 0; i < 8; i++) {
+        if(matrix[waysToWin[i][0]] != 0 &&
+           matrix[waysToWin[i][0]] == matrix[waysToWin[i][1]] &&
+           matrix[waysToWin[i][0]] == matrix[waysToWin[i][2]])
             return matrix[waysToWin[i][2]];
     }
     return 0;

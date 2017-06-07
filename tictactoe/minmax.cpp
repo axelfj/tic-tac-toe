@@ -2,17 +2,17 @@
 #include <stdio.h>
 
 // Needed to make a object out of it.
-// @author deezfj
+// @author azzefj
 // 27/05/17
 minMax::minMax(){}
 
 // empty dtor
-// @author deezfj
+// @author azzefj
 // 27/05/17
 minMax::~minMax(){}
 
 // Retorna cada posibilidad en la matriz con un char (esencial para el print)
-// @author deezfj
+// @author azzefj
 // 27/05/17
 char minMax::matrixPlays(int place)
 {
@@ -28,7 +28,7 @@ char minMax::matrixPlays(int place)
 }
 
 // Hace un print de la matriz a la consola.
-// @author deezfj
+// @author azzefj
 // 27/05/17
 void minMax::toString(int matrix[9])
 {
@@ -40,7 +40,7 @@ void minMax::toString(int matrix[9])
 }
 
 // Chequea la matriz para retornar si algún jugador ya gano la partida.
-// @author deezfj
+// @author azzefj
 // 27/05/17
 int minMax::checkWin(const int matrix[9]) {
     unsigned waysToWin[8][3] = {{0,1,2},{3,4,5},{6,7,8},{0,3,6},{1,4,7},{2,5,8},{0,4,8},{2,4,6}};
@@ -55,7 +55,7 @@ int minMax::checkWin(const int matrix[9]) {
 }
 
 // Algoritmo minimax, es un árbol que se expande a todas las posibles jugadas del oponente.
-// @author deezfj
+// @author azzefj
 // 27/05/17
 int minMax::miniMax(int matrix[9], int player) {
     int winner = checkWin(matrix);
@@ -80,7 +80,7 @@ int minMax::miniMax(int matrix[9], int player) {
 }
 
 // Es la jugada de la inteligencia artificial.
-// @author deezfj
+// @author azzefj
 // 27/05/17
 int minMax::IAplay(int matrix[9]) {
     move = -1;
@@ -101,7 +101,7 @@ int minMax::IAplay(int matrix[9]) {
 }
 
 // Jugada del jugador.
-// @author deezfj
+// @author azzefj
 // 27/05/17
 void minMax::playerPlay(int matrix[9])
 {
@@ -115,7 +115,7 @@ void minMax::playerPlay(int matrix[9])
 }
 
 // Control del juego, lleva la lógica de turnos y aplica minmax a la IA.
-// @author deezfj
+// @author azzefj
 // 27/05/17
 int minMax::control()
 {
@@ -136,14 +136,14 @@ int minMax::control()
     }
     switch(checkWin(matrix)) {
         case 0:
-            printf("A draw. How droll.\n");
+            printf("That's a draw, well played hooman..\n");
             break;
         case 1:
             toString(matrix);
-            printf("You lose.\n");
+            printf("I'm the best, you lose..\n");
             break;
         case -1:
-            printf("You win. Inconceivable!\n");
+            printf("How did you? You win.\n");
             break;
     }
 }
