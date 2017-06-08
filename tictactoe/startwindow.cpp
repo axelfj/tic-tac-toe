@@ -259,6 +259,11 @@ void StartWindow::cambioTurno()
             QIcon ButtonIcon(pixmap);
             ui->scoreRobot->setIcon(pixmap);
 
+            int thePos = IAplay(uiToMatrix());
+            thePos++;
+            qDebug() << "The best position for the pc is: " << thePos;
+            computerMove();
+
             // Humano es de color gris
             QPixmap pixmap2(":logo/ic_human.png");
             QIcon ButtonIcon2(pixmap2);
@@ -305,19 +310,24 @@ void StartWindow::cambioTurno()
             QIcon ButtonIcon(pixmap);
             ui->scoreRobot->setIcon(pixmap);
 
+            int thePos = IAplay(uiToMatrix());
+            thePos++;
+            qDebug() << "The best position for the pc is: " << thePos;
+            computerMove();
+
             // Y el humano color gris
             QPixmap pixmap2(":logo/ic_human.png");
             QIcon ButtonIcon2(pixmap2);
             ui->scoreHuman->setIcon(pixmap2);
         }
     }
-    if ((player1 == "r" && turn%2 !=0) || (player1 == "h" && turn%2 == 0))
-    {
-        int thePos = IAplay(uiToMatrix());
-        thePos++;
-        qDebug() << "The best position for the pc is: " << thePos;
-        computerMove();
-    }
+//    if ((player1 == "r" && turn%2 !=0) || (player1 == "h" && turn%2 == 0))
+//    {
+//        int thePos = IAplay(uiToMatrix());
+//        thePos++;
+//        qDebug() << "The best position for the pc is: " << thePos;
+//        computerMove();
+//    }
 }
 
 /// Coloca una ficha según el turno
@@ -920,7 +930,7 @@ int* StartWindow::uiToMatrix()
 }
 
 /// Aplica la acción en el movimiento para la IA
-/// @author azzefj
+/// @author azzefj - Last Edit kevttob 06/07/17
 /// 29/05/17
 void StartWindow::computerMove()
 {
@@ -928,23 +938,23 @@ void StartWindow::computerMove()
     bestPosition += 1;
 
     if (bestPosition == 1)
-        on_m1_clicked();
+        ui->m1->click();
     if (bestPosition == 2)
-        on_m2_clicked();
+        ui->m2->click();
     if (bestPosition == 3)
-        on_m3_clicked();
+        ui->m3->click();
     if (bestPosition == 4)
-        on_m4_clicked();
+        ui->m4->click();
     if (bestPosition == 5)
-        on_m5_clicked();
+        ui->m5->click();
     if (bestPosition == 6)
-        on_m6_clicked();
+        ui->m6->click();
     if (bestPosition == 7)
-        on_m7_clicked();
+        ui->m7->click();
     if (bestPosition == 8)
-        on_m8_clicked();
+        ui->m8->click();
     if (bestPosition == 9)
-        on_m9_clicked();
+        ui->m9->click();
 }
 
 /// Algoritmo minimax, es un árbol que se expande a todas las posibles jugadas del oponente.

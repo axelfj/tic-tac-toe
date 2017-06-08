@@ -1464,7 +1464,9 @@ background-color: none;</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">border: none;</string>
+     <string notr="true">border: none;
+
+background-color: none;</string>
     </property>
     <property name="text">
      <string/>
@@ -1477,6 +1479,9 @@ background-color: none;</string>
     </property>
    </widget>
    <widget class="QLabel" name="winner_bg">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>5</x>
@@ -1484,6 +1489,9 @@ background-color: none;</string>
       <width>1191</width>
       <height>651</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:none;</string>
     </property>
     <property name="text">
      <string/>
@@ -1555,7 +1563,7 @@ background-color: none;</string>
      <x>0</x>
      <y>0</y>
      <width>1200</width>
-     <height>38</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
