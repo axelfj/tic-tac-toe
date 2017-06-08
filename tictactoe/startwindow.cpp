@@ -14,7 +14,8 @@
 #include <QIcon>
 #include <QThread>
 #include <QDebug>
-
+#include <iostream>
+using namespace  std;
 // --------------------------------------------- VENTANA DE INICIO ---------------------------------------------
 
 StartWindow::StartWindow(QWidget *parent) :
@@ -38,6 +39,7 @@ StartWindow::StartWindow(QWidget *parent) :
 
     // Inicia el programa mostrando el logo
     logoShow();
+
 }
 
 StartWindow::~StartWindow()
@@ -99,11 +101,10 @@ void StartWindow::nameSelectHide()
 /// 15/05/17
 void StartWindow::on_name_btn_clicked()
 {
-    if(ui->name_edit->text() != ""){
+    if(ui->name_edit->text() != "")
         playerName = ui->name_edit->text();
-    } else {
-        playerName = "Holancio McNombre";
-    }
+    else
+        playerName = "User";
 
     nameSelectHide();
     selectPlayerShow();
@@ -223,9 +224,7 @@ void StartWindow::on_btn_selectHuman_clicked()
 void StartWindow::hideUi()
 {
 
-    for(int i = 0; i < 500; i++){
-
-    }
+    for(int i = 0; i < 500; i++)
 
         // Logo
         ui->logo->hide();
@@ -243,26 +242,18 @@ void StartWindow::hideUi()
 }
 // --------------------------------------------- INTERFAZ DEL JUEGO ---------------------------------------------
 
-<<<<<<< HEAD
-// Maneja el cambio de color en los iconos que señalan el turno actual
-// @author kevttob
-// 04/05/17
-void StartWindow::cambioTurno(){
-
-=======
 /// Maneja el cambio de color en los iconos que señalan el turno actual
 /// @author kevttob
 /// @author azzefj
 /// 04/05/17
 void StartWindow::cambioTurno()
 {
->>>>>>> refs/remotes/origin/newButtonTest
     // Si el Jugador 1 es robot
-    if(player1 == "r"){
-
+    if(player1 == "r")
+    {
         // Y es turno de robot
-        if(turn % 2 != 0){
-
+        if(turn % 2 != 0)
+        {
             // Robot es color azul
             QPixmap pixmap(":logo/ic_robotPressed.png");
             QIcon ButtonIcon(pixmap);
@@ -273,9 +264,10 @@ void StartWindow::cambioTurno()
             QIcon ButtonIcon2(pixmap2);
             ui->scoreHuman->setIcon(pixmap2);
 
-            // Si es turno del humano
-        } else {
-
+        }
+        // Si es turno del humano
+        else
+        {
             // Humano va de color gris oscuro
             QPixmap pixmap(":logo/ic_humanGame.png");
             QIcon ButtonIcon(pixmap);
@@ -285,18 +277,15 @@ void StartWindow::cambioTurno()
             QPixmap pixmap2(":logo/ic_robot.png");
             QIcon ButtonIcon2(pixmap2);
             ui->scoreRobot->setIcon(pixmap2);
-<<<<<<< HEAD
-        }
-=======
->>>>>>> refs/remotes/origin/newButtonTest
 
         }
         // Si el Jugador 1 es el humano
-    } else if(player1 == "h"){
+    }
+    else if(player1 == "h"){
 
         // Y es turno del Jugador 1
-        if(turn % 2 != 0){
-
+        if(turn % 2 != 0)
+        {
             // El humano es azul
             QPixmap pixmap(":logo/ic_humanPressed.png");
             QIcon ButtonIcon(pixmap);
@@ -307,16 +296,10 @@ void StartWindow::cambioTurno()
             QIcon ButtonIcon2(pixmap2);
             ui->scoreRobot->setIcon(pixmap2);
 
-<<<<<<< HEAD
-            // Si es turno del robot
-        } else {
-
-=======
         }
         // Si es turno del robot
         else
         {
->>>>>>> refs/remotes/origin/newButtonTest
             // El robot es color negro
             QPixmap pixmap(":logo/ic_robotGame.png");
             QIcon ButtonIcon(pixmap);
@@ -328,17 +311,6 @@ void StartWindow::cambioTurno()
             ui->scoreHuman->setIcon(pixmap2);
         }
     }
-<<<<<<< HEAD
-}
-
-// Coloca una ficha según el turno
-// @author kevttob
-// 05/05/2017
-void StartWindow::colocarFicha(QPushButton *mButton){
-
-    // Si el turno es de p1
-    if(turn % 2 != 0){
-=======
     if ((player1 == "r" && turn%2 !=0) || (player1 == "h" && turn%2 == 0))
     {
         int thePos = IAplay(uiToMatrix());
@@ -355,28 +327,17 @@ void StartWindow::colocarFicha(QPushButton *mButton)
 {
     if(turn % 2 != 0)
     {
->>>>>>> refs/remotes/origin/newButtonTest
         QPixmap pixmap(":logo/gato_x.png");
         QIcon ButtonIcon(pixmap);
         mButton->setIcon(pixmap);
         mButton->setText("1");
-<<<<<<< HEAD
-
-        // Si el turno es de p2
-    } else {
-=======
     }
     else
     {
->>>>>>> refs/remotes/origin/newButtonTest
         QPixmap pixmap(":logo/gato_o.png");
         QIcon ButtonIcon(pixmap);
         mButton->setIcon(pixmap);
         mButton->setText("2");
-<<<<<<< HEAD
-
-=======
->>>>>>> refs/remotes/origin/newButtonTest
     }
 }
 
@@ -389,68 +350,56 @@ void StartWindow::colocarFicha(QPushButton *mButton)
 void StartWindow::checkWinner(QPushButton *mButton)
 {
 
-    if(mButton == ui->m1){
-        if(checkHor(ui->m1) || checkVert(ui->m1) || checkDiag(ui->m1)){
-            setWinner(ui->m1->text());
-        } else if(turn == 9){
-            setWinner("t");
-        }
+    if(mButton == ui->m1)
+    {
+        if(checkHor(ui->m1) || checkVert(ui->m1) || checkDiag(ui->m1))setWinner(ui->m1->text());
+        else if(turn == 9)setWinner("t");
+    }
 
-    } else if(mButton == ui->m2){
-        if(checkHor(ui->m2) || checkVert(ui->m2)){
-            setWinner(ui->m2->text());
-        } else if(turn == 9){
-            setWinner("t");
-        }
+    else if(mButton == ui->m2)
+    {
+        if(checkHor(ui->m2) || checkVert(ui->m2))setWinner(ui->m2->text());
+        else if(turn == 9)setWinner("t");
+    }
 
-    } else if(mButton == ui->m3){
-        if(checkHor(ui->m3) || checkVert(ui->m3) || checkDiag(ui->m3)){
-            setWinner(ui->m3->text());
-        } else if(turn == 9){
-            setWinner("t");
-        }
+    else if(mButton == ui->m3)
+    {
+        if(checkHor(ui->m3) || checkVert(ui->m3) || checkDiag(ui->m3))setWinner(ui->m3->text());
+        else if(turn == 9)setWinner("t");
+    }
 
-    } else if(mButton == ui->m4){
-        if(checkHor(ui->m4) || checkVert(ui->m4)){
-            setWinner(ui->m4->text());
-        } else if(turn == 9){
-            setWinner("t");
-        }
+    else if(mButton == ui->m4)
+    {
+        if(checkHor(ui->m4) || checkVert(ui->m4))setWinner(ui->m4->text());
+        else if(turn == 9)setWinner("t");
+    }
 
-    } else if(mButton == ui->m5){
-        if(checkHor(ui->m5) || checkVert(ui->m5) || checkDiag(ui->m5)){
-            setWinner(ui->m5->text());
-        } else if(turn == 9){
-            setWinner("t");
-        }
+    else if(mButton == ui->m5)
+    {
+        if(checkHor(ui->m5) || checkVert(ui->m5) || checkDiag(ui->m5))setWinner(ui->m5->text());
+        else if(turn == 9)setWinner("t");
+    }
 
-    } else if(mButton == ui->m6){
-        if(checkHor(ui->m6) || checkVert(ui->m6)){
-            setWinner(ui->m6->text());
-        } else if(turn == 9){
-            setWinner("t");
-        }
+    else if(mButton == ui->m6)
+    {
+        if(checkHor(ui->m6) || checkVert(ui->m6))setWinner(ui->m6->text());
+        else if(turn == 9)setWinner("t");
+    }
 
-    } else if(mButton == ui->m7){
-        if(checkHor(ui->m7) || checkVert(ui->m7) || checkDiag(ui->m7)){
-            setWinner(ui->m7->text());
-        } else if(turn == 9){
-            setWinner("t");
-        }
+    else if(mButton == ui->m7)
+    {
+        if(checkHor(ui->m7) || checkVert(ui->m7) || checkDiag(ui->m7))setWinner(ui->m7->text());
+        else if(turn == 9)setWinner("t");
+    }
 
-    } else if(mButton == ui->m8){
-        if(checkHor(ui->m8) || checkVert(ui->m8)){
-            setWinner(ui->m8->text());
-        } else if(turn == 9){
-            setWinner("t");
-        }
+    else if(mButton == ui->m8){
+        if(checkHor(ui->m8) || checkVert(ui->m8))setWinner(ui->m8->text());
+        else if(turn == 9)setWinner("t");
+    }
 
-    } else if(mButton == ui->m9){
-        if(checkHor(ui->m9) || checkVert(ui->m9) || checkDiag(ui->m9)){
-            setWinner(ui->m9->text());
-        } else if(turn == 9){
-            setWinner("t");
-        }
+    else if(mButton == ui->m9){
+        if(checkHor(ui->m9) || checkVert(ui->m9) || checkDiag(ui->m9))setWinner(ui->m9->text());
+        else if(turn == 9)setWinner("t");
     }
 }
 
@@ -458,26 +407,11 @@ void StartWindow::checkWinner(QPushButton *mButton)
 /// @author kevttob
 /// 23/05/17
 bool StartWindow::checkHor(QPushButton *mButton)
-{    
+{
     // Primera fila
-    if(mButton == ui->m1 || mButton == ui->m2 || mButton == ui->m3){
-
+    if(mButton == ui->m1 || mButton == ui->m2 || mButton == ui->m3)
         return ui->m1->text() == ui->m2->text() && ui->m1->text() == ui->m3->text();
 
-<<<<<<< HEAD
-        // Segunda fila
-    } else if(mButton == ui->m4 || mButton == ui->m5 || mButton == ui->m6){
-
-        return ui->m4->text() == ui->m5->text() && ui->m4->text() == ui->m6->text();
-
-        // Tercera fila
-    } else if(mButton == ui->m7 || mButton == ui->m8 || mButton == ui->m9){
-
-        return ui->m7->text() == ui->m8->text() && ui->m7->text() == ui->m9->text();
-
-    }
-
-=======
     // Segunda fila
     else if(mButton == ui->m4 || mButton == ui->m5 || mButton == ui->m6)
         return ui->m4->text() == ui->m5->text() && ui->m4->text() == ui->m6->text();
@@ -485,7 +419,6 @@ bool StartWindow::checkHor(QPushButton *mButton)
     // Tercera fila
     else if(mButton == ui->m7 || mButton == ui->m8 || mButton == ui->m9)
         return ui->m7->text() == ui->m8->text() && ui->m7->text() == ui->m9->text();
->>>>>>> refs/remotes/origin/newButtonTest
 }
 
 /// retorna true si hay un gane en vertical
@@ -495,29 +428,16 @@ bool StartWindow::checkVert(QPushButton *mButton)
 {
 
     // Primera columna
-    if(mButton == ui->m1 || mButton == ui->m4 || mButton == ui->m7){
-
+    if(mButton == ui->m1 || mButton == ui->m4 || mButton == ui->m7)
         return ui->m1->text() == ui->m4->text() && ui->m1->text() == ui->m7->text();
 
-<<<<<<< HEAD
-        // Segunda columna
-    } else if(mButton == ui->m2 || mButton == ui->m5 || mButton == ui->m8){
-
-        return ui->m2->text() == ui->m5->text() && ui->m2->text() == ui->m8->text();
-
-        // Tercera columna
-    } else if(mButton == ui->m3 || mButton == ui->m6 || mButton == ui->m9){
-
-=======
     // Segunda columna
     else if(mButton == ui->m2 || mButton == ui->m5 || mButton == ui->m8)
         return ui->m2->text() == ui->m5->text() && ui->m2->text() == ui->m8->text();
 
     // Tercera columna
     else if(mButton == ui->m3 || mButton == ui->m6 || mButton == ui->m9)
->>>>>>> refs/remotes/origin/newButtonTest
         return ui->m3->text() == ui->m6->text() && ui->m3->text() == ui->m9->text();
-    }
 
 }
 
@@ -527,16 +447,12 @@ bool StartWindow::checkVert(QPushButton *mButton)
 bool StartWindow::checkDiag(QPushButton *mButton)
 {
     // Diagonal 1 - 5 - 9
-    if(mButton == ui->m1 || mButton == ui->m5 || mButton == ui->m9){
-
+    if(mButton == ui->m1 || mButton == ui->m5 || mButton == ui->m9)
         return ui->m1->text() == ui->m5->text() && ui->m1->text() == ui->m9->text();
 
-        // Diagonal 3 - 5 - 7
-    } else if(mButton == ui->m3 || mButton == ui->m5 || mButton == ui->m7){
-
+    // Diagonal 3 - 5 - 7
+    else if(mButton == ui->m3 || mButton == ui->m5 || mButton == ui->m7)
         return ui->m3->text() == ui->m5->text() && ui->m3->text() == ui->m7->text();
-
-    }
 }
 
 // --------------------------------------------- EVENTOS EN MATRIZ ---------------------------------------------
@@ -546,7 +462,7 @@ bool StartWindow::checkDiag(QPushButton *mButton)
 /// @author kevttob
 /// 05/05/17 - M: 23/05/17
 void StartWindow::on_m1_clicked()
-{    
+{
     makeAction(ui->m1);
 }
 
@@ -892,15 +808,14 @@ void StartWindow::on_winner_btn_clicked()
 /// 23/05/17
 void StartWindow::makeAction(QPushButton *mButton)
 {
-    if(mButton->isChecked()){
-
+    if(mButton->isChecked())
+    {
         colocarFicha(mButton);
         checkWinner(mButton);
         mButton->setChecked(false);
         mButton->setCheckable(false);
         turn++;
         cambioTurno();
-
     }
 }
 
@@ -934,8 +849,6 @@ void StartWindow::on_btn_selectHuman_pressed()
     ui->btn_selectHuman->setIcon(pixmap);
 }
 
-<<<<<<< HEAD
-=======
 // Se encarga de escribir la interfaz en una matriz legible para minimax.
 // @author azzefj
 // 29/05/17
@@ -1094,4 +1007,3 @@ int StartWindow::checkWin(const int matrix[9]) {
     }
     return 0;
 }
->>>>>>> refs/remotes/origin/newButtonTest
