@@ -1,16 +1,16 @@
 /****************************************************************************
-** Meta object code from reading C++ file 'qlabel_event.h'
+** Meta object code from reading C++ file 'button.h'
 **
 ** Created by: The Qt Meta Object Compiler version 67 (Qt 5.8.0)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "../../tictactoe/qlabel_event.h"
+#include "../../tictactoe/button.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
-#error "The header file 'qlabel_event.h' doesn't include <QObject>."
+#error "The header file 'button.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
 #error "This file was generated using the moc from 5.8.0. It"
 #error "cannot be used with the include files from this version of Qt."
@@ -20,27 +20,27 @@
 QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
-struct qt_meta_stringdata_qLabel_Event_t {
+struct qt_meta_stringdata_Button_t {
     QByteArrayData data[3];
-    char stringdata0[27];
+    char stringdata0[16];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
-    qptrdiff(offsetof(qt_meta_stringdata_qLabel_Event_t, stringdata0) + ofs \
+    qptrdiff(offsetof(qt_meta_stringdata_Button_t, stringdata0) + ofs \
         - idx * sizeof(QByteArrayData)) \
     )
-static const qt_meta_stringdata_qLabel_Event_t qt_meta_stringdata_qLabel_Event = {
+static const qt_meta_stringdata_Button_t qt_meta_stringdata_Button = {
     {
-QT_MOC_LITERAL(0, 0, 12), // "qLabel_Event"
-QT_MOC_LITERAL(1, 13, 12), // "mousePressed"
-QT_MOC_LITERAL(2, 26, 0) // ""
+QT_MOC_LITERAL(0, 0, 6), // "Button"
+QT_MOC_LITERAL(1, 7, 7), // "clicked"
+QT_MOC_LITERAL(2, 15, 0) // ""
 
     },
-    "qLabel_Event\0mousePressed\0"
+    "Button\0clicked\0"
 };
 #undef QT_MOC_LITERAL
 
-static const uint qt_meta_data_qLabel_Event[] = {
+static const uint qt_meta_data_Button[] = {
 
  // content:
        7,       // revision
@@ -62,21 +62,21 @@ static const uint qt_meta_data_qLabel_Event[] = {
        0        // eod
 };
 
-void qLabel_Event::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+void Button::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
-        qLabel_Event *_t = static_cast<qLabel_Event *>(_o);
+        Button *_t = static_cast<Button *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->mousePressed(); break;
+        case 0: _t->clicked(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
         void **func = reinterpret_cast<void **>(_a[1]);
         {
-            typedef void (qLabel_Event::*_t)();
-            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&qLabel_Event::mousePressed)) {
+            typedef void (Button::*_t)();
+            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&Button::clicked)) {
                 *result = 0;
                 return;
             }
@@ -85,28 +85,30 @@ void qLabel_Event::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
     Q_UNUSED(_a);
 }
 
-const QMetaObject qLabel_Event::staticMetaObject = {
-    { &QLabel::staticMetaObject, qt_meta_stringdata_qLabel_Event.data,
-      qt_meta_data_qLabel_Event,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
+const QMetaObject Button::staticMetaObject = {
+    { &QObject::staticMetaObject, qt_meta_stringdata_Button.data,
+      qt_meta_data_Button,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
 };
 
 
-const QMetaObject *qLabel_Event::metaObject() const
+const QMetaObject *Button::metaObject() const
 {
     return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
 }
 
-void *qLabel_Event::qt_metacast(const char *_clname)
+void *Button::qt_metacast(const char *_clname)
 {
     if (!_clname) return Q_NULLPTR;
-    if (!strcmp(_clname, qt_meta_stringdata_qLabel_Event.stringdata0))
-        return static_cast<void*>(const_cast< qLabel_Event*>(this));
-    return QLabel::qt_metacast(_clname);
+    if (!strcmp(_clname, qt_meta_stringdata_Button.stringdata0))
+        return static_cast<void*>(const_cast< Button*>(this));
+    if (!strcmp(_clname, "QGraphicsPixmapItem"))
+        return static_cast< QGraphicsPixmapItem*>(const_cast< Button*>(this));
+    return QObject::qt_metacast(_clname);
 }
 
-int qLabel_Event::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+int Button::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
-    _id = QLabel::qt_metacall(_c, _id, _a);
+    _id = QObject::qt_metacall(_c, _id, _a);
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
@@ -122,7 +124,7 @@ int qLabel_Event::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void qLabel_Event::mousePressed()
+void Button::clicked()
 {
     QMetaObject::activate(this, &staticMetaObject, 0, Q_NULLPTR);
 }

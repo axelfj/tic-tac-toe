@@ -15,7 +15,8 @@ TEMPLATE = app
 SOURCES += main.cpp\
     startwindow.cpp \
     qlabel_event.cpp \
-    minmax.cpp
+    minmax.cpp \
+    button.cpp
 
 HEADERS  += \
     startwindow.h \
@@ -24,6 +25,7 @@ HEADERS  += \
 #    winnerdialog.h \
 #    winnerdialoghuman.h \
 #    tiedialog.h
+    button.h
 
 FORMS    += \
     startwindow.ui
