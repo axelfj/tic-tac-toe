@@ -13,9 +13,9 @@ Then a screen will appear and you can play it.
 
 ## Credits
 
-Kevin Aguilar Castro @kevttob
+github.com/kevttob
 
-Axel Fernandez Jimenez @azzefj
+github.com/azzefj
 
 ## Licencia
 
