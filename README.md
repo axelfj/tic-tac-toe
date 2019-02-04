@@ -1,26 +1,19 @@
-## Proyecto 2 - Estructuras de Datos - Gato
+## Tic Tac Toe
 
-Kevin Aguilar Castro - 2016152058
+## Description
 
-Axel Fernandez Jimenez - 2016098894
-
-## Enunciado
-
-Programe el juego del gato con el algoritmo de árboles Min Max de forma tal que una persona
-pueda jugar contra la máquina.
-
-El juego debe permitir elegir quién juega primero si la persona o la máquina y debe recibir el
-nombre de la persona que juega para desplegar al final quién ganó.
+Application to play Tic Tac Toe against the artificial intelligence or another human. 
+You can select who starts playing.
 
 ## Instalación
 
 TODO
 
-## Creditos
+## Credits
 
-Kevin Aguilar C.
+Kevin Aguilar Castro @kevttob
 
-Axel Fernandez J.
+Axel Fernandez Jimenez @azzefj
 
 ## Licencia
 
